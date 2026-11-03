@@ -128,13 +128,13 @@ export const ItemCounterPanel: React.FC<ItemCounterPanelProps> = ({
                     className={
                       'inline-flex items-center gap-1 px-2 py-1 rounded text-[8px] font-bold ' +
                       (item.category === 'anti-heal'
-                        ? 'bg-amber-500/20 text-amber-400 border border-amber-500/50'
+                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/50'
                         : item.category === 'anti-physical-burst'
-                        ? 'bg-rose-500/20 text-rose-400 border border-rose-500/50'
+                        ? 'bg-blue-500/20 text-blue-400 border border-blue-500/50'
                         : item.category === 'anti-magic-burst'
                         ? 'bg-purple-500/20 text-purple-400 border border-purple-500/50'
                         : item.category === 'anti-shield'
-                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/50'
+                        ? 'bg-amber-500/20 text-amber-400 border border-amber-500/50'
                         : '')
                     }>
                     <span className="font-semibold">{item.name}</span>

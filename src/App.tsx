@@ -8,6 +8,8 @@ import { TeamSynergyPanel } from './components/TeamSynergyPanel';
 import { ItemCounterPanel } from './components/ItemCounterPanel';
 import { RotateCcw, Swords, Shield } from 'lucide-react';
 import { HOK_ITEM_COUNTERS } from './data/hokItems';
+import { useRef, useEffect } from 'react';
+import { ITEM_DESCRIPTIONS } from './data/hokItems';
 
 // --- Language state & transliteration ---
 type Language = 'EN' | 'ID';
@@ -62,6 +64,191 @@ const transliterate = (text: string, language: Language): string => {
     return sentences[0].trim() + (sentences[0].trim().endsWith('.') ? '' : '.');
   }
   return text;
+};
+
+// Generate strategy summary text
+const generateStrategySummary = (draftState: DraftState, language: Language) => {
+  const enemyPickedIds = draftState.redTeam.filter((id): id is string => id !== null);
+  const allyPickedIds = draftState.blueTeam.filter((id): id is string => id !== null);
+  const heroById: Record<string, Hero> = {};
+  HOK_HEROES.forEach(h => { heroById[h.id] = h; });
+
+  // Team composition
+  const allyNames = allyPickedIds.map(id => heroById[id]?.name || 'Unknown').filter(Boolean);
+  const enemyNames = enemyPickedIds.map(id => heroById[id]?.name || 'Unknown').filter(Boolean);
+
+  // Top 3 Hero Counter Recommendations per Role
+  const ROLES: Hero['role'][] = ['Roam', 'Clash', 'Mid', 'Farm', 'Jungle'];
+
+  // Compute unavailable IDs for this draft state
+  const unavailableHeroIds: string[] = [];
+  for (const id of [...draftState.blueTeam, ...draftState.redTeam, ...draftState.blueBans, ...draftState.redBans]) {
+    if (id) unavailableHeroIds.push(id);
+  }
+
+  // Simple counter scoring
+  const counterScore = 40;
+  const vulnerabilityPenalty = 20;
+
+  const recommendationsPerRole = {} as Record<string, Array<any>>;
+
+  ROLES.forEach(role => {
+    const candidates = HOK_HEROES.filter(
+      (hero: Hero) => hero.role === role && !unavailableHeroIds.includes(hero.id)
+    );
+
+    const scored: any[] = [];
+
+    candidates.forEach(candidate => {
+      let score = 0;
+      const matchedEnemies: string[] = [];
+      const tacticalReasons: string[] = [];
+
+      for (const enemyId of enemyPickedIds) {
+        const enemy = heroById[enemyId];
+        if (!enemy) continue;
+
+        const counterEntry = enemy.counteredBy?.find(
+          (e: any) => e.id === candidate.id
+        );
+        const isCounter = Boolean(counterEntry) || (candidate.counters && candidate.counters.includes(enemy.id));
+
+        if (isCounter) {
+          score += counterScore;
+          matchedEnemies.push(enemy.name);
+          if (counterEntry?.reason) tacticalReasons.push(counterEntry.reason);
+        }
+
+        const vulnerability = candidate.counteredBy?.find(
+          (e: any) => e.id === enemy.id
+        );
+        if (vulnerability) {
+          score -= vulnerabilityPenalty;
+          tacticalReasons.push(`Rentan vs ${enemy.name}`);
+        }
+      }
+
+      if (matchedEnemies.length > 1) {
+        score += 10 * (matchedEnemies.length - 1);
+      }
+
+      if (score <= 0) return;
+
+      const fallbackReason = matchedEnemies.length > 0
+        ? `Efektif melawan ${matchedEnemies.join(' & ')}`
+        : `Sinergi dengan tim`;
+
+      scored.push({
+        hero: candidate,
+        score,
+        reason: tacticalReasons[0] ?? fallbackReason,
+      });
+    });
+
+    scored.sort((a: any, b: any) => b.score - a.score || a.hero.name.localeCompare(b.hero.name, 'en'));
+    recommendationsPerRole[role] = scored.slice(0, 3);
+  });
+
+  // Main Item Counter Priority Items
+  const itemPriorities = HOK_ITEM_COUNTERS.filter(item => {
+    if (item.category === 'anti-heal') {
+      return enemyNames.some(l =>
+        l.toLowerCase().includes('cai-yan') ||
+        l.toLowerCase().includes('dyadia') ||
+        l.toLowerCase().includes('ao-yin') ||
+        l.toLowerCase().includes('yang-jian') ||
+        l.toLowerCase().includes('fuzi')
+      );
+    }
+
+    if (item.category === 'anti-physical-burst') {
+      return enemyNames.some(l =>
+        l.toLowerCase().includes('lu-bu') ||
+        l.toLowerCase().includes('butterfly') ||
+        l.toLowerCase().includes('arthur')
+      );
+    }
+
+    if (item.category === 'anti-magic-burst') {
+      return enemyNames.some(l =>
+        l.toLowerCase().includes('angela') ||
+        l.toLowerCase().includes('daji') ||
+        l.toLowerCase().includes('mai-shiranui')
+      );
+    }
+
+    if (item.category === 'anti-shield') {
+      return enemyNames.some(l =>
+        l.toLowerCase().includes('zhang-fei') || l.toLowerCase().includes('dun')
+      );
+    }
+
+    return false;
+  });
+
+  // Sort: anti-heal first, then anti-magic-burst, anti-physical-burst, anti-shield
+  const categoryPriority: Record<string, number> = {
+    'anti-heal': 1,
+    'anti-magic-burst': 2,
+    'anti-physical-burst': 3,
+    'anti-shield': 4,
+  };
+
+  itemPriorities.sort((a, b) => {
+    const aPri = categoryPriority[a.category] ?? 99;
+    const bPri = categoryPriority[b.category] ?? 99;
+    return aPri - bPri;
+  });
+
+  const topItems = itemPriorities.slice(0, 5);
+
+  // Build summary text
+  const lines: string[] = [];
+
+  // Team composition
+  const languageCode = language === 'ID' ? 'ID' : 'EN';
+  lines.push('=== HOOK DRAFT & COUNTER ANALYZER: RINGKASAN STRATEGI ===');
+  lines.push('');
+  lines.push('--- KOMPOSISI TIM ---');
+  lines.push(`Tim Kita (Blue Side): ${allyNames.length > 0 ? allyNames.join(', ') : 'Belum ada hero dipilih'}`);
+  lines.push(`Musuh (Red Side): ${enemyNames.length > 0 ? enemyNames.join(', ') : 'Belum ada hero dipilih'}`);
+  lines.push('');
+
+  // Top 3 Counter per Role
+  lines.push('--- REKOMENDASI COUNTER PER ROLE ---');
+  ROLES.forEach(role => {
+    const recs = recommendationsPerRole[role];
+    if (recs && recs.length > 0) {
+      lines.push(`(${role}) ${recs.slice(0, 3).map((r: any) => r.hero.name).join(', ')}`);
+      recs.slice(0, 3).forEach((r: any, i) => {
+        const reasonId = languageCode === 'ID' ? r.reason : r.reason;
+        lines.push(`  ${i + 1}. ${r.hero.name}: ${reasonId}`);
+      });
+    }
+  });
+  lines.push('');
+
+  // Main Item Counter Priority
+  lines.push('--- ITEM COUNTER UTAMA ---');
+  if (topItems.length === 0) {
+    lines.push('Tidak ada item counter spesifik untuk composition ini');
+  } else {
+    topItems.forEach((item, idx) => {
+      const descKey = item.descriptionKey;
+      const desc = ITEM_DESCRIPTIONS[descKey];
+      const descText = desc
+        ? languageCode === 'ID'
+          ? desc.id
+          : desc.en
+        : item.name;
+      lines.push(`${idx + 1}. ${item.name} (${item.category}): ${descText}`);
+    });
+  }
+  lines.push('');
+
+  lines.push('=== AKHIR RINGKASAN ===');
+  
+  return lines.join('\n');
 };
 
 export default function App() {
@@ -163,6 +350,25 @@ export default function App() {
     ? `${draftState.activeSlot.side === 'blue' ? 'Blue Side' : 'Red Side'} (${draftState.activeSlot.type.toUpperCase()} #${draftState.activeSlot.index + 1})`
     : null;
 
+  // Fallback copy to clipboard for older browsers
+  const fallbackCopyToClipboard = (text: string) => {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.top = '0';
+    textArea.style.left = '0';
+    textArea.style.position = 'fixed';
+    textArea.style.opacity = '0';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+      document.execCommand('copy');
+    } catch (err) {
+      console.error('Failed to copy text', err);
+    }
+    document.body.removeChild(textArea);
+  };
+
   return (
     <div className="min-h-screen bg-slate-900 text-slate-100 p-4 md:p-6 flex flex-col gap-6">
       <header className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center justify-between gap-4 border-b border-slate-800 pb-4">
@@ -194,6 +400,31 @@ export default function App() {
             title="Indonesia"
           >
             ID
+          </button>
+          <button
+            id="copy-summary-btn"
+            onClick={async () => {
+              const summary = generateStrategySummary(draftState, language);
+              try {
+                await navigator.clipboard.writeText(summary);
+                // Show toast notification
+                const btn = document.getElementById('copy-summary-btn') as HTMLButtonElement;
+                const originalText = btn.textContent;
+                btn.textContent = 'Disalin!';
+                btn.className = btn.className + ' bg-emerald-500 text-slate-950';
+                setTimeout(() => {
+                  btn.textContent = originalText;
+                  btn.className = btn.className.replace(' bg-emerald-500 text-slate-950', '');
+                }, 2000);
+              } catch (err) {
+                fallbackCopyToClipboard(summary);
+              }
+            }}
+            className={`flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 px-4 py-2 rounded-xl text-sm font-semibold transition-all shadow-md`}
+            title="Copy Ringkasan Strategi"
+          >
+            <span className="w-4 h-4" />
+            Salin Ringkasan
           </button>
         </div>
       </header>
