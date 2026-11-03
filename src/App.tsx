@@ -4,7 +4,65 @@ import { HOK_HEROES, Hero } from './data/hokHeroes';
 import { DraftBoard } from './components/DraftBoard';
 import { HeroGrid } from './components/HeroGrid';
 import { CounterRecommendations } from './components/CounterRecommendations';
+import { TeamSynergyPanel } from './components/TeamSynergyPanel';
+import { ItemCounterPanel } from './components/ItemCounterPanel';
 import { RotateCcw, Swords, Shield } from 'lucide-react';
+import { HOK_ITEM_COUNTERS } from './data/hokItems';
+
+// --- Language state & transliteration ---
+type Language = 'EN' | 'ID';
+
+const idDictionary: Record<string, string> = {
+  // Counter reasons
+  "still holds a second leap": "Masih memiliki lonjakan kedua",
+  "holds a second leap once Agudo has spent her only roll": "Masih memiliki lonjakan kedua setelah Agudo telah menghabiskan gulirannya",
+  "drags Agudo in": "Tarik Agudo ke dalam",
+  "Prey mark adds true damage": "Tanda Perjuangan menambahkan damage sejati",
+  "cannot be targeted during his ultimate": "Tidak dapat ditarget selama ultimate-nya",
+  "Frag Grenade slows hard": "Grenade pelan keras",
+  "Ultimate Shell is far harder to dodge": "Ultimate Shell jauh lebih sulit dielakkan",
+  "poison pool slows": "Kolam racun pelan",
+  "much harder to dodge": "Sulit dielakkan",
+  "shield covers": "Perlindungan menutup",
+  "can stay on the front line": "Bisa tetap berada di lini depan",
+  "keep landing Basic Attacks": "Landing serangan dasar",
+  "attacks find nothing at all": "Serangan tidak menemukan apa-apa",
+  "Rentan vs": "Rentan vs",
+  "synergy": "sinergi",
+  "attach": "menempel",
+  "shield and stays untargetable": "melindungi dan tidak dapat ditarget",
+  "follows him straight through his dashes": "mengikuti langsung melalui dash-nya",
+  "pull enemies into one stunned cluster": "Taruh lawan ke dalam cluster yang terkaget",
+  "area shots hit the whole group": "Menembak area menebak seluruh kelompok",
+  "buys him exactly that time": "membeli waktu yang tepat itu",
+  "shields the target": "melindungi target",
+  "grows thickest on a Health-stacking": "mempercatat pada penumpang Health-stacking",
+  "taunt buys her exactly that time": "menyuari membeli waktu yang tepat itu",
+  "pulls enemies into one pile": "Mengelompokkan lawan",
+  "stuns them": "mengkagetkan mereka",
+  "keeps enemies from escaping": "Menjaga lawan dari melarikan diri",
+  // Synergy reasons
+  "slow keeps enemies from escaping": "Pelan menjaga lawan dari melarikan diri",
+  "keeps Tune of Tranquility's heal and defense": "Menjaga penyembuhan dan pertahanan Tune of Tranquility",
+};
+
+const transliterate = (text: string, language: Language): string => {
+  if (language === 'EN') return text;
+
+  // Check for exact matches first
+  for (const [key, value] of Object.entries(idDictionary)) {
+    if (text.toLowerCase().includes(key.toLowerCase())) {
+      return value;
+    }
+  }
+
+  // If no match, generate a brief Indonesian summary
+  const sentences = text.split('.').filter(s => s.trim().length > 0);
+  if (sentences.length > 0) {
+    return sentences[0].trim() + (sentences[0].trim().endsWith('.') ? '' : '.');
+  }
+  return text;
+};
 
 export default function App() {
   const [draftState, setDraftState] = useState<DraftState>({
@@ -14,6 +72,8 @@ export default function App() {
     redBans: [null, null, null],
     activeSlot: { side: 'blue', type: 'pick', index: 0 },
   });
+
+  const [language, setLanguage] = useState<Language>('EN');
 
   const handleSelectSlot = (side: 'blue' | 'red', type: 'pick' | 'ban', index: number) => {
     setDraftState(prev => ({
@@ -66,8 +126,6 @@ export default function App() {
           newState.blueBans = [...newState.blueBans];
           newState.blueBans[index] = hero.id;
         } else {
-          newState.redBans = [...newState.redBans];
-          newState.redBans[index] = null; // wait
           newState.redBans = [...newState.redBans];
           newState.redBans[index] = hero.id;
         }
@@ -122,37 +180,56 @@ export default function App() {
           </div>
         </div>
 
-        <button
-          onClick={handleResetDraft}
-          className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 px-4 py-2 rounded-xl text-sm font-semibold transition-all shadow-md hover:border-amber-400"
-        >
-          <RotateCcw className="w-4 h-4 text-amber-400" />
-          Reset Draft
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setLanguage('EN')}
+            className={`flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 px-4 py-2 rounded-xl text-sm font-semibold transition-all shadow-md ${language === 'EN' ? 'border-amber-400 text-amber-400' : ''}`}
+            title="English"
+          >
+            EN
+          </button>
+          <button
+            onClick={() => setLanguage('ID')}
+            className={`flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 px-4 py-2 rounded-xl text-sm font-semibold transition-all shadow-md ${language === 'ID' ? 'border-amber-400 text-amber-400' : ''}`}
+            title="Indonesia"
+          >
+            ID
+          </button>
+        </div>
       </header>
 
       <main className="max-w-7xl mx-auto w-full flex flex-col gap-6">
-        <DraftBoard
+        <CounterRecommendations
           draftState={draftState}
-          onSelectSlot={handleSelectSlot}
-          onRemoveHero={handleRemoveHero}
+          onSelectHeroForActiveSlot={(heroId) => {
+            const hero = HOK_HEROES.find((h: Hero) => h.id === heroId);
+            if (hero) handleSelectHero(hero);
+          }}
+          language={language}
+          transliterate={(text: string) => transliterate(text, language)}
         />
+
+      {/* Team Synergy Panel - di bawah Counter Recommendations */}
+      <TeamSynergyPanel
+        draftState={draftState}
+        language={language}
+        transliterate={(text: string) => transliterate(text, language)}
+      />
+
+      {/* Item Counter Panel - di bagian bawah dashboard */}
+      <ItemCounterPanel
+        draftState={draftState}
+        language={language}
+        transliterate={(text: string) => transliterate(text, language)}
+      />
 
         <div className="grid grid-cols-1 lg:grid-cols-1 gap-6">
-          <CounterRecommendations
-            draftState={draftState}
-            onSelectHeroForActiveSlot={(heroId) => {
-              const hero = HOK_HEROES.find((h: Hero) => h.id === heroId);
-              if (hero) handleSelectHero(hero);
-            }}
+          <HeroGrid
+            pickedOrBannedIds={pickedOrBannedIds}
+            onSelectHero={handleSelectHero}
+            activeSlotInfo={activeSlotLabel}
           />
         </div>
-
-        <HeroGrid
-          pickedOrBannedIds={pickedOrBannedIds}
-          onSelectHero={handleSelectHero}
-          activeSlotInfo={activeSlotLabel}
-        />
       </main>
     </div>
   );

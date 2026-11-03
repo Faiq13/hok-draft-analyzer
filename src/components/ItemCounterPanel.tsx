@@ -1,0 +1,159 @@
+import React from 'react';
+import { HOK_HEROES, Hero } from '../data/hokHeroes';
+import { DraftState } from '../types/draft';
+import { HOK_ITEM_COUNTERS, ITEM_DESCRIPTIONS } from '../data/hokItems';
+
+interface ItemCounterPanelProps {
+  draftState: DraftState;
+  language: 'EN' | 'ID';
+  transliterate: (text: string, language: 'EN' | 'ID') => string;
+}
+
+export const ItemCounterPanel: React.FC<ItemCounterPanelProps> = ({
+  draftState,
+  language,
+  transliterate,
+}) => {
+  const enemyPickedIds = draftState.redTeam.filter((id): id is string => id !== null);
+  const allyPickedIds = draftState.blueTeam.filter((id): id is string => id !== null);
+  const languageCode = language;
+
+  if (enemyPickedIds.length === 0) {
+    return (
+      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl text-center py-8">
+        <p className="text-slate-500 italic">
+          Analisis item counter akan tampil setelah hero lawan dipilih
+        </p>
+      </div>
+    );
+  }
+
+  // Get enemy hero names from picked IDs
+  const enemyHeroNames = enemyPickedIds
+    .map(id => {
+      const hero = HOK_HEROES.find(h => h.id === id);
+      return hero ? hero.name : null;
+    })
+    .filter((h): h is string => h !== null);
+
+  // Calculate priority items based on enemy composition
+  const itemPriorities = HOK_ITEM_COUNTERS.filter(item => {
+    const lowerEnemies = enemyHeroNames.map(h => h.toLowerCase());
+
+    if (item.category === 'anti-heal') {
+      return lowerEnemies.some(l =>
+        l.includes('cai-yan') ||
+        l.includes('dyadia') ||
+        l.includes('ao-yin') ||
+        l.includes('yang-jian') ||
+        l.includes('fuzi')
+      );
+    }
+
+    if (item.category === 'anti-physical-burst') {
+      return lowerEnemies.some(l =>
+        l.includes('lu-bu') ||
+        l.includes('butterfly') ||
+        l.includes('arthur')
+      );
+    }
+
+    if (item.category === 'anti-magic-burst') {
+      return lowerEnemies.some(l =>
+        l.includes('angela') ||
+        l.includes('daji') ||
+        l.includes('mai-shiranui')
+      );
+    }
+
+    if (item.category === 'anti-shield') {
+      return lowerEnemies.some(l =>
+        l.includes('zhang-fei') || l.includes('dun')
+      );
+    }
+
+    return false;
+  });
+
+  // Sort: anti-heal first, then anti-magic-burst, anti-physical-burst, anti-shield
+  const categoryPriority: Record<string, number> = {
+    'anti-heal': 1,
+    'anti-magic-burst': 2,
+    'anti-physical-burst': 3,
+    'anti-shield': 4,
+  };
+
+  itemPriorities.sort((a, b) => {
+    const aPri = categoryPriority[a.category] ?? 99;
+    const bPri = categoryPriority[b.category] ?? 99;
+    return aPri - bPri;
+  });
+
+  // Take top 5 prioritized items
+  const topItems = itemPriorities.slice(0, 5);
+
+  return (
+    <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl mt-4">
+      <div className="flex items-center gap-2 mb-4 border-b border-slate-800 pb-3">
+        <span className="text-amber-400">⚔️</span>
+        <h2 className="font-bold text-lg text-slate-100">Item Counter Prioritas</h2>
+      </div>
+
+      <p className="text-sm text-slate-400 mb-3">
+        Analisis 5 hero lawan terpilih &rarr; Menyarankan item wajib untuk counter composition musuh
+      </p>
+
+      {topItems.length === 0 ? (
+        <div className="text-center text-slate-500 italic py-4">
+          Tidak ada item counter spesifik untuk composition ini
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {topItems.map((item, idx) => {
+            const descKey = item.descriptionKey;
+            const desc = ITEM_DESCRIPTIONS[descKey];
+            const descText = desc
+              ? languageCode === 'ID'
+                ? desc.id
+                : desc.en
+              : item.name;
+
+            return (
+              <div
+                key={item.id}
+                className="bg-slate-800 border border-slate-700/50 rounded-lg p-3 flex items-start gap-3 hover:bg-slate-700 transition-colors"
+              >
+                <div className="flex-shrink-0">
+                  <span
+                    className={
+                      'inline-flex items-center gap-1 px-2 py-1 rounded text-[8px] font-bold ' +
+                      (item.category === 'anti-heal'
+                        ? 'bg-amber-500/20 text-amber-400 border border-amber-500/50'
+                        : item.category === 'anti-physical-burst'
+                        ? 'bg-rose-500/20 text-rose-400 border border-rose-500/50'
+                        : item.category === 'anti-magic-burst'
+                        ? 'bg-purple-500/20 text-purple-400 border border-purple-500/50'
+                        : item.category === 'anti-shield'
+                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/50'
+                        : '')
+                    }>
+                    <span className="font-semibold">{item.name}</span>
+                  </span>
+                </div>
+
+                <div className="flex-1 min-w-0">
+                  <p className="text-[9px] text-slate-400 line-clamp-2 leading-snug">
+                    {descText}
+                  </p>
+                  <p className="text-[8px] text-slate-500 mt-1">
+                    Prioritas #{idx + 1} dari 5 item counter utama
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+};

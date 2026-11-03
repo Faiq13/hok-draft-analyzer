@@ -7,6 +7,8 @@ import { HeroAvatar } from './HeroAvatar';
 interface CounterRecommendationsProps {
   draftState: DraftState;
   onSelectHeroForActiveSlot: (heroId: string) => void;
+  language: 'EN' | 'ID';
+  transliterate: (text: string) => string;
 }
 
 interface RecommendationItem {
@@ -24,9 +26,29 @@ const VULNERABILITY_PENALTY = 20;
 
 const heroById = new Map(HOK_HEROES.map(hero => [hero.id, hero]));
 
+const getCounterBadge = (matchedEnemies: string[]) => {
+  if (matchedEnemies.length === 0) return null;
+  const isMulti = matchedEnemies.length > 1;
+  const badgeClass = isMulti
+    ? "bg-amber-500/20 text-amber-400 border border-amber-500/50"
+    : "bg-emerald-500/20 text-emerald-400 border border-emerald-500/50";
+  return (
+    <span
+      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[8px] font-bold ${badgeClass}`}>
+      <span className="font-semibold">Counter:</span>
+      {matchedEnemies.map((name, i) => {
+        if (i > 0) return <span>& </span>;
+        return <span key={i} className="hover:underline">{name}</span>;
+      })}
+    </span>
+  );
+};
+
 export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
   draftState,
   onSelectHeroForActiveSlot,
+  language,
+  transliterate,
 }) => {
   const enemyPickedIds = draftState.redTeam.filter((id): id is string => id !== null);
   const allyPickedIds = draftState.blueTeam.filter((id): id is string => id !== null);
@@ -126,6 +148,28 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
     recommendationsPerRole[role] = scored.slice(0, 3);
   });
 
+  // Pre-map recommendations for cleaner rendering with transliteration
+  const mappedRecommendations = recommendationsPerRole['Roam']?.map((item, idx) => ({
+    ...item,
+    displayReason: transliterate(item.reason),
+  })) || [];
+  const midRecommendations = recommendationsPerRole['Mid']?.map((item, idx) => ({
+    ...item,
+    displayReason: transliterate(item.reason),
+  })) || [];
+  const farmRecommendations = recommendationsPerRole['Farm']?.map((item, idx) => ({
+    ...item,
+    displayReason: transliterate(item.reason),
+  })) || [];
+  const jungleRecommendations = recommendationsPerRole['Jungle']?.map((item, idx) => ({
+    ...item,
+    displayReason: transliterate(item.reason),
+  })) || [];
+  const clashRecommendations = recommendationsPerRole['Clash']?.map((item, idx) => ({
+    ...item,
+    displayReason: transliterate(item.reason),
+  })) || [];
+
   return (
     <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl">
       <div className="flex items-center gap-2 mb-4 border-b border-slate-800 pb-3">
@@ -139,57 +183,264 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          {ROLES.map(role => {
-            const recs = recommendationsPerRole[role] ?? [];
-            return (
-              <div key={role} className="bg-slate-800/50 border border-slate-700/60 rounded-xl p-3 flex flex-col gap-3">
-                <div className="flex items-center justify-between border-b border-slate-700 pb-2">
-                  <span className="font-bold text-sm text-amber-400">{role}</span>
-                  <span className="text-[10px] bg-slate-700 text-slate-300 px-2 py-0.5 rounded">Top Rec</span>
+          <div key="Roam" className="bg-slate-800/50 border border-slate-700/60 rounded-xl p-3 flex flex-col gap-3">
+            <div className="flex items-center justify-between border-b border-slate-700 pb-2">
+              <span className="font-bold text-sm text-amber-400">Roam</span>
+              <span className="text-[10px] bg-slate-700 text-slate-300 px-2 py-0.5 rounded">Top Rec</span>
+            </div>
+            <div className="flex flex-col gap-2.5">
+              {mappedRecommendations.length === 0 ? (
+                <div className="text-xs text-slate-500 italic py-4 text-center bg-slate-900/40 rounded-lg border border-slate-800">
+                  Tidak ada counter spesifik
                 </div>
-
-                <div className="flex flex-col gap-2.5">
-                  {recs.length === 0 ? (
-                    <div className="text-xs text-slate-500 italic py-4 text-center bg-slate-900/40 rounded-lg border border-slate-800">
-                      Tidak ada counter spesifik
-                    </div>
-                  ) : (
-                    recs.map((item, idx) => (
-                      <div
-                        key={item.hero.id}
-                        onClick={() => {
-                          if (draftState.activeSlot && draftState.activeSlot.side === 'blue') {
-                            onSelectHeroForActiveSlot(item.hero.id);
-                          }
-                        }}
-                        className="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg p-2 flex items-center gap-2.5 cursor-pointer transition-all group"
-                      >
-                        <HeroAvatar
-                          hero={item.hero}
-                          className="w-10 h-10 rounded-md flex-shrink-0 border border-slate-600 group-hover:border-amber-400"
-                          initialsClassName="text-[10px]"
-                        />
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center justify-between gap-1">
-                            <h4 className="font-semibold text-xs text-white truncate">{item.hero.name}</h4>
-                            <span className="text-[10px] text-emerald-400 font-bold">#{idx + 1}</span>
-                          </div>
-                          <p
-                            className="text-[10px] text-slate-400 line-clamp-2 leading-snug"
-                            title={item.fullReason}
-                          >
-                            {item.reason}
-                          </p>
-                        </div>
+              ) : (
+                mappedRecommendations.map((item, idx) => (
+                  <div
+                    key={item.hero.id}
+                    onClick={() => {
+                      if (draftState.activeSlot && draftState.activeSlot.side === 'blue') {
+                        onSelectHeroForActiveSlot(item.hero.id);
+                      }
+                    }}
+                    className="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg p-2 flex items-center gap-2.5 cursor-pointer transition-all group"
+                  >
+                    <HeroAvatar
+                      hero={item.hero}
+                      className="w-10 h-10 rounded-md flex-shrink-0 border border-slate-600 group-hover:border-amber-400"
+                      initialsClassName="text-[10px]"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-1">
+                        <h4 className="font-semibold text-xs text-white truncate">{item.hero.name}</h4>
+                        <span className="text-[10px] text-emerald-400 font-bold">#{idx + 1}</span>
                       </div>
-                    ))
-                  )}
+
+                      {getCounterBadgeFromReason(item.reason)}
+
+                      <p
+                        className="text-[10px] text-slate-400 line-clamp-3 leading-snug"
+                        title={item.fullReason}
+                      >
+                        {item.displayReason}
+                      </p>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+
+          <div key="Mid" className="bg-slate-800/50 border border-slate-700/60 rounded-xl p-3 flex flex-col gap-3">
+            <div className="flex items-center justify-between border-b border-slate-700 pb-2">
+              <span className="font-bold text-sm text-amber-400">Mid</span>
+              <span className="text-[10px] bg-slate-700 text-slate-300 px-2 py-0.5 rounded">Top Rec</span>
+            </div>
+            <div className="flex flex-col gap-2.5">
+              {midRecommendations.length === 0 ? (
+                <div className="text-xs text-slate-500 italic py-4 text-center bg-slate-900/40 rounded-lg border border-slate-800">
+                  Tidak ada counter spesifik
                 </div>
-              </div>
-            );
-          })}
+              ) : (
+                midRecommendations.map((item, idx) => (
+                  <div
+                    key={item.hero.id}
+                    onClick={() => {
+                      if (draftState.activeSlot && draftState.activeSlot.side === 'blue') {
+                        onSelectHeroForActiveSlot(item.hero.id);
+                      }
+                    }}
+                    className="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg p-2 flex items-center gap-2.5 cursor-pointer transition-all group"
+                  >
+                    <HeroAvatar
+                      hero={item.hero}
+                      className="w-10 h-10 rounded-md flex-shrink-0 border border-slate-600 group-hover:border-amber-400"
+                      initialsClassName="text-[10px]"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-1">
+                        <h4 className="font-semibold text-xs text-white truncate">{item.hero.name}</h4>
+                        <span className="text-[10px] text-emerald-400 font-bold">#{idx + 1}</span>
+                      </div>
+
+                      {getCounterBadgeFromReason(item.reason)}
+
+                      <p
+                        className="text-[10px] text-slate-400 line-clamp-3 leading-snug"
+                        title={item.fullReason}
+                      >
+                        {item.displayReason}
+                      </p>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+
+          <div key="Farm" className="bg-slate-800/50 border border-slate-700/60 rounded-xl p-3 flex flex-col gap-3">
+            <div className="flex items-center justify-between border-b border-slate-700 pb-2">
+              <span className="font-bold text-sm text-amber-400">Farm</span>
+              <span className="text-[10px] bg-slate-700 text-slate-300 px-2 py-0.5 rounded">Top Rec</span>
+            </div>
+            <div className="flex flex-col gap-2.5">
+              {farmRecommendations.length === 0 ? (
+                <div className="text-xs text-slate-500 italic py-4 text-center bg-slate-900/40 rounded-lg border border-slate-800">
+                  Tidak ada counter spesifik
+                </div>
+              ) : (
+                farmRecommendations.map((item, idx) => (
+                  <div
+                    key={item.hero.id}
+                    onClick={() => {
+                      if (draftState.activeSlot && draftState.activeSlot.side === 'blue') {
+                        onSelectHeroForActiveSlot(item.hero.id);
+                      }
+                    }}
+                    className="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg p-2 flex items-center gap-2.5 cursor-pointer transition-all group"
+                  >
+                    <HeroAvatar
+                      hero={item.hero}
+                      className="w-10 h-10 rounded-md flex-shrink-0 border border-slate-600 group-hover:border-amber-400"
+                      initialsClassName="text-[10px]"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-1">
+                        <h4 className="font-semibold text-xs text-white truncate">{item.hero.name}</h4>
+                        <span className="text-[10px] text-emerald-400 font-bold">#{idx + 1}</span>
+                      </div>
+
+                      {getCounterBadgeFromReason(item.reason)}
+
+                      <p
+                        className="text-[10px] text-slate-400 line-clamp-3 leading-snug"
+                        title={item.fullReason}
+                      >
+                        {item.displayReason}
+                      </p>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+
+          <div key="Jungle" className="bg-slate-800/50 border border-slate-700/60 rounded-xl p-3 flex flex-col gap-3">
+            <div className="flex items-center justify-between border-b border-slate-700 pb-2">
+              <span className="font-bold text-sm text-amber-400">Jungle</span>
+              <span className="text-[10px] bg-slate-700 text-slate-300 px-2 py-0.5 rounded">Top Rec</span>
+            </div>
+            <div className="flex flex-col gap-2.5">
+              {jungleRecommendations.length === 0 ? (
+                <div className="text-xs text-slate-500 italic py-4 text-center bg-slate-900/40 rounded-lg border border-slate-800">
+                  Tidak ada counter spesifik
+                </div>
+              ) : (
+                jungleRecommendations.map((item, idx) => (
+                  <div
+                    key={item.hero.id}
+                    onClick={() => {
+                      if (draftState.activeSlot && draftState.activeSlot.side === 'blue') {
+                        onSelectHeroForActiveSlot(item.hero.id);
+                      }
+                    }}
+                    className="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg p-2 flex items-center gap-2.5 cursor-pointer transition-all group"
+                  >
+                    <HeroAvatar
+                      hero={item.hero}
+                      className="w-10 h-10 rounded-md flex-shrink-0 border border-slate-600 group-hover:border-amber-400"
+                      initialsClassName="text-[10px]"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-1">
+                        <h4 className="font-semibold text-xs text-white truncate">{item.hero.name}</h4>
+                        <span className="text-[10px] text-emerald-400 font-bold">#{idx + 1}</span>
+                      </div>
+
+                      {getCounterBadgeFromReason(item.reason)}
+
+                      <p
+                        className="text-[10px] text-slate-400 line-clamp-3 leading-snug"
+                        title={item.fullReason}
+                      >
+                        {item.displayReason}
+                      </p>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+
+          <div key="Clash" className="bg-slate-800/50 border border-slate-700/60 rounded-xl p-3 flex flex-col gap-3">
+            <div className="flex items-center justify-between border-b border-slate-700 pb-2">
+              <span className="font-bold text-sm text-amber-400">Clash</span>
+              <span className="text-[10px] bg-slate-700 text-slate-300 px-2 py-0.5 rounded">Top Rec</span>
+            </div>
+            <div className="flex flex-col gap-2.5">
+              {clashRecommendations.length === 0 ? (
+                <div className="text-xs text-slate-500 italic py-4 text-center bg-slate-900/40 rounded-lg border border-slate-800">
+                  Tidak ada counter spesifik
+                </div>
+              ) : (
+                clashRecommendations.map((item, idx) => (
+                  <div
+                    key={item.hero.id}
+                    onClick={() => {
+                      if (draftState.activeSlot && draftState.activeSlot.side === 'blue') {
+                        onSelectHeroForActiveSlot(item.hero.id);
+                      }
+                    }}
+                    className="bg-slate-800:hover:bg-slate-700 border border-slate-700 rounded-lg p-2 flex items-center gap-2.5 cursor-pointer transition-all group"
+                  >
+                    <HeroAvatar
+                      hero={item.hero}
+                      className="w-10 h-10 rounded-md flex-shrink-0 border border-slate-600 group-hover:border-amber-400"
+                      initialsClassName="text-[10px]"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-1">
+                        <h4 className="font-semibold text-xs text-white truncate">{item.hero.name}</h4>
+                        <span className="text-[10px] text-emerald-400 font-bold">#{idx + 1}</span>
+                      </div>
+
+                      {getCounterBadgeFromReason(item.reason)}
+
+                      <p
+                        className="text-[10px] text-slate-400 line-clamp-3 leading-snug"
+                        title={item.fullReason}
+                      >
+                        {item.displayReason}
+                      </p>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
         </div>
       )}
     </div>
+  );
+};
+
+const getCounterBadgeFromReason = (reason: string) => {
+  // Extract enemy names from reason string like "Counter: Angela, Daji"
+  const counterMatch = reason.match(/^Counter:\s*(.+)$/i);
+  if (!counterMatch) return null;
+  const enemies = counterMatch[1].split(',').map(s => s.trim()).filter(Boolean);
+  if (enemies.length === 0) return null;
+  const isMulti = enemies.length > 1;
+  const badgeClass = isMulti
+    ? "bg-amber-500/20 text-amber-400 border border-amber-500/50"
+    : "bg-emerald-500/20 text-emerald-400 border border-emerald-500/50";
+  return (
+    <span
+      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[8px] font-bold ${badgeClass}`}>
+      <span className="font-semibold">Counter:</span>
+      {enemies.map((name, i) => {
+        if (i > 0) return <span>& </span>;
+        return <span key={i} className="hover:underline">{name}</span>;
+      })}
+    </span>
   );
 };
