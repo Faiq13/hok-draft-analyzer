@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { HOK_HEROES, Hero } from '../data/hokHeroes';
 import { DraftState } from '../types/draft';
 import { Sparkles } from 'lucide-react';
+import { HeroAvatar } from './HeroAvatar';
 
 interface CounterRecommendationsProps {
   draftState: DraftState;
@@ -12,96 +13,117 @@ interface RecommendationItem {
   hero: Hero;
   score: number;
   reason: string;
+  fullReason: string;
 }
+
+const ROLES: Hero['role'][] = ['Roam', 'Clash', 'Mid', 'Farm', 'Jungle'];
+
+const COUNTER_SCORE = 40;
+const SYNERGY_SCORE = 20;
+const VULNERABILITY_PENALTY = 20;
+
+const heroById = new Map(HOK_HEROES.map(hero => [hero.id, hero]));
 
 export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
   draftState,
   onSelectHeroForActiveSlot,
 }) => {
-  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
-
   const enemyPickedIds = draftState.redTeam.filter((id): id is string => id !== null);
-  const alreadyPickedOrBanned = [
-    ...draftState.blueTeam,
-    ...draftState.redTeam,
-    ...draftState.blueBans,
-    ...draftState.redBans,
-  ].filter((id): id is string => id !== null);
+  const allyPickedIds = draftState.blueTeam.filter((id): id is string => id !== null);
 
-  const roles: ('Roam' | 'Clash' | 'Mid' | 'Farm' | 'Jungle')[] = ['Roam', 'Clash', 'Mid', 'Farm', 'Jungle'];
-  const recommendationsPerRole: Record<string, RecommendationItem[]> = {};
+  // Hero yang sudah dipick atau dibanned kedua tim tidak boleh muncul lagi.
+  const unavailableIds = new Set(
+    [
+      ...draftState.blueTeam,
+      ...draftState.redTeam,
+      ...draftState.blueBans,
+      ...draftState.redBans,
+    ].filter((id): id is string => id !== null)
+  );
 
-  const getRoleColor = (role: string) => {
-    switch (role) {
-      case 'Roam': return 'bg-emerald-600';
-      case 'Clash': return 'bg-amber-600';
-      case 'Mid': return 'bg-purple-600';
-      case 'Farm': return 'bg-blue-600';
-      case 'Jungle': return 'bg-rose-600';
-      default: return 'bg-slate-600';
-    }
-  };
+  const recommendationsPerRole = {} as Record<Hero['role'], RecommendationItem[]>;
 
-  const getInitials = (name: string) => {
-    const parts = name.replace(/[^a-zA-Z0-9 ]/g, '').split(' ');
-    if (parts.length >= 2) {
-      return (parts[0][0] + parts[1][0]).toUpperCase();
-    }
-    return name.slice(0, 2).toUpperCase();
-  };
-
-  roles.forEach(role => {
-    // 1. Filter out already picked or banned heroes completely
+  ROLES.forEach(role => {
     const candidates = HOK_HEROES.filter(
-      h => h.role === role && !alreadyPickedOrBanned.includes(h.id)
+      hero => hero.role === role && !unavailableIds.has(hero.id)
     );
 
-    const scoredCandidates: RecommendationItem[] = [];
+    const scored: RecommendationItem[] = [];
 
     candidates.forEach(candidate => {
-      let totalScore = 0;
-      let matchedEnemies: string[] = [];
+      let score = 0;
+      const matchedEnemies: string[] = [];
+      const matchedAllies: string[] = [];
+      const tacticalReasons: string[] = [];
+      const vulnerabilities: string[] = [];
 
-      // 2. Accumulate counter score against ALL enemy picks in redPicks
-      enemyPickedIds.forEach(enemyId => {
-        const enemyHero = HOK_HEROES.find(h => h.id === enemyId);
-        if (enemyHero) {
-          const isCounter = enemyHero.counteredBy.includes(candidate.id) || candidate.counters.includes(enemyHero.id);
-          if (isCounter) {
-            totalScore += 40;
-            matchedEnemies.push(enemyHero.name);
-          }
-        }
-      });
+      // 1. Akumulasi counter terhadap SEMUA hero musuh yang dipilih.
+      for (const enemyId of enemyPickedIds) {
+        const enemy = heroById.get(enemyId);
+        if (!enemy) continue;
 
-      // Only consider heroes that are genuine counters to at least one enemy pick when enemies are picked
-      if (enemyPickedIds.length > 0 && totalScore > 0) {
-        let reason = '';
-        if (matchedEnemies.length === 1) {
-          reason = `Efektif melawan ${matchedEnemies[0]}`;
-        } else if (matchedEnemies.length > 1) {
-          reason = `Efektif melawan ${matchedEnemies.join(' & ')}`;
+        const counterEntry = enemy.counteredBy.find(entry => entry.id === candidate.id);
+        const isCounter = Boolean(counterEntry) || candidate.counters.includes(enemy.id);
+
+        if (isCounter) {
+          score += COUNTER_SCORE;
+          matchedEnemies.push(enemy.name);
+          if (counterEntry?.reason) tacticalReasons.push(counterEntry.reason);
         }
 
-        scoredCandidates.push({
-          hero: candidate,
-          score: totalScore,
-          reason,
-        });
-      } else if (enemyPickedIds.length === 0) {
-        // If no enemies picked yet, suggest general top heroes or synergy
-        scoredCandidates.push({
-          hero: candidate,
-          score: 10,
-          reason: `Pilihan solid untuk role ${role}`,
-        });
+        // 2. Penalti bila hero musuh justru meng-counter kandidat.
+        const vulnerability = candidate.counteredBy.find(entry => entry.id === enemy.id);
+        if (vulnerability) {
+          score -= VULNERABILITY_PENALTY;
+          vulnerabilities.push(`Rentan vs ${enemy.name}`);
+          if (vulnerability.reason) tacticalReasons.push(vulnerability.reason);
+        }
       }
+
+      // 3. Bonus sinergi dengan hero tim kita yang sudah dipilih.
+      for (const allyId of allyPickedIds) {
+        const ally = heroById.get(allyId);
+        if (!ally) continue;
+
+        const synergy =
+          candidate.synergies.find(entry => entry.id === ally.id) ??
+          ally.synergies.find(entry => entry.id === candidate.id);
+
+        if (synergy) {
+          score += SYNERGY_SCORE;
+          matchedAllies.push(ally.name);
+          if (synergy.reason) tacticalReasons.push(synergy.reason);
+        }
+      }
+
+      // Prioritaskan hero yang menjawab lebih dari satu pick musuh.
+      if (matchedEnemies.length > 1) {
+        score += 10 * (matchedEnemies.length - 1);
+      }
+
+      if (score <= 0) return;
+
+      const fullReasonParts = [
+        matchedEnemies.length > 0 ? `Counter: ${matchedEnemies.join(', ')}` : '',
+        matchedAllies.length > 0 ? `Sinergi: ${matchedAllies.join(', ')}` : '',
+        ...tacticalReasons,
+        ...vulnerabilities,
+      ].filter(Boolean);
+
+      const fallbackReason = matchedEnemies.length > 0
+        ? `Efektif melawan ${matchedEnemies.join(' & ')}`
+        : `Sinergi dengan ${matchedAllies.join(' & ')}`;
+
+      scored.push({
+        hero: candidate,
+        score,
+        reason: tacticalReasons[0] ?? fallbackReason,
+        fullReason: fullReasonParts.join(' • '),
+      });
     });
 
-    scoredCandidates.sort((a, b) => b.score - a.score);
-
-    // 3. No random fallback: if scoredCandidates is empty, return empty array so UI displays "Tidak ada counter spesifik"
-    recommendationsPerRole[role] = scoredCandidates.slice(0, 3);
+    scored.sort((a, b) => b.score - a.score || a.hero.name.localeCompare(b.hero.name, 'en'));
+    recommendationsPerRole[role] = scored.slice(0, 3);
   });
 
   return (
@@ -117,8 +139,8 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          {roles.map(role => {
-            const recs = recommendationsPerRole[role] || [];
+          {ROLES.map(role => {
+            const recs = recommendationsPerRole[role] ?? [];
             return (
               <div key={role} className="bg-slate-800/50 border border-slate-700/60 rounded-xl p-3 flex flex-col gap-3">
                 <div className="flex items-center justify-between border-b border-slate-700 pb-2">
@@ -132,44 +154,35 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
                       Tidak ada counter spesifik
                     </div>
                   ) : (
-                    recs.map((item, idx) => {
-                      const hasFailed = failedImages[item.hero.id];
-                      return (
-                        <div
-                          key={item.hero.id}
-                          onClick={() => {
-                            if (draftState.activeSlot && draftState.activeSlot.side === 'blue') {
-                              onSelectHeroForActiveSlot(item.hero.id);
-                            }
-                          }}
-                          className="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg p-2 flex items-center gap-2.5 cursor-pointer transition-all group"
-                        >
-                          <div className="w-10 h-10 rounded-md overflow-hidden flex-shrink-0 border border-slate-600 group-hover:border-amber-400 flex items-center justify-center">
-                            {!hasFailed ? (
-                              <img
-                                src={item.hero.avatarUrl}
-                                alt={item.hero.name}
-                                className="w-full h-full object-cover"
-                                onError={() => {
-                                 setFailedImages(prev => ({ ...prev, [item.hero.id]: true }));
-                                }}
-                              />
-                            ) : (
-                              <div className={`w-full h-full flex flex-col items-center justify-center text-white font-bold text-[10px] ${getRoleColor(item.hero.role)}`}>
-                                <span>{getInitials(item.hero.name)}</span>
-                              </div>
-                            )}
+                    recs.map((item, idx) => (
+                      <div
+                        key={item.hero.id}
+                        onClick={() => {
+                          if (draftState.activeSlot && draftState.activeSlot.side === 'blue') {
+                            onSelectHeroForActiveSlot(item.hero.id);
+                          }
+                        }}
+                        className="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg p-2 flex items-center gap-2.5 cursor-pointer transition-all group"
+                      >
+                        <HeroAvatar
+                          hero={item.hero}
+                          className="w-10 h-10 rounded-md flex-shrink-0 border border-slate-600 group-hover:border-amber-400"
+                          initialsClassName="text-[10px]"
+                        />
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between gap-1">
+                            <h4 className="font-semibold text-xs text-white truncate">{item.hero.name}</h4>
+                            <span className="text-[10px] text-emerald-400 font-bold">#{idx + 1}</span>
                           </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center justify-between">
-                              <h4 className="font-semibold text-xs text-white truncate">{item.hero.name}</h4>
-                              <span className="text-[10px] text-emerald-400 font-bold">#{idx + 1}</span>
-                            </div>
-                            <p className="text-[10px] text-slate-400 truncate" title={item.reason}>{item.reason}</p>
-                          </div>
+                          <p
+                            className="text-[10px] text-slate-400 line-clamp-2 leading-snug"
+                            title={item.fullReason}
+                          >
+                            {item.reason}
+                          </p>
                         </div>
-                      );
-                    })
+                      </div>
+                    ))
                   )}
                 </div>
               </div>

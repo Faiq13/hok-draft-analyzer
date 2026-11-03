@@ -1,0 +1,2205 @@
+[
+  {
+    "id": "agudo",
+    "slug": "agudo",
+    "name": "Agudo",
+    "sourceSlug": "agudo",
+    "sourceId": "533",
+    "role": "Marksman",
+    "roles": [
+      "Marksman"
+    ],
+    "lane": "Jungle",
+    "archetype": "Tank Marksman",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/533.webp",
+    "localAvatar": "/heroes/agudo.webp",
+    "avatarBytes": 3974,
+    "downloaded": true
+  },
+  {
+    "id": "alessio",
+    "slug": "alessio",
+    "name": "Alessio",
+    "sourceSlug": "alessio",
+    "sourceId": "545",
+    "role": "Marksman",
+    "roles": [
+      "Marksman"
+    ],
+    "lane": "Farm",
+    "archetype": "Nimble Marksman",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/545.webp",
+    "localAvatar": "/heroes/alessio.webp",
+    "avatarBytes": 3900,
+    "downloaded": true
+  },
+  {
+    "id": "allain",
+    "slug": "allain",
+    "name": "Allain",
+    "sourceSlug": "allain",
+    "sourceId": "514",
+    "role": "Fighter",
+    "roles": [
+      "Fighter"
+    ],
+    "lane": "Clash",
+    "archetype": "Berserker",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/514.webp",
+    "localAvatar": "/heroes/allain.webp",
+    "avatarBytes": 2324,
+    "downloaded": true
+  },
+  {
+    "id": "angela",
+    "slug": "angela",
+    "name": "Angela",
+    "sourceSlug": "angela",
+    "sourceId": "142",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Artillery Mage",
+    "tier": "S",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/142.webp",
+    "localAvatar": "/heroes/angela.webp",
+    "avatarBytes": 3006,
+    "downloaded": true
+  },
+  {
+    "id": "annette",
+    "slug": "annette",
+    "name": "Annette",
+    "sourceSlug": "annette",
+    "sourceId": "640",
+    "role": "Mage",
+    "roles": [
+      "Mage",
+      "Support"
+    ],
+    "lane": "Roam",
+    "archetype": "",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/640.webp",
+    "localAvatar": "/heroes/annette.webp",
+    "avatarBytes": 3610,
+    "downloaded": true
+  },
+  {
+    "id": "aoyin",
+    "slug": "aoyin",
+    "name": "Ao'yin",
+    "sourceSlug": "bai-long",
+    "sourceId": "519",
+    "role": "Marksman",
+    "roles": [
+      "Marksman"
+    ],
+    "lane": "Farm",
+    "archetype": "Artillery Marksman",
+    "tier": "S",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/519.webp",
+    "localAvatar": "/heroes/aoyin.webp",
+    "avatarBytes": 3288,
+    "downloaded": true
+  },
+  {
+    "id": "arke",
+    "slug": "arke",
+    "name": "Arke",
+    "sourceSlug": "a-ke",
+    "sourceId": "116",
+    "role": "Assassin",
+    "roles": [
+      "Assassin"
+    ],
+    "lane": "Jungle",
+    "archetype": "Burst Assassin",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/116.webp",
+    "localAvatar": "/heroes/arke.webp",
+    "avatarBytes": 4176,
+    "downloaded": true
+  },
+  {
+    "id": "arli",
+    "slug": "arli",
+    "name": "Arli",
+    "sourceSlug": "gongsun-li",
+    "sourceId": "199",
+    "role": "Marksman",
+    "roles": [
+      "Marksman"
+    ],
+    "lane": "Farm",
+    "archetype": "Nimble Marksman",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/199.webp",
+    "localAvatar": "/heroes/arli.webp",
+    "avatarBytes": 3594,
+    "downloaded": true
+  },
+  {
+    "id": "arthur",
+    "slug": "arthur",
+    "name": "Arthur",
+    "sourceSlug": "arthur",
+    "sourceId": "166",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Tank"
+    ],
+    "lane": "Clash",
+    "archetype": "Charger",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/166.webp",
+    "localAvatar": "/heroes/arthur.webp",
+    "avatarBytes": 3476,
+    "downloaded": true
+  },
+  {
+    "id": "ata",
+    "slug": "ata",
+    "name": "Ata",
+    "sourceSlug": "ata",
+    "sourceId": "556",
+    "role": "Tank",
+    "roles": [
+      "Tank"
+    ],
+    "lane": "Clash",
+    "archetype": "Vanguard Tank",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/556.webp",
+    "localAvatar": "/heroes/ata.webp",
+    "avatarBytes": 3938,
+    "downloaded": true
+  },
+  {
+    "id": "athena",
+    "slug": "athena",
+    "name": "Athena",
+    "sourceSlug": "athena",
+    "sourceId": "183",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Assassin"
+    ],
+    "lane": "Jungle",
+    "archetype": "Assassin Fighter",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/183.webp",
+    "localAvatar": "/heroes/athena.webp",
+    "avatarBytes": 3666,
+    "downloaded": true
+  },
+  {
+    "id": "augran",
+    "slug": "augran",
+    "name": "Augran",
+    "sourceSlug": "da-siming",
+    "sourceId": "517",
+    "role": "Fighter",
+    "roles": [
+      "Fighter"
+    ],
+    "lane": "Jungle",
+    "archetype": "Assassin Fighter",
+    "tier": "S",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/517.webp",
+    "localAvatar": "/heroes/augran.webp",
+    "avatarBytes": 3008,
+    "downloaded": true
+  },
+  {
+    "id": "bai-qi",
+    "slug": "bai-qi",
+    "name": "Bai Qi",
+    "sourceSlug": "bai-qi",
+    "sourceId": "120",
+    "role": "Tank",
+    "roles": [
+      "Tank"
+    ],
+    "lane": "Clash",
+    "archetype": "Vanguard Tank",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/120.webp",
+    "localAvatar": "/heroes/bai-qi.webp",
+    "avatarBytes": 3804,
+    "downloaded": true
+  },
+  {
+    "id": "biron",
+    "slug": "biron",
+    "name": "Biron",
+    "sourceSlug": "biron",
+    "sourceId": "503",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Tank"
+    ],
+    "lane": "Clash",
+    "archetype": "Heavy Fighter",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/503.webp",
+    "localAvatar": "/heroes/biron.webp",
+    "avatarBytes": 2770,
+    "downloaded": true
+  },
+  {
+    "id": "butterfly",
+    "slug": "butterfly",
+    "name": "Butterfly",
+    "sourceSlug": "butterfly",
+    "sourceId": "646",
+    "role": "Fighter",
+    "roles": [
+      "Fighter"
+    ],
+    "lane": "Jungle",
+    "archetype": "Assassin Fighter",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/646.webp",
+    "localAvatar": "/heroes/butterfly.webp",
+    "avatarBytes": 3322,
+    "downloaded": true
+  },
+  {
+    "id": "cai-yan",
+    "slug": "cai-yan",
+    "name": "Cai Yan",
+    "sourceSlug": "cai-wenji",
+    "sourceId": "184",
+    "role": "Support",
+    "roles": [
+      "Support"
+    ],
+    "lane": "Roam",
+    "archetype": "Buff Support",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/184.webp",
+    "localAvatar": "/heroes/cai-yan.webp",
+    "avatarBytes": 4660,
+    "downloaded": true
+  },
+  {
+    "id": "chano",
+    "slug": "chano",
+    "name": "Chano",
+    "sourceSlug": "genghis-khan",
+    "sourceId": "177",
+    "role": "Marksman",
+    "roles": [
+      "Marksman"
+    ],
+    "lane": "Farm",
+    "archetype": "Artillery Marksman",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/177.webp",
+    "localAvatar": "/heroes/chano.webp",
+    "avatarBytes": 2912,
+    "downloaded": true
+  },
+  {
+    "id": "charlotte",
+    "slug": "charlotte",
+    "name": "Charlotte",
+    "sourceSlug": "charlotte",
+    "sourceId": "536",
+    "role": "Fighter",
+    "roles": [
+      "Fighter"
+    ],
+    "lane": "Clash",
+    "archetype": "Charger",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/536.webp",
+    "localAvatar": "/heroes/charlotte.webp",
+    "avatarBytes": 3852,
+    "downloaded": true
+  },
+  {
+    "id": "chicha",
+    "slug": "chicha",
+    "name": "Chicha",
+    "sourceSlug": "chixia",
+    "sourceId": "172",
+    "role": "Fighter",
+    "roles": [
+      "Fighter"
+    ],
+    "lane": "Clash",
+    "archetype": "Charger",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/172.webp",
+    "localAvatar": "/heroes/chicha.webp",
+    "avatarBytes": 3550,
+    "downloaded": true
+  },
+  {
+    "id": "cirrus",
+    "slug": "cirrus",
+    "name": "Cirrus",
+    "sourceSlug": "yunzhongjun",
+    "sourceId": "506",
+    "role": "Assassin",
+    "roles": [
+      "Assassin"
+    ],
+    "lane": "Jungle",
+    "archetype": "Burst Assassin",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/506.webp",
+    "localAvatar": "/heroes/cirrus.webp",
+    "avatarBytes": 4306,
+    "downloaded": true
+  },
+  {
+    "id": "consort-yu",
+    "slug": "consort-yu",
+    "name": "Consort Yu",
+    "sourceSlug": "consort-yu",
+    "sourceId": "174",
+    "role": "Marksman",
+    "roles": [
+      "Marksman"
+    ],
+    "lane": "Farm",
+    "archetype": "DPS Marksman",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/174.webp",
+    "localAvatar": "/heroes/consort-yu.webp",
+    "avatarBytes": 3668,
+    "downloaded": true
+  },
+  {
+    "id": "da-qiao",
+    "slug": "da-qiao",
+    "name": "Da Qiao",
+    "sourceSlug": "da-qiao",
+    "sourceId": "191",
+    "role": "Mage",
+    "roles": [
+      "Mage",
+      "Support"
+    ],
+    "lane": "Roam",
+    "archetype": "Tactical Support",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/191.webp",
+    "localAvatar": "/heroes/da-qiao.webp",
+    "avatarBytes": 3968,
+    "downloaded": true
+  },
+  {
+    "id": "daji",
+    "slug": "daji",
+    "name": "Daji",
+    "sourceSlug": "daji",
+    "sourceId": "109",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Artillery Mage",
+    "tier": "S",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/109.webp",
+    "localAvatar": "/heroes/daji.webp",
+    "avatarBytes": 4278,
+    "downloaded": true
+  },
+  {
+    "id": "devara",
+    "slug": "devara",
+    "name": "Devara",
+    "sourceSlug": "devara",
+    "sourceId": "537",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Mage"
+    ],
+    "lane": "Clash",
+    "archetype": "Berserker",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/537.webp",
+    "localAvatar": "/heroes/devara.webp",
+    "avatarBytes": 3156,
+    "downloaded": true
+  },
+  {
+    "id": "dharma",
+    "slug": "dharma",
+    "name": "Dharma",
+    "sourceSlug": "dharma",
+    "sourceId": "134",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Tank"
+    ],
+    "lane": "Clash",
+    "archetype": "Charger",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/134.webp",
+    "localAvatar": "/heroes/dharma.webp",
+    "avatarBytes": 2592,
+    "downloaded": true
+  },
+  {
+    "id": "di-renjie",
+    "slug": "di-renjie",
+    "name": "Di Renjie",
+    "sourceSlug": "di-renjie",
+    "sourceId": "133",
+    "role": "Marksman",
+    "roles": [
+      "Marksman"
+    ],
+    "lane": "Farm",
+    "archetype": "DPS Marksman",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/133.webp",
+    "localAvatar": "/heroes/di-renjie.webp",
+    "avatarBytes": 2972,
+    "downloaded": true
+  },
+  {
+    "id": "dian-wei",
+    "slug": "dian-wei",
+    "name": "Dian Wei",
+    "sourceSlug": "dian-wei",
+    "sourceId": "129",
+    "role": "Fighter",
+    "roles": [
+      "Fighter"
+    ],
+    "lane": "Jungle",
+    "archetype": "Berserker",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/129.webp",
+    "localAvatar": "/heroes/dian-wei.webp",
+    "avatarBytes": 3276,
+    "downloaded": true
+  },
+  {
+    "id": "diaochan",
+    "slug": "diaochan",
+    "name": "Diaochan",
+    "sourceSlug": "diaochan",
+    "sourceId": "141",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Formation Mage",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/141.webp",
+    "localAvatar": "/heroes/diaochan.webp",
+    "avatarBytes": 3446,
+    "downloaded": true
+  },
+  {
+    "id": "dolia",
+    "slug": "dolia",
+    "name": "Dolia",
+    "sourceSlug": "doria",
+    "sourceId": "159",
+    "role": "Support",
+    "roles": [
+      "Support"
+    ],
+    "lane": "Roam",
+    "archetype": "Buff Support",
+    "tier": "S",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/159.webp",
+    "localAvatar": "/heroes/dolia.webp",
+    "avatarBytes": 3164,
+    "downloaded": true
+  },
+  {
+    "id": "donghuang",
+    "slug": "donghuang",
+    "name": "Donghuang",
+    "sourceSlug": "donghuang-taiyi",
+    "sourceId": "187",
+    "role": "Tank",
+    "roles": [
+      "Tank",
+      "Support"
+    ],
+    "lane": "Roam",
+    "archetype": "Offensive Support",
+    "tier": "S",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/187.webp",
+    "localAvatar": "/heroes/donghuang.webp",
+    "avatarBytes": 3654,
+    "downloaded": true
+  },
+  {
+    "id": "dr-bian",
+    "slug": "dr-bian",
+    "name": "Dr Bian",
+    "sourceSlug": "bian-que",
+    "sourceId": "119",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Formation Mage",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/119.webp",
+    "localAvatar": "/heroes/dr-bian.webp",
+    "avatarBytes": 3316,
+    "downloaded": true
+  },
+  {
+    "id": "dun",
+    "slug": "dun",
+    "name": "Dun",
+    "sourceSlug": "xiahou-dun",
+    "sourceId": "126",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Tank"
+    ],
+    "lane": "Clash",
+    "archetype": "Guardian Tank",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/126.webp",
+    "localAvatar": "/heroes/dun.webp",
+    "avatarBytes": 2994,
+    "downloaded": true
+  },
+  {
+    "id": "dunshan",
+    "slug": "dunshan",
+    "name": "Dunshan",
+    "sourceSlug": "dunshan",
+    "sourceId": "509",
+    "role": "Tank",
+    "roles": [
+      "Tank",
+      "Support"
+    ],
+    "lane": "Roam",
+    "archetype": "Offensive Support",
+    "tier": "S",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/509.webp",
+    "localAvatar": "/heroes/dunshan.webp",
+    "avatarBytes": 3530,
+    "downloaded": true
+  },
+  {
+    "id": "dyadia",
+    "slug": "dyadia",
+    "name": "Dyadia",
+    "sourceSlug": "shao-siyuan",
+    "sourceId": "577",
+    "role": "Mage",
+    "roles": [
+      "Mage",
+      "Support"
+    ],
+    "lane": "Roam",
+    "archetype": "Buff Support",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/577.webp",
+    "localAvatar": "/heroes/dyadia.webp",
+    "avatarBytes": 3194,
+    "downloaded": true
+  },
+  {
+    "id": "erin",
+    "slug": "erin",
+    "name": "Erin",
+    "sourceSlug": "erin",
+    "sourceId": "155",
+    "role": "Marksman",
+    "roles": [
+      "Marksman"
+    ],
+    "lane": "Farm",
+    "archetype": "Nimble Marksman",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/155.webp",
+    "localAvatar": "/heroes/erin.webp",
+    "avatarBytes": 3056,
+    "downloaded": true
+  },
+  {
+    "id": "fang",
+    "slug": "fang",
+    "name": "Fang",
+    "sourceSlug": "li-yuanfang",
+    "sourceId": "173",
+    "role": "Marksman",
+    "roles": [
+      "Marksman"
+    ],
+    "lane": "Farm",
+    "archetype": "Artillery Marksman",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/173.webp",
+    "localAvatar": "/heroes/fang.webp",
+    "avatarBytes": 4152,
+    "downloaded": true
+  },
+  {
+    "id": "fatih",
+    "slug": "fatih",
+    "name": "Fatih",
+    "sourceSlug": "fatifu",
+    "sourceId": "128",
+    "role": "Fighter",
+    "roles": [
+      "Fighter"
+    ],
+    "lane": "Clash",
+    "archetype": "Berserker",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/128.webp",
+    "localAvatar": "/heroes/fatih.webp",
+    "avatarBytes": 2620,
+    "downloaded": true
+  },
+  {
+    "id": "feyd",
+    "slug": "feyd",
+    "name": "Feyd",
+    "sourceSlug": "harold",
+    "sourceId": "542",
+    "role": "Assassin",
+    "roles": [
+      "Assassin"
+    ],
+    "lane": "Jungle",
+    "archetype": "Roving Assassin",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/542.webp",
+    "localAvatar": "/heroes/feyd.webp",
+    "avatarBytes": 2412,
+    "downloaded": true
+  },
+  {
+    "id": "florentino",
+    "slug": "florentino",
+    "name": "Florentino",
+    "sourceSlug": "florentino",
+    "sourceId": "631",
+    "role": "Fighter",
+    "roles": [
+      "Fighter"
+    ],
+    "lane": "Clash",
+    "archetype": "",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/631.webp",
+    "localAvatar": "/heroes/florentino.webp",
+    "avatarBytes": 2876,
+    "downloaded": true
+  },
+  {
+    "id": "flowborn-assassin",
+    "slug": "flowborn-assassin",
+    "name": "Flowborn (Assassin)",
+    "sourceSlug": "yuanliu-child-assassin",
+    "sourceId": "583",
+    "role": "Assassin",
+    "roles": [
+      "Assassin"
+    ],
+    "lane": "Jungle",
+    "archetype": "Roving Assassin",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/583.webp",
+    "localAvatar": "/heroes/flowborn-assassin.webp",
+    "avatarBytes": 3460,
+    "downloaded": true
+  },
+  {
+    "id": "flowborn-mage",
+    "slug": "flowborn-mage",
+    "name": "Flowborn (Mage)",
+    "sourceSlug": "yuanliu-child-mage",
+    "sourceId": "582",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Artillery Mage",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/582.webp",
+    "localAvatar": "/heroes/flowborn-mage.webp",
+    "avatarBytes": 2058,
+    "downloaded": true
+  },
+  {
+    "id": "flowborn-marksman",
+    "slug": "flowborn-marksman",
+    "name": "Flowborn (Marksman)",
+    "sourceSlug": "yuanliu-child-marksman",
+    "sourceId": "584",
+    "role": "Marksman",
+    "roles": [
+      "Marksman"
+    ],
+    "lane": "Farm",
+    "archetype": "Nimble Marksman",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/584.webp",
+    "localAvatar": "/heroes/flowborn-marksman.webp",
+    "avatarBytes": 2554,
+    "downloaded": true
+  },
+  {
+    "id": "flowborn-roamer",
+    "slug": "flowborn-roamer",
+    "name": "Flowborn (Roamer)",
+    "sourceSlug": "yuanliu-child-support",
+    "sourceId": "585",
+    "role": "Mage",
+    "roles": [
+      "Mage",
+      "Support"
+    ],
+    "lane": "Roam",
+    "archetype": "Buff Support",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/585.webp",
+    "localAvatar": "/heroes/flowborn-roamer.webp",
+    "avatarBytes": 3266,
+    "downloaded": true
+  },
+  {
+    "id": "flowborn-tank",
+    "slug": "flowborn-tank",
+    "name": "Flowborn (Tank)",
+    "sourceSlug": "yuanliu-child-tank",
+    "sourceId": "581",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Tank"
+    ],
+    "lane": "Clash",
+    "archetype": "Vanguard Tank",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/581.webp",
+    "localAvatar": "/heroes/flowborn-tank.webp",
+    "avatarBytes": 2080,
+    "downloaded": true
+  },
+  {
+    "id": "fuzi",
+    "slug": "fuzi",
+    "name": "Fuzi",
+    "sourceSlug": "laozi",
+    "sourceId": "139",
+    "role": "Fighter",
+    "roles": [
+      "Fighter"
+    ],
+    "lane": "Clash",
+    "archetype": "Berserker",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/139.webp",
+    "localAvatar": "/heroes/fuzi.webp",
+    "avatarBytes": 3656,
+    "downloaded": true
+  },
+  {
+    "id": "gan-mo",
+    "slug": "gan-mo",
+    "name": "Gan & Mo",
+    "sourceSlug": "ganjiang-moye",
+    "sourceId": "182",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Artillery Mage",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/182.webp",
+    "localAvatar": "/heroes/gan-mo.webp",
+    "avatarBytes": 3386,
+    "downloaded": true
+  },
+  {
+    "id": "gao",
+    "slug": "gao",
+    "name": "Gao",
+    "sourceSlug": "gao-jianli",
+    "sourceId": "115",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Formation Mage",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/115.webp",
+    "localAvatar": "/heroes/gao.webp",
+    "avatarBytes": 5814,
+    "downloaded": true
+  },
+  {
+    "id": "gao-changgong",
+    "slug": "gao-changgong",
+    "name": "Gao Changgong",
+    "sourceSlug": "prince-of-lanling",
+    "sourceId": "153",
+    "role": "Assassin",
+    "roles": [
+      "Assassin"
+    ],
+    "lane": "Jungle",
+    "archetype": "Burst Assassin",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/153.webp",
+    "localAvatar": "/heroes/gao-changgong.webp",
+    "avatarBytes": 2868,
+    "downloaded": true
+  },
+  {
+    "id": "garo",
+    "slug": "garo",
+    "name": "Garo",
+    "sourceSlug": "garo",
+    "sourceId": "508",
+    "role": "Marksman",
+    "roles": [
+      "Marksman"
+    ],
+    "lane": "Farm",
+    "archetype": "DPS Marksman",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/508.webp",
+    "localAvatar": "/heroes/garo.webp",
+    "avatarBytes": 3352,
+    "downloaded": true
+  },
+  {
+    "id": "garuda",
+    "slug": "garuda",
+    "name": "Garuda",
+    "sourceSlug": "karura",
+    "sourceId": "110",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Artillery Mage",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/110.webp",
+    "localAvatar": "/heroes/garuda.webp",
+    "avatarBytes": 3104,
+    "downloaded": true
+  },
+  {
+    "id": "guan-yu",
+    "slug": "guan-yu",
+    "name": "Guan Yu",
+    "sourceSlug": "guan-yu",
+    "sourceId": "140",
+    "role": "Fighter",
+    "roles": [
+      "Fighter"
+    ],
+    "lane": "Clash",
+    "archetype": "Charger",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/140.webp",
+    "localAvatar": "/heroes/guan-yu.webp",
+    "avatarBytes": 4142,
+    "downloaded": true
+  },
+  {
+    "id": "guiguzi",
+    "slug": "guiguzi",
+    "name": "Guiguzi",
+    "sourceSlug": "guiguzi",
+    "sourceId": "189",
+    "role": "Support",
+    "roles": [
+      "Support"
+    ],
+    "lane": "Roam",
+    "archetype": "Offensive Support",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/189.webp",
+    "localAvatar": "/heroes/guiguzi.webp",
+    "avatarBytes": 4054,
+    "downloaded": true
+  },
+  {
+    "id": "han-xin",
+    "slug": "han-xin",
+    "name": "Han Xin",
+    "sourceSlug": "han-xin",
+    "sourceId": "150",
+    "role": "Assassin",
+    "roles": [
+      "Assassin"
+    ],
+    "lane": "Jungle",
+    "archetype": "Roving Assassin",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/150.webp",
+    "localAvatar": "/heroes/han-xin.webp",
+    "avatarBytes": 2986,
+    "downloaded": true
+  },
+  {
+    "id": "haya",
+    "slug": "haya",
+    "name": "Haya",
+    "sourceSlug": "ming-yue",
+    "sourceId": "521",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Artillery Mage",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/521.webp",
+    "localAvatar": "/heroes/haya.webp",
+    "avatarBytes": 3308,
+    "downloaded": true
+  },
+  {
+    "id": "heino",
+    "slug": "heino",
+    "name": "Heino",
+    "sourceSlug": "heino",
+    "sourceId": "563",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Formation Mage",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/563.webp",
+    "localAvatar": "/heroes/heino.webp",
+    "avatarBytes": 3830,
+    "downloaded": true
+  },
+  {
+    "id": "hou-yi",
+    "slug": "hou-yi",
+    "name": "Hou Yi",
+    "sourceSlug": "hou-yi",
+    "sourceId": "169",
+    "role": "Marksman",
+    "roles": [
+      "Marksman"
+    ],
+    "lane": "Farm",
+    "archetype": "DPS Marksman",
+    "tier": "S",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/169.webp",
+    "localAvatar": "/heroes/hou-yi.webp",
+    "avatarBytes": 3272,
+    "downloaded": true
+  },
+  {
+    "id": "huang-zhong",
+    "slug": "huang-zhong",
+    "name": "Huang Zhong",
+    "sourceSlug": "huang-zhong",
+    "sourceId": "192",
+    "role": "Marksman",
+    "roles": [
+      "Marksman"
+    ],
+    "lane": "Farm",
+    "archetype": "DPS Marksman",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/192.webp",
+    "localAvatar": "/heroes/huang-zhong.webp",
+    "avatarBytes": 3846,
+    "downloaded": true
+  },
+  {
+    "id": "jing",
+    "slug": "jing",
+    "name": "Jing",
+    "sourceSlug": "jing",
+    "sourceId": "531",
+    "role": "Assassin",
+    "roles": [
+      "Assassin"
+    ],
+    "lane": "Jungle",
+    "archetype": "Roving Assassin",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/531.webp",
+    "localAvatar": "/heroes/jing.webp",
+    "avatarBytes": 3306,
+    "downloaded": true
+  },
+  {
+    "id": "kaizer",
+    "slug": "kaizer",
+    "name": "Kaizer",
+    "sourceSlug": "kaizer",
+    "sourceId": "193",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Tank"
+    ],
+    "lane": "Clash",
+    "archetype": "Assassin Fighter",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/193.webp",
+    "localAvatar": "/heroes/kaizer.webp",
+    "avatarBytes": 3480,
+    "downloaded": true
+  },
+  {
+    "id": "kongming",
+    "slug": "kongming",
+    "name": "Kongming",
+    "sourceSlug": "zhuge-liang",
+    "sourceId": "190",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Ambush Mage",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/190.webp",
+    "localAvatar": "/heroes/kongming.webp",
+    "avatarBytes": 3890,
+    "downloaded": true
+  },
+  {
+    "id": "kui",
+    "slug": "kui",
+    "name": "Kui",
+    "sourceSlug": "zhong-kui",
+    "sourceId": "175",
+    "role": "Mage",
+    "roles": [
+      "Mage",
+      "Support"
+    ],
+    "lane": "Roam",
+    "archetype": "Offensive Support",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/175.webp",
+    "localAvatar": "/heroes/kui.webp",
+    "avatarBytes": 3578,
+    "downloaded": true
+  },
+  {
+    "id": "lady-sun",
+    "slug": "lady-sun",
+    "name": "Lady Sun",
+    "sourceSlug": "sun-shangxiang",
+    "sourceId": "111",
+    "role": "Marksman",
+    "roles": [
+      "Marksman"
+    ],
+    "lane": "Farm",
+    "archetype": "Artillery Marksman",
+    "tier": "S",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/111.webp",
+    "localAvatar": "/heroes/lady-sun.webp",
+    "avatarBytes": 3510,
+    "downloaded": true
+  },
+  {
+    "id": "lady-zhen",
+    "slug": "lady-zhen",
+    "name": "Lady Zhen",
+    "sourceSlug": "zhen-ji",
+    "sourceId": "127",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Control Mage",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/127.webp",
+    "localAvatar": "/heroes/lady-zhen.webp",
+    "avatarBytes": 3126,
+    "downloaded": true
+  },
+  {
+    "id": "lam",
+    "slug": "lam",
+    "name": "Lam",
+    "sourceSlug": "lan",
+    "sourceId": "528",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Assassin"
+    ],
+    "lane": "Jungle",
+    "archetype": "Roving Assassin",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/528.webp",
+    "localAvatar": "/heroes/lam.webp",
+    "avatarBytes": 2018,
+    "downloaded": true
+  },
+  {
+    "id": "lapulapu",
+    "slug": "lapulapu",
+    "name": "Lapulapu",
+    "sourceSlug": "lumburr",
+    "sourceId": "168",
+    "role": "Tank",
+    "roles": [
+      "Tank",
+      "Support"
+    ],
+    "lane": "Roam",
+    "archetype": "Defensive Support",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/168.webp",
+    "localAvatar": "/heroes/lapulapu.webp",
+    "avatarBytes": 2876,
+    "downloaded": true
+  },
+  {
+    "id": "li-bai",
+    "slug": "li-bai",
+    "name": "Li Bai",
+    "sourceSlug": "li-bai",
+    "sourceId": "131",
+    "role": "Assassin",
+    "roles": [
+      "Assassin"
+    ],
+    "lane": "Jungle",
+    "archetype": "Roving Assassin",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/131.webp",
+    "localAvatar": "/heroes/li-bai.webp",
+    "avatarBytes": 3038,
+    "downloaded": true
+  },
+  {
+    "id": "li-xin",
+    "slug": "li-xin",
+    "name": "Li Xin",
+    "sourceSlug": "li-xin",
+    "sourceId": "507",
+    "role": "Fighter",
+    "roles": [
+      "Fighter"
+    ],
+    "lane": "Clash",
+    "archetype": "Berserker",
+    "tier": "S",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/507.webp",
+    "localAvatar": "/heroes/li-xin.webp",
+    "avatarBytes": 3608,
+    "downloaded": true
+  },
+  {
+    "id": "lian-po",
+    "slug": "lian-po",
+    "name": "Lian Po",
+    "sourceSlug": "lian-po",
+    "sourceId": "105",
+    "role": "Tank",
+    "roles": [
+      "Tank"
+    ],
+    "lane": "Clash",
+    "archetype": "Vanguard Tank",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/105.webp",
+    "localAvatar": "/heroes/lian-po.webp",
+    "avatarBytes": 4220,
+    "downloaded": true
+  },
+  {
+    "id": "liang",
+    "slug": "liang",
+    "name": "Liang",
+    "sourceSlug": "zhang-liang",
+    "sourceId": "156",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Control Mage",
+    "tier": "S",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/156.webp",
+    "localAvatar": "/heroes/liang.webp",
+    "avatarBytes": 3974,
+    "downloaded": true
+  },
+  {
+    "id": "liu-bang",
+    "slug": "liu-bang",
+    "name": "Liu Bang",
+    "sourceSlug": "liu-bang",
+    "sourceId": "149",
+    "role": "Tank",
+    "roles": [
+      "Tank",
+      "Mage"
+    ],
+    "lane": "Clash",
+    "archetype": "Guardian Tank",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/149.webp",
+    "localAvatar": "/heroes/liu-bang.webp",
+    "avatarBytes": 3466,
+    "downloaded": true
+  },
+  {
+    "id": "liu-bei",
+    "slug": "liu-bei",
+    "name": "Liu Bei",
+    "sourceSlug": "liu-bei",
+    "sourceId": "170",
+    "role": "Fighter",
+    "roles": [
+      "Fighter"
+    ],
+    "lane": "Jungle",
+    "archetype": "Berserker",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/170.webp",
+    "localAvatar": "/heroes/liu-bei.webp",
+    "avatarBytes": 3810,
+    "downloaded": true
+  },
+  {
+    "id": "liu-shan",
+    "slug": "liu-shan",
+    "name": "Liu Shan",
+    "sourceSlug": "liu-shan",
+    "sourceId": "114",
+    "role": "Tank",
+    "roles": [
+      "Tank",
+      "Support"
+    ],
+    "lane": "Roam",
+    "archetype": "Tactical Support",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/114.webp",
+    "localAvatar": "/heroes/liu-shan.webp",
+    "avatarBytes": 3454,
+    "downloaded": true
+  },
+  {
+    "id": "lorion",
+    "slug": "lorion",
+    "name": "Lorion",
+    "sourceSlug": "lorion",
+    "sourceId": "635",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/635.webp",
+    "localAvatar": "/heroes/lorion.webp",
+    "avatarBytes": 2030,
+    "downloaded": true
+  },
+  {
+    "id": "lu-bu",
+    "slug": "lu-bu",
+    "name": "Lu Bu",
+    "sourceSlug": "lu-bu",
+    "sourceId": "123",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Tank"
+    ],
+    "lane": "Clash",
+    "archetype": "Heavy Fighter",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/123.webp",
+    "localAvatar": "/heroes/lu-bu.webp",
+    "avatarBytes": 3126,
+    "downloaded": true
+  },
+  {
+    "id": "luara",
+    "slug": "luara",
+    "name": "Luara",
+    "sourceSlug": "luara",
+    "sourceId": "547",
+    "role": "Marksman",
+    "roles": [
+      "Marksman"
+    ],
+    "lane": "Farm",
+    "archetype": "DPS Marksman",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/547.webp",
+    "localAvatar": "/heroes/luara.webp",
+    "avatarBytes": 2918,
+    "downloaded": true
+  },
+  {
+    "id": "luban-no-7",
+    "slug": "luban-no-7",
+    "name": "Luban No.7",
+    "sourceSlug": "luban-no-7",
+    "sourceId": "112",
+    "role": "Marksman",
+    "roles": [
+      "Marksman"
+    ],
+    "lane": "Farm",
+    "archetype": "DPS Marksman",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/112.webp",
+    "localAvatar": "/heroes/luban-no-7.webp",
+    "avatarBytes": 4930,
+    "downloaded": true
+  },
+  {
+    "id": "luna",
+    "slug": "luna",
+    "name": "Luna",
+    "sourceSlug": "luna",
+    "sourceId": "146",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Mage"
+    ],
+    "lane": "Jungle",
+    "archetype": "Charger",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/146.webp",
+    "localAvatar": "/heroes/luna.webp",
+    "avatarBytes": 3914,
+    "downloaded": true
+  },
+  {
+    "id": "mai-shiranui",
+    "slug": "mai-shiranui",
+    "name": "Mai Shiranui",
+    "sourceSlug": "mai-shiranui",
+    "sourceId": "157",
+    "role": "Mage",
+    "roles": [
+      "Mage",
+      "Assassin"
+    ],
+    "lane": "Mid",
+    "archetype": "Ambush Mage",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/157.webp",
+    "localAvatar": "/heroes/mai-shiranui.webp",
+    "avatarBytes": 2844,
+    "downloaded": true
+  },
+  {
+    "id": "marco-polo",
+    "slug": "marco-polo",
+    "name": "Marco Polo",
+    "sourceSlug": "marco-polo",
+    "sourceId": "132",
+    "role": "Marksman",
+    "roles": [
+      "Marksman"
+    ],
+    "lane": "Farm",
+    "archetype": "Nimble Marksman",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/132.webp",
+    "localAvatar": "/heroes/marco-polo.webp",
+    "avatarBytes": 3996,
+    "downloaded": true
+  },
+  {
+    "id": "mayene",
+    "slug": "mayene",
+    "name": "Mayene",
+    "sourceSlug": "ji-xiaoman",
+    "sourceId": "564",
+    "role": "Fighter",
+    "roles": [
+      "Fighter"
+    ],
+    "lane": "Clash",
+    "archetype": "Charger",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/564.webp",
+    "localAvatar": "/heroes/mayene.webp",
+    "avatarBytes": 3974,
+    "downloaded": true
+  },
+  {
+    "id": "meng-ya",
+    "slug": "meng-ya",
+    "name": "Meng Ya",
+    "sourceSlug": "meng-ya",
+    "sourceId": "524",
+    "role": "Marksman",
+    "roles": [
+      "Marksman"
+    ],
+    "lane": "Farm",
+    "archetype": "DPS Marksman",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/524.webp",
+    "localAvatar": "/heroes/meng-ya.webp",
+    "avatarBytes": 3974,
+    "downloaded": true
+  },
+  {
+    "id": "menki",
+    "slug": "menki",
+    "name": "Menki",
+    "sourceSlug": "meng-qi",
+    "sourceId": "198",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Mage"
+    ],
+    "lane": "Jungle",
+    "archetype": "Formation Mage",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/198.webp",
+    "localAvatar": "/heroes/menki.webp",
+    "avatarBytes": 3330,
+    "downloaded": true
+  },
+  {
+    "id": "mi-yue",
+    "slug": "mi-yue",
+    "name": "Mi Yue",
+    "sourceSlug": "miyue",
+    "sourceId": "121",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Mage"
+    ],
+    "lane": "Clash",
+    "archetype": "Formation Mage",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/121.webp",
+    "localAvatar": "/heroes/mi-yue.webp",
+    "avatarBytes": 3686,
+    "downloaded": true
+  },
+  {
+    "id": "milady",
+    "slug": "milady",
+    "name": "Milady",
+    "sourceSlug": "milady",
+    "sourceId": "504",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Formation Mage",
+    "tier": "S",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/504.webp",
+    "localAvatar": "/heroes/milady.webp",
+    "avatarBytes": 3738,
+    "downloaded": true
+  },
+  {
+    "id": "ming",
+    "slug": "ming",
+    "name": "Ming",
+    "sourceSlug": "ming-shiyin",
+    "sourceId": "501",
+    "role": "Support",
+    "roles": [
+      "Support"
+    ],
+    "lane": "Roam",
+    "archetype": "Buff Support",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/501.webp",
+    "localAvatar": "/heroes/ming.webp",
+    "avatarBytes": 3318,
+    "downloaded": true
+  },
+  {
+    "id": "mozi",
+    "slug": "mozi",
+    "name": "Mozi",
+    "sourceSlug": "mozi",
+    "sourceId": "108",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Control Mage",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/108.webp",
+    "localAvatar": "/heroes/mozi.webp",
+    "avatarBytes": 2912,
+    "downloaded": true
+  },
+  {
+    "id": "mulan",
+    "slug": "mulan",
+    "name": "Mulan",
+    "sourceSlug": "mulan",
+    "sourceId": "154",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Assassin"
+    ],
+    "lane": "Clash",
+    "archetype": "Assassin Fighter",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/154.webp",
+    "localAvatar": "/heroes/mulan.webp",
+    "avatarBytes": 3232,
+    "downloaded": true
+  },
+  {
+    "id": "musashi",
+    "slug": "musashi",
+    "name": "Musashi",
+    "sourceSlug": "musashi-miyamoto",
+    "sourceId": "130",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Assassin"
+    ],
+    "lane": "Jungle",
+    "archetype": "Assassin Fighter",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/130.webp",
+    "localAvatar": "/heroes/musashi.webp",
+    "avatarBytes": 2348,
+    "downloaded": true
+  },
+  {
+    "id": "nakoruru",
+    "slug": "nakoruru",
+    "name": "Nakoruru",
+    "sourceSlug": "nakoruru",
+    "sourceId": "162",
+    "role": "Assassin",
+    "roles": [
+      "Assassin"
+    ],
+    "lane": "Jungle",
+    "archetype": "Burst Assassin",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/162.webp",
+    "localAvatar": "/heroes/nakoruru.webp",
+    "avatarBytes": 4194,
+    "downloaded": true
+  },
+  {
+    "id": "nezha",
+    "slug": "nezha",
+    "name": "Nezha",
+    "sourceSlug": "nezha",
+    "sourceId": "180",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Tank"
+    ],
+    "lane": "Clash",
+    "archetype": "Charger",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/180.webp",
+    "localAvatar": "/heroes/nezha.webp",
+    "avatarBytes": 3530,
+    "downloaded": true
+  },
+  {
+    "id": "nuwa",
+    "slug": "nuwa",
+    "name": "Nuwa",
+    "sourceSlug": "nuwa",
+    "sourceId": "179",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Artillery Mage",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/179.webp",
+    "localAvatar": "/heroes/nuwa.webp",
+    "avatarBytes": 3610,
+    "downloaded": true
+  },
+  {
+    "id": "pei",
+    "slug": "pei",
+    "name": "Pei",
+    "sourceSlug": "pei",
+    "sourceId": "502",
+    "role": "Assassin",
+    "roles": [
+      "Assassin"
+    ],
+    "lane": "Jungle",
+    "archetype": "Roving Assassin",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/502.webp",
+    "localAvatar": "/heroes/pei.webp",
+    "avatarBytes": 3322,
+    "downloaded": true
+  },
+  {
+    "id": "sakeer",
+    "slug": "sakeer",
+    "name": "Sakeer",
+    "sourceSlug": "sakeer",
+    "sourceId": "534",
+    "role": "Mage",
+    "roles": [
+      "Mage",
+      "Support"
+    ],
+    "lane": "Roam",
+    "archetype": "Buff Support",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/534.webp",
+    "localAvatar": "/heroes/sakeer.webp",
+    "avatarBytes": 2266,
+    "downloaded": true
+  },
+  {
+    "id": "shangguan",
+    "slug": "shangguan",
+    "name": "Shangguan",
+    "sourceSlug": "shangguan-wan-er",
+    "sourceId": "513",
+    "role": "Mage",
+    "roles": [
+      "Mage",
+      "Assassin"
+    ],
+    "lane": "Mid",
+    "archetype": "Ambush Mage",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/513.webp",
+    "localAvatar": "/heroes/shangguan.webp",
+    "avatarBytes": 2936,
+    "downloaded": true
+  },
+  {
+    "id": "shi",
+    "slug": "shi",
+    "name": "Shi",
+    "sourceSlug": "xi-shi",
+    "sourceId": "523",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Control Mage",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/523.webp",
+    "localAvatar": "/heroes/shi.webp",
+    "avatarBytes": 2758,
+    "downloaded": true
+  },
+  {
+    "id": "shouyue",
+    "slug": "shouyue",
+    "name": "Shouyue",
+    "sourceSlug": "baili-shouyue",
+    "sourceId": "196",
+    "role": "Assassin",
+    "roles": [
+      "Assassin",
+      "Marksman"
+    ],
+    "lane": "Farm",
+    "archetype": "Artillery Marksman",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/196.webp",
+    "localAvatar": "/heroes/shouyue.webp",
+    "avatarBytes": 3422,
+    "downloaded": true
+  },
+  {
+    "id": "sima-yi",
+    "slug": "sima-yi",
+    "name": "Sima Yi",
+    "sourceSlug": "sima-yi",
+    "sourceId": "137",
+    "role": "Mage",
+    "roles": [
+      "Mage",
+      "Assassin"
+    ],
+    "lane": "Jungle",
+    "archetype": "Burst Assassin",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/137.webp",
+    "localAvatar": "/heroes/sima-yi.webp",
+    "avatarBytes": 2772,
+    "downloaded": true
+  },
+  {
+    "id": "sun-bin",
+    "slug": "sun-bin",
+    "name": "Sun Bin",
+    "sourceSlug": "sun-bin",
+    "sourceId": "118",
+    "role": "Mage",
+    "roles": [
+      "Mage",
+      "Support"
+    ],
+    "lane": "Roam",
+    "archetype": "Tactical Support",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/118.webp",
+    "localAvatar": "/heroes/sun-bin.webp",
+    "avatarBytes": 5560,
+    "downloaded": true
+  },
+  {
+    "id": "sun-ce",
+    "slug": "sun-ce",
+    "name": "Sun Ce",
+    "sourceSlug": "sun-ce",
+    "sourceId": "510",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Tank"
+    ],
+    "lane": "Clash",
+    "archetype": "Charger",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/510.webp",
+    "localAvatar": "/heroes/sun-ce.webp",
+    "avatarBytes": 3054,
+    "downloaded": true
+  },
+  {
+    "id": "ukyo-tachibana",
+    "slug": "ukyo-tachibana",
+    "name": "Ukyo Tachibana",
+    "sourceSlug": "ukyo-tachibana",
+    "sourceId": "163",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Assassin"
+    ],
+    "lane": "Jungle",
+    "archetype": "Assassin Fighter",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/163.webp",
+    "localAvatar": "/heroes/ukyo-tachibana.webp",
+    "avatarBytes": 3036,
+    "downloaded": true
+  },
+  {
+    "id": "umbrosa",
+    "slug": "umbrosa",
+    "name": "Umbrosa",
+    "sourceSlug": "ying",
+    "sourceId": "558",
+    "role": "Fighter",
+    "roles": [
+      "Fighter"
+    ],
+    "lane": "Clash",
+    "archetype": "Charger",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/558.webp",
+    "localAvatar": "/heroes/umbrosa.webp",
+    "avatarBytes": 2870,
+    "downloaded": true
+  },
+  {
+    "id": "wang-wei",
+    "slug": "wang-wei",
+    "name": "Wang Wei",
+    "sourceSlug": "wang-wei",
+    "sourceId": "138",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Formation Mage",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/138.webp",
+    "localAvatar": "/heroes/wang-wei.webp",
+    "avatarBytes": 3508,
+    "downloaded": true
+  },
+  {
+    "id": "wang-zhaojun",
+    "slug": "wang-zhaojun",
+    "name": "Wang Zhaojun",
+    "sourceSlug": "wang-zhaojun",
+    "sourceId": "152",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Control Mage",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/152.webp",
+    "localAvatar": "/heroes/wang-zhaojun.webp",
+    "avatarBytes": 3810,
+    "downloaded": true
+  },
+  {
+    "id": "wukong",
+    "slug": "wukong",
+    "name": "Wukong",
+    "sourceSlug": "wukong",
+    "sourceId": "167",
+    "role": "Assassin",
+    "roles": [
+      "Assassin"
+    ],
+    "lane": "Jungle",
+    "archetype": "Burst Assassin",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/167.webp",
+    "localAvatar": "/heroes/wukong.webp",
+    "avatarBytes": 5132,
+    "downloaded": true
+  },
+  {
+    "id": "wuyan",
+    "slug": "wuyan",
+    "name": "Wuyan",
+    "sourceSlug": "zhong-wuyan",
+    "sourceId": "117",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Tank"
+    ],
+    "lane": "Clash",
+    "archetype": "Heavy Fighter",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/117.webp",
+    "localAvatar": "/heroes/wuyan.webp",
+    "avatarBytes": 4618,
+    "downloaded": true
+  },
+  {
+    "id": "xiang-yu",
+    "slug": "xiang-yu",
+    "name": "Xiang Yu",
+    "sourceSlug": "xiang-yu",
+    "sourceId": "135",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Tank"
+    ],
+    "lane": "Clash",
+    "archetype": "Guardian Tank",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/135.webp",
+    "localAvatar": "/heroes/xiang-yu.webp",
+    "avatarBytes": 4366,
+    "downloaded": true
+  },
+  {
+    "id": "xiao-qiao",
+    "slug": "xiao-qiao",
+    "name": "Xiao Qiao",
+    "sourceSlug": "xiao-qiao",
+    "sourceId": "106",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Artillery Mage",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/106.webp",
+    "localAvatar": "/heroes/xiao-qiao.webp",
+    "avatarBytes": 2502,
+    "downloaded": true
+  },
+  {
+    "id": "xuance",
+    "slug": "xuance",
+    "name": "Xuance",
+    "sourceSlug": "baili-xuance",
+    "sourceId": "195",
+    "role": "Assassin",
+    "roles": [
+      "Assassin"
+    ],
+    "lane": "Jungle",
+    "archetype": "Roving Assassin",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/195.webp",
+    "localAvatar": "/heroes/xuance.webp",
+    "avatarBytes": 4694,
+    "downloaded": true
+  },
+  {
+    "id": "yang-jian",
+    "slug": "yang-jian",
+    "name": "Yang Jian",
+    "sourceSlug": "yang-jian",
+    "sourceId": "178",
+    "role": "Fighter",
+    "roles": [
+      "Fighter"
+    ],
+    "lane": "Clash",
+    "archetype": "Assassin Fighter",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/178.webp",
+    "localAvatar": "/heroes/yang-jian.webp",
+    "avatarBytes": 4952,
+    "downloaded": true
+  },
+  {
+    "id": "yango",
+    "slug": "yango",
+    "name": "Yango",
+    "sourceSlug": "yuan-ge",
+    "sourceId": "125",
+    "role": "Assassin",
+    "roles": [
+      "Assassin"
+    ],
+    "lane": "Clash",
+    "archetype": "Roving Assassin",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/125.webp",
+    "localAvatar": "/heroes/yango.webp",
+    "avatarBytes": 3096,
+    "downloaded": true
+  },
+  {
+    "id": "yao",
+    "slug": "yao",
+    "name": "Yao",
+    "sourceSlug": "dongfang-yao",
+    "sourceId": "522",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Assassin"
+    ],
+    "lane": "Jungle",
+    "archetype": "Assassin Fighter",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/522.webp",
+    "localAvatar": "/heroes/yao.webp",
+    "avatarBytes": 3032,
+    "downloaded": true
+  },
+  {
+    "id": "yaria",
+    "slug": "yaria",
+    "name": "Yaria",
+    "sourceSlug": "yaria",
+    "sourceId": "505",
+    "role": "Support",
+    "roles": [
+      "Support"
+    ],
+    "lane": "Roam",
+    "archetype": "Buff Support",
+    "tier": "A",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/505.webp",
+    "localAvatar": "/heroes/yaria.webp",
+    "avatarBytes": 4442,
+    "downloaded": true
+  },
+  {
+    "id": "ying",
+    "slug": "ying",
+    "name": "Ying",
+    "sourceSlug": "yunying",
+    "sourceId": "538",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Assassin"
+    ],
+    "lane": "Jungle",
+    "archetype": "Assassin Fighter",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/538.webp",
+    "localAvatar": "/heroes/ying.webp",
+    "avatarBytes": 2676,
+    "downloaded": true
+  },
+  {
+    "id": "yixing",
+    "slug": "yixing",
+    "name": "Yixing",
+    "sourceSlug": "yi-xing",
+    "sourceId": "197",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Formation Mage",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/197.webp",
+    "localAvatar": "/heroes/yixing.webp",
+    "avatarBytes": 2252,
+    "downloaded": true
+  },
+  {
+    "id": "yuhuan",
+    "slug": "yuhuan",
+    "name": "Yuhuan",
+    "sourceSlug": "yang-yuhuan",
+    "sourceId": "176",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Formation Mage",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/176.webp",
+    "localAvatar": "/heroes/yuhuan.webp",
+    "avatarBytes": 4022,
+    "downloaded": true
+  },
+  {
+    "id": "zhang-fei",
+    "slug": "zhang-fei",
+    "name": "Zhang Fei",
+    "sourceSlug": "zhang-fei",
+    "sourceId": "171",
+    "role": "Tank",
+    "roles": [
+      "Tank",
+      "Support"
+    ],
+    "lane": "Roam",
+    "archetype": "Defensive Support",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/171.webp",
+    "localAvatar": "/heroes/zhang-fei.webp",
+    "avatarBytes": 4314,
+    "downloaded": true
+  },
+  {
+    "id": "zhou-yu",
+    "slug": "zhou-yu",
+    "name": "Zhou Yu",
+    "sourceSlug": "zhou-yu",
+    "sourceId": "124",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Formation Mage",
+    "tier": "C",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/124.webp",
+    "localAvatar": "/heroes/zhou-yu.webp",
+    "avatarBytes": 2458,
+    "downloaded": true
+  },
+  {
+    "id": "zhuangzi",
+    "slug": "zhuangzi",
+    "name": "Zhuangzi",
+    "sourceSlug": "zhuangzi",
+    "sourceId": "113",
+    "role": "Tank",
+    "roles": [
+      "Tank",
+      "Support"
+    ],
+    "lane": "Roam",
+    "archetype": "Defensive Support",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/113.webp",
+    "localAvatar": "/heroes/zhuangzi.webp",
+    "avatarBytes": 3886,
+    "downloaded": true
+  },
+  {
+    "id": "zilong",
+    "slug": "zilong",
+    "name": "Zilong",
+    "sourceSlug": "zhao-yun",
+    "sourceId": "107",
+    "role": "Fighter",
+    "roles": [
+      "Fighter",
+      "Assassin"
+    ],
+    "lane": "Jungle",
+    "archetype": "Assassin Fighter",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/107.webp",
+    "localAvatar": "/heroes/zilong.webp",
+    "avatarBytes": 3836,
+    "downloaded": true
+  },
+  {
+    "id": "ziya",
+    "slug": "ziya",
+    "name": "Ziya",
+    "sourceSlug": "jiang-ziya",
+    "sourceId": "148",
+    "role": "Mage",
+    "roles": [
+      "Mage"
+    ],
+    "lane": "Mid",
+    "archetype": "Artillery Mage",
+    "tier": "B",
+    "avatarUrl": "https://hub-game.com/hok/images/heroes/148.webp",
+    "localAvatar": "/heroes/ziya.webp",
+    "avatarBytes": 3308,
+    "downloaded": true
+  }
+]

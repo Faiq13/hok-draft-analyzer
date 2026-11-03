@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { HOK_HEROES, Hero } from '../data/hokHeroes';
 import { Search } from 'lucide-react';
+import { HeroAvatar } from './HeroAvatar';
 
 interface HeroGridProps {
   pickedOrBannedIds: string[];
@@ -15,32 +16,12 @@ export const HeroGrid: React.FC<HeroGridProps> = ({
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRole, setSelectedRole] = useState<string>('All');
-  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
 
   const filteredHeroes = HOK_HEROES.filter(hero => {
     const matchesSearch = hero.name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesRole = selectedRole === 'All' || hero.role === selectedRole;
     return matchesSearch && matchesRole;
   });
-
-  const getRoleColor = (role: string) => {
-    switch (role) {
-      case 'Roam': return 'bg-emerald-600';
-      case 'Clash': return 'bg-amber-600';
-      case 'Mid': return 'bg-purple-600';
-      case 'Farm': return 'bg-blue-600';
-      case 'Jungle': return 'bg-rose-600';
-      default: return 'bg-slate-600';
-    }
-  };
-
-  const getInitials = (name: string) => {
-    const parts = name.replace(/[^a-zA-Z0-9 ]/g, '').split(' ');
-    if (parts.length >= 2) {
-      return (parts[0][0] + parts[1][0]).toUpperCase();
-    }
-    return name.slice(0, 2).toUpperCase();
-  };
 
   return (
     <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl">
@@ -89,7 +70,6 @@ export const HeroGrid: React.FC<HeroGridProps> = ({
       <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 max-h-[360px] overflow-y-auto pr-1">
         {filteredHeroes.map((hero) => {
           const isDisabled = pickedOrBannedIds.includes(hero.id);
-          const hasFailed = failedImages[hero.id];
 
           return (
             <div
@@ -102,20 +82,11 @@ export const HeroGrid: React.FC<HeroGridProps> = ({
               }`}
             >
               <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-slate-700 mb-1.5 border border-slate-600 flex items-center justify-center">
-                {!hasFailed ? (
-                  <img
-                    src={hero.avatarUrl}
-                    alt={hero.name}
-                    className="w-full h-full object-cover"
-                    onError={() => {
-                      setFailedImages(prev => ({ ...prev, [hero.id]: true }));
-                    }}
-                  />
-                ) : (
-                  <div className={`w-full h-full flex flex-col items-center justify-center text-white font-bold text-sm ${getRoleColor(hero.role)}`}>
-                    <span>{getInitials(hero.name)}</span>
-                  </div>
-                )}
+                <HeroAvatar
+                  hero={hero}
+                  className="w-full h-full"
+                  initialsClassName="text-sm"
+                />
                 <span className="absolute bottom-0.5 right-0.5 bg-slate-950/80 text-[9px] px-1 py-0.2 rounded text-amber-400 font-bold">
                   {hero.role}
                 </span>

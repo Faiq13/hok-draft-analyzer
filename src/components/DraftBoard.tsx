@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { HOK_HEROES, Hero } from '../data/hokHeroes';
 import { DraftState } from '../types/draft';
 import { XCircle, UserCheck } from 'lucide-react';
+import { HeroAvatar } from './HeroAvatar';
 
 interface DraftBoardProps {
   draftState: DraftState;
@@ -14,8 +15,6 @@ export const DraftBoard: React.FC<DraftBoardProps> = ({
   onSelectSlot,
   onRemoveHero,
 }) => {
-  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
-
   const getHero = (id: string | null): Hero | undefined => {
     if (!id) return undefined;
     return HOK_HEROES.find(h => h.id === id);
@@ -29,25 +28,6 @@ export const DraftBoard: React.FC<DraftBoardProps> = ({
     );
   };
 
-  const getRoleColor = (role: string) => {
-    switch (role) {
-      case 'Roam': return 'bg-emerald-600';
-      case 'Clash': return 'bg-amber-600';
-      case 'Mid': return 'bg-purple-600';
-      case 'Farm': return 'bg-blue-600';
-      case 'Jungle': return 'bg-rose-600';
-      default: return 'bg-slate-600';
-    }
-  };
-
-  const getInitials = (name: string) => {
-    const parts = name.replace(/[^a-zA-Z0-9 ]/g, '').split(' ');
-    if (parts.length >= 2) {
-      return (parts[0][0] + parts[1][0]).toUpperCase();
-    }
-    return name.slice(0, 2).toUpperCase();
-  };
-
   const renderSlot = (side: 'blue' | 'red', type: 'pick' | 'ban', index: number) => {
     const id = type === 'pick' 
       ? (side === 'blue' ? draftState.blueTeam[index] : draftState.redTeam[index])
@@ -55,7 +35,6 @@ export const DraftBoard: React.FC<DraftBoardProps> = ({
     
     const hero = getHero(id);
     const active = isActive(side, type, index);
-    const hasFailed = hero ? failedImages[hero.id] : false;
 
     return (
       <div
@@ -73,21 +52,12 @@ export const DraftBoard: React.FC<DraftBoardProps> = ({
       >
         {hero ? (
           <>
-            {!hasFailed ? (
-              <img
-                src={hero.avatarUrl}
-                alt={hero.name}
-                className="w-full h-full object-cover"
-                onError={() => {
-                  setFailedImages(prev => ({ ...prev, [hero.id]: true }));
-                }}
-              />
-            ) : (
-              <div className={`w-full h-full flex flex-col items-center justify-center text-white font-bold text-xs ${getRoleColor(hero.role)}`}>
-                <span>{getInitials(hero.name)}</span>
-              </div>
-            )}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-1">
+            <HeroAvatar
+              hero={hero}
+              className="w-full h-full"
+              initialsClassName="text-xs"
+            />
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-1">
               <span className="text-[11px] font-semibold text-white truncate w-full text-center">
                 {hero.name}
               </span>
