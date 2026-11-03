@@ -2,6 +2,7 @@ import React from 'react';
 import { HOK_HEROES, Hero } from '../data/hokHeroes';
 import { DraftState } from '../types/draft';
 import { Sparkles } from 'lucide-react';
+import { HeroAvatar } from './HeroAvatar';
 
 interface TeamSynergyPanelProps {
   draftState: DraftState;
@@ -109,70 +110,65 @@ export const TeamSynergyPanel: React.FC<TeamSynergyPanelProps> = ({
   return (
     <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl">
       <div className="flex items-center gap-2 mb-4 border-b border-slate-800 pb-3">
-        <Sparkles className="w-5 h-5 text-amber-400" />
+        <Sparkles className="w-5 h-5 text-indigo-400" />
         <h2 className="font-bold text-lg text-slate-100">Panel Sinergi Tim</h2>
       </div>
 
-      {enemyPickedIds.length > 0 && allyPickedIds.length > 0 ? (
-        <div className="mb-4 text-sm text-slate-400">
-          <p className="font-medium">Tim Kita (Blue):</p>
-          {allyPickedIds.map((id) => {
-            const h = heroById[id];
-            return h ? (
-              <span key={id} className="mr-2 text-amber-400">
-                {h.name}
-              </span>
-            ) : null;
-          })}
-          <p className="mt-1">vs</p>
-          <p className="ml-2 font-medium text-rose-400">
-            {enemyPickedIds.map((id) => {
-              const h = heroById[id];
-              return h ? (
-                <span key={id} className="mr-2 text-rose-400">
-                  {h.name}
-                </span>
-              ) : null;
-            })}</p>
+      {allyPickedIds.length === 0 ? (
+        <div className="text-center py-8 text-slate-400 text-sm space-y-1">
+          {draftState.activeSlot ? (
+            <>
+              <p className="font-semibold text-indigo-400">Giliran Pick: {draftState.activeSlot.side === 'blue' ? 'Blue Side' : 'Red Side'}</p>
+              <p>{draftState.activeSlot.side === 'blue' ? 'Menunggu Pick Teman...' : 'Pilih Hero Teman untuk melihat Sinergi Tim'}</p>
+            </>
+          ) : (
+            <p>Pilih hero di Blue Side (Tim Kita) terlebih dahulu untuk melihat rekomendasi sinergi tim.</p>
+          )}
         </div>
       ) : (
-        <p className="text-center py-4 text-slate-500 italic">
-          Pilih hero untuk tim kita dan lawan
-        </p>
-      )}
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {topByRole.map(({ role, heroes }) => (
-          <div
-            key={role}
-            className="bg-slate-800/50 border border-slate-700/60 rounded-xl p-3 flex flex-col gap-2 min-h-[180px]"
-          >
-            <div className="font-bold text-sm text-amber-400">{role}</div>
-            {heroes.length === 0 ? (
-              <div className="text-xs text-slate-500 italic py-2">Tidak ada rekomendasi</div>
-            ) : (
-              heroes.map((h, idx) => (
-                <div
-                  key={h.hero.id}
-                  className="p-2 border-b border-slate-700/30 last:border-0 hover:bg-slate-700/30"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-[9px] font-semibold text-white truncate">
-                      {h.hero.name}
-                    </span>
-                    <span className="text-[7px] bg-slate-700 text-slate-300 px-1 py-0.5 rounded">
-                      {h.score} pt
-                    </span>
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+          {topByRole.map(({ role, heroes }) => (
+            <div key={role} className="bg-slate-800/50 border border-slate-700/60 rounded-xl p-3 flex flex-col gap-3">
+              <div className="flex items-center justify-between border-b border-slate-700 pb-2">
+                <span className="font-bold text-sm text-indigo-400">{role}</span>
+                <span className="text-[10px] bg-slate-700 text-slate-300 px-2 py-0.5 rounded">Sinergi</span>
+              </div>
+              <div className="flex flex-col gap-2.5">
+                {heroes.length === 0 ? (
+                  <div className="text-xs text-slate-500 italic py-4 text-center bg-slate-900/40 rounded-lg border border-slate-800">
+                    Tidak ada sinergi spesifik
                   </div>
-                  <p className="text-[8px] text-slate-400 line-clamp-2">
-                    {h.reasons.length > 0 ? transliterate(h.reasons[0], languageCode) : 'Tidak ada alasan'}
-                  </p>
-                </div>
-              ))
-            )}
-          </div>
-        ))}
-      </div>
+                ) : (
+                  heroes.map((item, idx) => (
+                    <div
+                      key={item.hero.id}
+                      className="bg-slate-800 border border-slate-700 rounded-lg p-2 flex items-center gap-2.5 transition-all"
+                    >
+                      <HeroAvatar
+                        hero={item.hero}
+                        className="w-10 h-10 rounded-md flex-shrink-0 border border-slate-600"
+                        initialsClassName="text-[10px]"
+                      />
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between gap-1">
+                          <h4 className="font-semibold text-xs text-white truncate">{item.hero.name}</h4>
+                          <span className="text-[10px] text-indigo-400 font-bold">#{idx + 1}</span>
+                        </div>
+                        <p
+                          className="text-[10px] text-slate-400 line-clamp-none leading-snug"
+                          title={item.reasons[0]}
+                        >
+                          {transliterate(item.reasons[0] || '', languageCode)}
+                        </p>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

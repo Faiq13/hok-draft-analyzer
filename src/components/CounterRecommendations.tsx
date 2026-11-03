@@ -178,8 +178,15 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
       </div>
 
       {enemyPickedIds.length === 0 ? (
-        <div className="text-center py-8 text-slate-400 text-sm">
-          Pilih hero di Red Side (Lawan) terlebih dahulu untuk melihat rekomendasi counter taktis otomatis.
+        <div className="text-center py-8 text-slate-400 text-sm space-y-1">
+          {draftState.activeSlot ? (
+            <>
+              <p className="font-semibold text-amber-400">Giliran Pick: {draftState.activeSlot.side === 'blue' ? 'Blue Side' : 'Red Side'}</p>
+              <p>{draftState.activeSlot.side === 'red' ? 'Menunggu Pick Musuh...' : 'Pilih Hero Musuh untuk melihat Analisis Counter'}</p>
+            </>
+          ) : (
+            <p>Pilih hero di Red Side (Lawan) terlebih dahulu untuk melihat rekomendasi counter taktis otomatis.</p>
+          )}
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -218,7 +225,7 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
                       {getCounterBadgeFromReason(item.reason)}
 
                       <p
-                        className="text-[10px] text-slate-400 line-clamp-3 leading-snug"
+                        className="text-[10px] text-slate-400 line-clamp-none leading-snug"
                         title={item.fullReason}
                       >
                         {item.displayReason}
@@ -265,7 +272,7 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
                       {getCounterBadgeFromReason(item.reason)}
 
                       <p
-                        className="text-[10px] text-slate-400 line-clamp-3 leading-snug"
+                        className="text-[10px] text-slate-400 line-clamp-none leading-snug"
                         title={item.fullReason}
                       >
                         {item.displayReason}
@@ -312,7 +319,7 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
                       {getCounterBadgeFromReason(item.reason)}
 
                       <p
-                        className="text-[10px] text-slate-400 line-clamp-3 leading-snug"
+                        className="text-[10px] text-slate-400 line-clamp-none leading-snug"
                         title={item.fullReason}
                       >
                         {item.displayReason}
@@ -359,7 +366,7 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
                       {getCounterBadgeFromReason(item.reason)}
 
                       <p
-                        className="text-[10px] text-slate-400 line-clamp-3 leading-snug"
+                        className="text-[10px] text-slate-400 line-clamp-none leading-snug"
                         title={item.fullReason}
                       >
                         {item.displayReason}
@@ -406,7 +413,7 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
                       {getCounterBadgeFromReason(item.reason)}
 
                       <p
-                        className="text-[10px] text-slate-400 line-clamp-3 leading-snug"
+                        className="text-[10px] text-slate-400 line-clamp-none leading-snug"
                         title={item.fullReason}
                       >
                         {item.displayReason}

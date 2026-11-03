@@ -440,7 +440,14 @@ export default function App() {
           transliterate={(text: string) => transliterate(text, language)}
         />
 
-      {/* Team Synergy Panel - di bawah Counter Recommendations */}
+        {/* Visual separator to distinguish Counter & Synergy panels */}
+        <div className="my-2 flex items-center gap-3">
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
+          <span className="text-[10px] font-bold tracking-widest text-slate-500 uppercase">Panel Analisis</span>
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
+        </div>
+
+      {/* Team Synergy Panel */}
       <TeamSynergyPanel
         draftState={draftState}
         language={language}
