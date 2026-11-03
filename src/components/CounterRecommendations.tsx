@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { HOK_HEROES, Hero } from '../data/hokHeroes';
 import { DraftState } from '../types/draft';
 import { Sparkles } from 'lucide-react';
@@ -7,8 +8,6 @@ import { HeroAvatar } from './HeroAvatar';
 interface CounterRecommendationsProps {
   draftState: DraftState;
   onSelectHeroForActiveSlot: (heroId: string) => void;
-  language: 'EN' | 'ID';
-  transliterate: (text: string) => string;
 }
 
 interface RecommendationItem {
@@ -16,6 +15,8 @@ interface RecommendationItem {
   score: number;
   reason: string;
   fullReason: string;
+  matchedEnemies: string[];
+  matchedAllies: string[];
 }
 
 const ROLES: Hero['role'][] = ['Roam', 'Clash', 'Mid', 'Farm', 'Jungle'];
@@ -26,30 +27,11 @@ const VULNERABILITY_PENALTY = 20;
 
 const heroById = new Map(HOK_HEROES.map(hero => [hero.id, hero]));
 
-const getCounterBadge = (matchedEnemies: string[]) => {
-  if (matchedEnemies.length === 0) return null;
-  const isMulti = matchedEnemies.length > 1;
-  const badgeClass = isMulti
-    ? "bg-amber-500/20 text-amber-400 border border-amber-500/50"
-    : "bg-emerald-500/20 text-emerald-400 border border-emerald-500/50";
-  return (
-    <span
-      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[8px] font-bold ${badgeClass}`}>
-      <span className="font-semibold">Counter:</span>
-      {matchedEnemies.map((name, i) => {
-        if (i > 0) return <span>& </span>;
-        return <span key={i} className="hover:underline">{name}</span>;
-      })}
-    </span>
-  );
-};
-
 export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
   draftState,
   onSelectHeroForActiveSlot,
-  language,
-  transliterate,
 }) => {
+  const { t } = useTranslation();
   const enemyPickedIds = draftState.redTeam.filter((id): id is string => id !== null);
   const allyPickedIds = draftState.blueTeam.filter((id): id is string => id !== null);
 
@@ -127,20 +109,22 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
 
       const fullReasonParts = [
         matchedEnemies.length > 0 ? `Counter: ${matchedEnemies.join(', ')}` : '',
-        matchedAllies.length > 0 ? `Sinergi: ${matchedAllies.join(', ')}` : '',
+        matchedAllies.length > 0 ? `Synergy: ${matchedAllies.join(', ')}` : '',
         ...tacticalReasons,
         ...vulnerabilities,
       ].filter(Boolean);
 
       const fallbackReason = matchedEnemies.length > 0
-        ? `Efektif melawan ${matchedEnemies.join(' & ')}`
-        : `Sinergi dengan ${matchedAllies.join(' & ')}`;
+        ? t('counterPanel.effectiveAgainst', { enemies: matchedEnemies.join(' & ') })
+        : t('counterPanel.synergyWithTeam');
 
       scored.push({
         hero: candidate,
         score,
         reason: tacticalReasons[0] ?? fallbackReason,
         fullReason: fullReasonParts.join(' • '),
+        matchedEnemies,
+        matchedAllies,
       });
     });
 
@@ -148,306 +132,96 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
     recommendationsPerRole[role] = scored.slice(0, 3);
   });
 
-  // Pre-map recommendations for cleaner rendering with transliteration
-  const mappedRecommendations = recommendationsPerRole['Roam']?.map((item, idx) => ({
-    ...item,
-    displayReason: transliterate(item.reason),
-  })) || [];
-  const midRecommendations = recommendationsPerRole['Mid']?.map((item, idx) => ({
-    ...item,
-    displayReason: transliterate(item.reason),
-  })) || [];
-  const farmRecommendations = recommendationsPerRole['Farm']?.map((item, idx) => ({
-    ...item,
-    displayReason: transliterate(item.reason),
-  })) || [];
-  const jungleRecommendations = recommendationsPerRole['Jungle']?.map((item, idx) => ({
-    ...item,
-    displayReason: transliterate(item.reason),
-  })) || [];
-  const clashRecommendations = recommendationsPerRole['Clash']?.map((item, idx) => ({
-    ...item,
-    displayReason: transliterate(item.reason),
-  })) || [];
+  const getCounterBadge = (matchedEnemies: string[]) => {
+    if (matchedEnemies.length === 0) return null;
+    const isMulti = matchedEnemies.length > 1;
+    const badgeClass = isMulti
+      ? "bg-amber-500/20 text-amber-400 border border-amber-500/50"
+      : "bg-emerald-500/20 text-emerald-400 border border-emerald-500/50";
+    return (
+      <span
+        className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[8px] font-bold ${badgeClass}`}>
+        <span className="font-semibold">{t('counterPanel.counterBadge')}</span>
+        {matchedEnemies.map((name, i) => {
+          if (i > 0) return <span key={`sep-${i}`}>& </span>;
+          return <span key={i} className="hover:underline">{name}</span>;
+        })}
+      </span>
+    );
+  };
+
+  const renderRoleColumn = (role: Hero['role'], recommendations: RecommendationItem[]) => (
+    <div key={role} className="bg-slate-800/50 border border-slate-700/60 rounded-xl p-3 flex flex-col gap-3">
+      <div className="flex items-center justify-between border-b border-slate-700 pb-2">
+        <span className="font-bold text-sm text-amber-400">{t(`roles.${role}`)}</span>
+        <span className="text-[10px] bg-slate-700 text-slate-300 px-2 py-0.5 rounded">{t('counterPanel.title').split(' ')[0]}</span>
+      </div>
+      <div className="flex flex-col gap-2.5">
+        {recommendations.length === 0 ? (
+          <div className="text-xs text-slate-500 italic py-4 text-center bg-slate-900/40 rounded-lg border border-slate-800">
+            {t('counterPanel.noSpecificCounter')}
+          </div>
+        ) : (
+          recommendations.map((item, idx) => (
+            <div
+              key={item.hero.id}
+              onClick={() => {
+                if (draftState.activeSlot && draftState.activeSlot.side === 'blue') {
+                  onSelectHeroForActiveSlot(item.hero.id);
+                }
+              }}
+              className="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg p-2 flex items-center gap-2.5 cursor-pointer transition-all group"
+            >
+              <HeroAvatar
+                hero={item.hero}
+                className="w-10 h-10 rounded-md flex-shrink-0 border border-slate-600 group-hover:border-amber-400"
+                initialsClassName="text-[10px]"
+              />
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between gap-1">
+                  <h4 className="font-semibold text-xs text-white truncate">{item.hero.name}</h4>
+                  <span className="text-[10px] text-emerald-400 font-bold">#{idx + 1}</span>
+                </div>
+
+                {getCounterBadge(item.matchedEnemies)}
+
+                <p
+                  className="text-[10px] text-slate-400 line-clamp-none leading-snug"
+                  title={item.fullReason}
+                >
+                  {item.reason}
+                </p>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+    </div>
+  );
 
   return (
     <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl">
       <div className="flex items-center gap-2 mb-4 border-b border-slate-800 pb-3">
         <Sparkles className="w-5 h-5 text-amber-400" />
-        <h2 className="font-bold text-lg text-slate-100">Rekomendasi Counter & Taktis per Role</h2>
+        <h2 className="font-bold text-lg text-slate-100">{t('counterPanel.title')}</h2>
       </div>
 
       {enemyPickedIds.length === 0 ? (
         <div className="text-center py-8 text-slate-400 text-sm space-y-1">
           {draftState.activeSlot ? (
             <>
-              <p className="font-semibold text-amber-400">Giliran Pick: {draftState.activeSlot.side === 'blue' ? 'Blue Side' : 'Red Side'}</p>
-              <p>{draftState.activeSlot.side === 'red' ? 'Menunggu Pick Musuh...' : 'Pilih Hero Musuh untuk melihat Analisis Counter'}</p>
+              <p className="font-semibold text-amber-400">{t('counterPanel.waitingForActiveSlot', { side: draftState.activeSlot.side === 'blue' ? t('header.blueSide') : t('header.redSide') })}</p>
+              <p>{draftState.activeSlot.side === 'red' ? t('counterPanel.waitingForEnemyPick') : t('counterPanel.waitingForOurPick')}</p>
             </>
           ) : (
-            <p>Pilih hero di Red Side (Lawan) terlebih dahulu untuk melihat rekomendasi counter taktis otomatis.</p>
+            <p>{t('counterPanel.waitingForEnemy')}</p>
           )}
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          <div key="Roam" className="bg-slate-800/50 border border-slate-700/60 rounded-xl p-3 flex flex-col gap-3">
-            <div className="flex items-center justify-between border-b border-slate-700 pb-2">
-              <span className="font-bold text-sm text-amber-400">Roam</span>
-              <span className="text-[10px] bg-slate-700 text-slate-300 px-2 py-0.5 rounded">Top Rec</span>
-            </div>
-            <div className="flex flex-col gap-2.5">
-              {mappedRecommendations.length === 0 ? (
-                <div className="text-xs text-slate-500 italic py-4 text-center bg-slate-900/40 rounded-lg border border-slate-800">
-                  Tidak ada counter spesifik
-                </div>
-              ) : (
-                mappedRecommendations.map((item, idx) => (
-                  <div
-                    key={item.hero.id}
-                    onClick={() => {
-                      if (draftState.activeSlot && draftState.activeSlot.side === 'blue') {
-                        onSelectHeroForActiveSlot(item.hero.id);
-                      }
-                    }}
-                    className="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg p-2 flex items-center gap-2.5 cursor-pointer transition-all group"
-                  >
-                    <HeroAvatar
-                      hero={item.hero}
-                      className="w-10 h-10 rounded-md flex-shrink-0 border border-slate-600 group-hover:border-amber-400"
-                      initialsClassName="text-[10px]"
-                    />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between gap-1">
-                        <h4 className="font-semibold text-xs text-white truncate">{item.hero.name}</h4>
-                        <span className="text-[10px] text-emerald-400 font-bold">#{idx + 1}</span>
-                      </div>
-
-                      {getCounterBadgeFromReason(item.reason)}
-
-                      <p
-                        className="text-[10px] text-slate-400 line-clamp-none leading-snug"
-                        title={item.fullReason}
-                      >
-                        {item.displayReason}
-                      </p>
-                    </div>
-                  </div>
-                ))
-              )}
-            </div>
-          </div>
-
-          <div key="Mid" className="bg-slate-800/50 border border-slate-700/60 rounded-xl p-3 flex flex-col gap-3">
-            <div className="flex items-center justify-between border-b border-slate-700 pb-2">
-              <span className="font-bold text-sm text-amber-400">Mid</span>
-              <span className="text-[10px] bg-slate-700 text-slate-300 px-2 py-0.5 rounded">Top Rec</span>
-            </div>
-            <div className="flex flex-col gap-2.5">
-              {midRecommendations.length === 0 ? (
-                <div className="text-xs text-slate-500 italic py-4 text-center bg-slate-900/40 rounded-lg border border-slate-800">
-                  Tidak ada counter spesifik
-                </div>
-              ) : (
-                midRecommendations.map((item, idx) => (
-                  <div
-                    key={item.hero.id}
-                    onClick={() => {
-                      if (draftState.activeSlot && draftState.activeSlot.side === 'blue') {
-                        onSelectHeroForActiveSlot(item.hero.id);
-                      }
-                    }}
-                    className="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg p-2 flex items-center gap-2.5 cursor-pointer transition-all group"
-                  >
-                    <HeroAvatar
-                      hero={item.hero}
-                      className="w-10 h-10 rounded-md flex-shrink-0 border border-slate-600 group-hover:border-amber-400"
-                      initialsClassName="text-[10px]"
-                    />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between gap-1">
-                        <h4 className="font-semibold text-xs text-white truncate">{item.hero.name}</h4>
-                        <span className="text-[10px] text-emerald-400 font-bold">#{idx + 1}</span>
-                      </div>
-
-                      {getCounterBadgeFromReason(item.reason)}
-
-                      <p
-                        className="text-[10px] text-slate-400 line-clamp-none leading-snug"
-                        title={item.fullReason}
-                      >
-                        {item.displayReason}
-                      </p>
-                    </div>
-                  </div>
-                ))
-              )}
-            </div>
-          </div>
-
-          <div key="Farm" className="bg-slate-800/50 border border-slate-700/60 rounded-xl p-3 flex flex-col gap-3">
-            <div className="flex items-center justify-between border-b border-slate-700 pb-2">
-              <span className="font-bold text-sm text-amber-400">Farm</span>
-              <span className="text-[10px] bg-slate-700 text-slate-300 px-2 py-0.5 rounded">Top Rec</span>
-            </div>
-            <div className="flex flex-col gap-2.5">
-              {farmRecommendations.length === 0 ? (
-                <div className="text-xs text-slate-500 italic py-4 text-center bg-slate-900/40 rounded-lg border border-slate-800">
-                  Tidak ada counter spesifik
-                </div>
-              ) : (
-                farmRecommendations.map((item, idx) => (
-                  <div
-                    key={item.hero.id}
-                    onClick={() => {
-                      if (draftState.activeSlot && draftState.activeSlot.side === 'blue') {
-                        onSelectHeroForActiveSlot(item.hero.id);
-                      }
-                    }}
-                    className="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg p-2 flex items-center gap-2.5 cursor-pointer transition-all group"
-                  >
-                    <HeroAvatar
-                      hero={item.hero}
-                      className="w-10 h-10 rounded-md flex-shrink-0 border border-slate-600 group-hover:border-amber-400"
-                      initialsClassName="text-[10px]"
-                    />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between gap-1">
-                        <h4 className="font-semibold text-xs text-white truncate">{item.hero.name}</h4>
-                        <span className="text-[10px] text-emerald-400 font-bold">#{idx + 1}</span>
-                      </div>
-
-                      {getCounterBadgeFromReason(item.reason)}
-
-                      <p
-                        className="text-[10px] text-slate-400 line-clamp-none leading-snug"
-                        title={item.fullReason}
-                      >
-                        {item.displayReason}
-                      </p>
-                    </div>
-                  </div>
-                ))
-              )}
-            </div>
-          </div>
-
-          <div key="Jungle" className="bg-slate-800/50 border border-slate-700/60 rounded-xl p-3 flex flex-col gap-3">
-            <div className="flex items-center justify-between border-b border-slate-700 pb-2">
-              <span className="font-bold text-sm text-amber-400">Jungle</span>
-              <span className="text-[10px] bg-slate-700 text-slate-300 px-2 py-0.5 rounded">Top Rec</span>
-            </div>
-            <div className="flex flex-col gap-2.5">
-              {jungleRecommendations.length === 0 ? (
-                <div className="text-xs text-slate-500 italic py-4 text-center bg-slate-900/40 rounded-lg border border-slate-800">
-                  Tidak ada counter spesifik
-                </div>
-              ) : (
-                jungleRecommendations.map((item, idx) => (
-                  <div
-                    key={item.hero.id}
-                    onClick={() => {
-                      if (draftState.activeSlot && draftState.activeSlot.side === 'blue') {
-                        onSelectHeroForActiveSlot(item.hero.id);
-                      }
-                    }}
-                    className="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg p-2 flex items-center gap-2.5 cursor-pointer transition-all group"
-                  >
-                    <HeroAvatar
-                      hero={item.hero}
-                      className="w-10 h-10 rounded-md flex-shrink-0 border border-slate-600 group-hover:border-amber-400"
-                      initialsClassName="text-[10px]"
-                    />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between gap-1">
-                        <h4 className="font-semibold text-xs text-white truncate">{item.hero.name}</h4>
-                        <span className="text-[10px] text-emerald-400 font-bold">#{idx + 1}</span>
-                      </div>
-
-                      {getCounterBadgeFromReason(item.reason)}
-
-                      <p
-                        className="text-[10px] text-slate-400 line-clamp-none leading-snug"
-                        title={item.fullReason}
-                      >
-                        {item.displayReason}
-                      </p>
-                    </div>
-                  </div>
-                ))
-              )}
-            </div>
-          </div>
-
-          <div key="Clash" className="bg-slate-800/50 border border-slate-700/60 rounded-xl p-3 flex flex-col gap-3">
-            <div className="flex items-center justify-between border-b border-slate-700 pb-2">
-              <span className="font-bold text-sm text-amber-400">Clash</span>
-              <span className="text-[10px] bg-slate-700 text-slate-300 px-2 py-0.5 rounded">Top Rec</span>
-            </div>
-            <div className="flex flex-col gap-2.5">
-              {clashRecommendations.length === 0 ? (
-                <div className="text-xs text-slate-500 italic py-4 text-center bg-slate-900/40 rounded-lg border border-slate-800">
-                  Tidak ada counter spesifik
-                </div>
-              ) : (
-                clashRecommendations.map((item, idx) => (
-                  <div
-                    key={item.hero.id}
-                    onClick={() => {
-                      if (draftState.activeSlot && draftState.activeSlot.side === 'blue') {
-                        onSelectHeroForActiveSlot(item.hero.id);
-                      }
-                    }}
-                    className="bg-slate-800:hover:bg-slate-700 border border-slate-700 rounded-lg p-2 flex items-center gap-2.5 cursor-pointer transition-all group"
-                  >
-                    <HeroAvatar
-                      hero={item.hero}
-                      className="w-10 h-10 rounded-md flex-shrink-0 border border-slate-600 group-hover:border-amber-400"
-                      initialsClassName="text-[10px]"
-                    />
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between gap-1">
-                        <h4 className="font-semibold text-xs text-white truncate">{item.hero.name}</h4>
-                        <span className="text-[10px] text-emerald-400 font-bold">#{idx + 1}</span>
-                      </div>
-
-                      {getCounterBadgeFromReason(item.reason)}
-
-                      <p
-                        className="text-[10px] text-slate-400 line-clamp-none leading-snug"
-                        title={item.fullReason}
-                      >
-                        {item.displayReason}
-                      </p>
-                    </div>
-                  </div>
-                ))
-              )}
-            </div>
-          </div>
+          {ROLES.map(role => renderRoleColumn(role, recommendationsPerRole[role] || []))}
         </div>
       )}
     </div>
-  );
-};
-
-const getCounterBadgeFromReason = (reason: string) => {
-  // Extract enemy names from reason string like "Counter: Angela, Daji"
-  const counterMatch = reason.match(/^Counter:\s*(.+)$/i);
-  if (!counterMatch) return null;
-  const enemies = counterMatch[1].split(',').map(s => s.trim()).filter(Boolean);
-  if (enemies.length === 0) return null;
-  const isMulti = enemies.length > 1;
-  const badgeClass = isMulti
-    ? "bg-amber-500/20 text-amber-400 border border-amber-500/50"
-    : "bg-emerald-500/20 text-emerald-400 border border-emerald-500/50";
-  return (
-    <span
-      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[8px] font-bold ${badgeClass}`}>
-      <span className="font-semibold">Counter:</span>
-      {enemies.map((name, i) => {
-        if (i > 0) return <span>& </span>;
-        return <span key={i} className="hover:underline">{name}</span>;
-      })}
-    </span>
   );
 };

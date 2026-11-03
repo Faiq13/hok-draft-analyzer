@@ -1,28 +1,25 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { HOK_HEROES, Hero } from '../data/hokHeroes';
 import { DraftState } from '../types/draft';
 import { HOK_ITEM_COUNTERS, ITEM_DESCRIPTIONS } from '../data/hokItems';
 
 interface ItemCounterPanelProps {
   draftState: DraftState;
-  language: 'EN' | 'ID';
-  transliterate: (text: string, language: 'EN' | 'ID') => string;
 }
 
 export const ItemCounterPanel: React.FC<ItemCounterPanelProps> = ({
   draftState,
-  language,
-  transliterate,
 }) => {
+  const { t, i18n } = useTranslation();
   const enemyPickedIds = draftState.redTeam.filter((id): id is string => id !== null);
   const allyPickedIds = draftState.blueTeam.filter((id): id is string => id !== null);
-  const languageCode = language;
 
   if (enemyPickedIds.length === 0) {
     return (
       <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl text-center py-8">
         <p className="text-slate-500 italic">
-          Analisis item counter akan tampil setelah hero lawan dipilih
+          {t('itemCounterPanel.subtitle').split('→')[0].trim()}
         </p>
       </div>
     );
@@ -96,16 +93,16 @@ export const ItemCounterPanel: React.FC<ItemCounterPanelProps> = ({
     <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl mt-4">
       <div className="flex items-center gap-2 mb-4 border-b border-slate-800 pb-3">
         <span className="text-amber-400">⚔️</span>
-        <h2 className="font-bold text-lg text-slate-100">Item Counter Prioritas</h2>
+        <h2 className="font-bold text-lg text-slate-100">{t('itemCounterPanel.title')}</h2>
       </div>
 
       <p className="text-sm text-slate-400 mb-3">
-        Analisis 5 hero lawan terpilih &rarr; Menyarankan item wajib untuk counter composition musuh
+        {t('itemCounterPanel.subtitle')}
       </p>
 
       {topItems.length === 0 ? (
         <div className="text-center text-slate-500 italic py-4">
-          Tidak ada item counter spesifik untuk composition ini
+          {t('itemCounterPanel.noSpecificItemCounter')}
         </div>
       ) : (
         <div className="space-y-3">
@@ -113,9 +110,7 @@ export const ItemCounterPanel: React.FC<ItemCounterPanelProps> = ({
             const descKey = item.descriptionKey;
             const desc = ITEM_DESCRIPTIONS[descKey];
             const descText = desc
-              ? languageCode === 'ID'
-                ? desc.id
-                : desc.en
+              ? i18n.language === 'id' ? desc.id : desc.en
               : item.name;
 
             return (
@@ -137,7 +132,7 @@ export const ItemCounterPanel: React.FC<ItemCounterPanelProps> = ({
                         ? 'bg-amber-500/20 text-amber-400 border border-amber-500/50'
                         : '')
                     }>
-                    <span className="font-semibold">{item.name}</span>
+                    <span className="font-semibold">{t(`itemCounterPanel.categories.${item.category}`)}: {item.name}</span>
                   </span>
                 </div>
 
@@ -146,7 +141,7 @@ export const ItemCounterPanel: React.FC<ItemCounterPanelProps> = ({
                     {descText}
                   </p>
                   <p className="text-[8px] text-slate-500 mt-1">
-                    Prioritas #{idx + 1} dari 5 item counter utama
+                    {t('itemCounterPanel.priority', { index: idx + 1 })}
                   </p>
                 </div>
               </div>

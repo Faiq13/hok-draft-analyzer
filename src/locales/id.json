@@ -1,0 +1,98 @@
+{
+  "app": {
+    "title": "HoK Draft & Counter Analyzer",
+    "subtitle": "Simulator Draftpick 5v5 & Algoritma Rekomendasi Counter Taktis",
+    "copySummary": "Salin Ringkasan",
+    "language": "Bahasa"
+  },
+  "header": {
+    "blueSide": "Blue Side (Tim Kita)",
+    "redSide": "Red Side (Tim Lawan)",
+    "selectYourHeroes": "Pilih Hero Anda",
+    "selectEnemyHeroes": "Pilih Hero Lawan"
+  },
+  "draftBoard": {
+    "bans": "Bans",
+    "picks": "Picks",
+    "ban": "BAN",
+    "pick": "PICK",
+    "ourTeamBans": "Bans Tim Kita",
+    "enemyTeamBans": "Bans Tim Lawan",
+    "ourTeamPicks": "Picks Tim Kita (5 Slot)",
+    "enemyTeamPicks": "Picks Tim Lawan (5 Slot)",
+    "slotActive": "Slot Aktif",
+    "clickToSelect": "Klik untuk memilih"
+  },
+  "heroCatalog": {
+    "title": "Katalog Hero",
+    "searchPlaceholder": "Cari hero...",
+    "activeSlot": "Aktif: {{slot}}",
+    "allRoles": "Semua",
+    "roles": {
+      "Roam": "Roam",
+      "Clash": "Clash",
+      "Mid": "Mid",
+      "Farm": "Farm",
+      "Jungle": "Jungle"
+    },
+    "instruction": "Pilih slot di Draft Board, lalu klik hero di bawah."
+  },
+  "counterPanel": {
+    "title": "Rekomendasi Counter & Taktis per Role",
+    "waitingForEnemy": "Pilih hero di Red Side (Lawan) terlebih dahulu untuk melihat rekomendasi counter taktis otomatis.",
+    "waitingForActiveSlot": "Giliran Pick: {{side}}",
+    "waitingForEnemyPick": "Menunggu Pick Musuh...",
+    "waitingForOurPick": "Pilih Hero Musuh untuk melihat Analisis Counter",
+    "noSpecificCounter": "Tidak ada counter spesifik",
+    "counterBadge": "Counter:",
+    "synergyBadge": "Sinergi:",
+    "effectiveAgainst": "Efektif melawan {{enemies}}",
+    "synergyWithTeam": "Sinergi dengan tim"
+  },
+  "synergyPanel": {
+    "title": "Panel Sinergi Tim",
+    "waitingForAlly": "Pilih hero di Blue Side (Tim Kita) terlebih dahulu untuk melihat rekomendasi sinergi tim.",
+    "waitingForActiveSlot": "Giliran Pick: {{side}}",
+    "waitingForAllyPick": "Menunggu Pick Teman...",
+    "waitingForOurPick": "Pilih Hero Teman untuk melihat Sinergi Tim",
+    "noSpecificSynergy": "Tidak ada sinergi spesifik",
+    "synergyLabel": "Sinergi"
+  },
+  "itemCounterPanel": {
+    "title": "Item Counter Prioritas",
+    "subtitle": "Analisis 5 hero lawan terpilih → Menyarankan item wajib untuk counter composition musuh",
+    "noSpecificItemCounter": "Tidak ada item counter spesifik untuk composition ini",
+    "priority": "Prioritas #{{index}} dari 5 item counter utama",
+    "categories": {
+      "anti-heal": "Anti-Heal",
+      "anti-physical-burst": "Anti-Physical Burst",
+      "anti-magic-burst": "Anti-Magic Burst",
+      "anti-shield": "Anti-Shield"
+    }
+  },
+  "roles": {
+    "Roam": "Roam",
+    "Clash": "Clash",
+    "Mid": "Mid",
+    "Farm": "Farm",
+    "Jungle": "Jungle"
+  },
+  "common": {
+    "reset": "Reset Draft",
+    "copy": "Salin",
+    "copied": "Disalin!",
+    "languageEN": "EN",
+    "languageID": "ID"
+  },
+  "strategySummary": {
+    "header": "=== HOOK DRAFT & COUNTER ANALYZER: RINGKASAN STRATEGI ===",
+    "teamComposition": "--- KOMPOSISI TIM ---",
+    "ourTeam": "Tim Kita (Blue Side): {{heroes}}",
+    "enemyTeam": "Musuh (Red Side): {{heroes}}",
+    "noHeroesPicked": "Belum ada hero dipilih",
+    "counterRecommendations": "--- REKOMENDASI COUNTER PER ROLE ---",
+    "itemCounterPriority": "--- ITEM COUNTER UTAMA ---",
+    "noItemCounter": "Tidak ada item counter spesifik untuk composition ini",
+    "footer": "=== AKHIR RINGKASAN ==="
+  }
+}

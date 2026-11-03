@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { DraftState } from './types/draft';
 import { HOK_HEROES, Hero } from './data/hokHeroes';
 import { DraftBoard } from './components/DraftBoard';
@@ -6,68 +7,12 @@ import { HeroGrid } from './components/HeroGrid';
 import { CounterRecommendations } from './components/CounterRecommendations';
 import { TeamSynergyPanel } from './components/TeamSynergyPanel';
 import { ItemCounterPanel } from './components/ItemCounterPanel';
-import { RotateCcw, Swords, Shield } from 'lucide-react';
+import { RotateCcw, Swords, Shield, Globe } from 'lucide-react';
 import { HOK_ITEM_COUNTERS } from './data/hokItems';
-import { useRef, useEffect } from 'react';
 import { ITEM_DESCRIPTIONS } from './data/hokItems';
 
-// --- Language state & transliteration ---
-type Language = 'EN' | 'ID';
-
-const idDictionary: Record<string, string> = {
-  // Counter reasons
-  "still holds a second leap": "Masih memiliki lonjakan kedua",
-  "holds a second leap once Agudo has spent her only roll": "Masih memiliki lonjakan kedua setelah Agudo telah menghabiskan gulirannya",
-  "drags Agudo in": "Tarik Agudo ke dalam",
-  "Prey mark adds true damage": "Tanda Perjuangan menambahkan damage sejati",
-  "cannot be targeted during his ultimate": "Tidak dapat ditarget selama ultimate-nya",
-  "Frag Grenade slows hard": "Grenade pelan keras",
-  "Ultimate Shell is far harder to dodge": "Ultimate Shell jauh lebih sulit dielakkan",
-  "poison pool slows": "Kolam racun pelan",
-  "much harder to dodge": "Sulit dielakkan",
-  "shield covers": "Perlindungan menutup",
-  "can stay on the front line": "Bisa tetap berada di lini depan",
-  "keep landing Basic Attacks": "Landing serangan dasar",
-  "attacks find nothing at all": "Serangan tidak menemukan apa-apa",
-  "Rentan vs": "Rentan vs",
-  "synergy": "sinergi",
-  "attach": "menempel",
-  "shield and stays untargetable": "melindungi dan tidak dapat ditarget",
-  "follows him straight through his dashes": "mengikuti langsung melalui dash-nya",
-  "pull enemies into one stunned cluster": "Taruh lawan ke dalam cluster yang terkaget",
-  "area shots hit the whole group": "Menembak area menebak seluruh kelompok",
-  "buys him exactly that time": "membeli waktu yang tepat itu",
-  "shields the target": "melindungi target",
-  "grows thickest on a Health-stacking": "mempercatat pada penumpang Health-stacking",
-  "taunt buys her exactly that time": "menyuari membeli waktu yang tepat itu",
-  "pulls enemies into one pile": "Mengelompokkan lawan",
-  "stuns them": "mengkagetkan mereka",
-  "keeps enemies from escaping": "Menjaga lawan dari melarikan diri",
-  // Synergy reasons
-  "slow keeps enemies from escaping": "Pelan menjaga lawan dari melarikan diri",
-  "keeps Tune of Tranquility's heal and defense": "Menjaga penyembuhan dan pertahanan Tune of Tranquility",
-};
-
-const transliterate = (text: string, language: Language): string => {
-  if (language === 'EN') return text;
-
-  // Check for exact matches first
-  for (const [key, value] of Object.entries(idDictionary)) {
-    if (text.toLowerCase().includes(key.toLowerCase())) {
-      return value;
-    }
-  }
-
-  // If no match, generate a brief Indonesian summary
-  const sentences = text.split('.').filter(s => s.trim().length > 0);
-  if (sentences.length > 0) {
-    return sentences[0].trim() + (sentences[0].trim().endsWith('.') ? '' : '.');
-  }
-  return text;
-};
-
 // Generate strategy summary text
-const generateStrategySummary = (draftState: DraftState, language: Language) => {
+const generateStrategySummary = (draftState: DraftState, t: (key: string, options?: any) => string) => {
   const enemyPickedIds = draftState.redTeam.filter((id): id is string => id !== null);
   const allyPickedIds = draftState.blueTeam.filter((id): id is string => id !== null);
   const heroById: Record<string, Hero> = {};
@@ -206,52 +151,49 @@ const generateStrategySummary = (draftState: DraftState, language: Language) => 
   const lines: string[] = [];
 
   // Team composition
-  const languageCode = language === 'ID' ? 'ID' : 'EN';
-  lines.push('=== HOOK DRAFT & COUNTER ANALYZER: RINGKASAN STRATEGI ===');
+  lines.push(t('strategySummary.header'));
   lines.push('');
-  lines.push('--- KOMPOSISI TIM ---');
-  lines.push(`Tim Kita (Blue Side): ${allyNames.length > 0 ? allyNames.join(', ') : 'Belum ada hero dipilih'}`);
-  lines.push(`Musuh (Red Side): ${enemyNames.length > 0 ? enemyNames.join(', ') : 'Belum ada hero dipilih'}`);
+  lines.push(t('strategySummary.teamComposition'));
+  lines.push(t('strategySummary.ourTeam', { heroes: allyNames.length > 0 ? allyNames.join(', ') : t('strategySummary.noHeroesPicked') }));
+  lines.push(t('strategySummary.enemyTeam', { heroes: enemyNames.length > 0 ? enemyNames.join(', ') : t('strategySummary.noHeroesPicked') }));
   lines.push('');
 
   // Top 3 Counter per Role
-  lines.push('--- REKOMENDASI COUNTER PER ROLE ---');
+  lines.push(t('strategySummary.counterRecommendations'));
   ROLES.forEach(role => {
     const recs = recommendationsPerRole[role];
     if (recs && recs.length > 0) {
       lines.push(`(${role}) ${recs.slice(0, 3).map((r: any) => r.hero.name).join(', ')}`);
       recs.slice(0, 3).forEach((r: any, i) => {
-        const reasonId = languageCode === 'ID' ? r.reason : r.reason;
-        lines.push(`  ${i + 1}. ${r.hero.name}: ${reasonId}`);
+        lines.push(`  ${i + 1}. ${r.hero.name}: ${r.reason}`);
       });
     }
   });
   lines.push('');
 
   // Main Item Counter Priority
-  lines.push('--- ITEM COUNTER UTAMA ---');
+  lines.push(t('strategySummary.itemCounterPriority'));
   if (topItems.length === 0) {
-    lines.push('Tidak ada item counter spesifik untuk composition ini');
+    lines.push(t('strategySummary.noItemCounter'));
   } else {
     topItems.forEach((item, idx) => {
       const descKey = item.descriptionKey;
       const desc = ITEM_DESCRIPTIONS[descKey];
       const descText = desc
-        ? languageCode === 'ID'
-          ? desc.id
-          : desc.en
+        ? t(`itemCounterPanel.categories.${item.category}`) + ': ' + (desc.id || desc.en)
         : item.name;
-      lines.push(`${idx + 1}. ${item.name} (${item.category}): ${descText}`);
+      lines.push(`${idx + 1}. ${item.name} (${t(`itemCounterPanel.categories.${item.category}`)}): ${descText}`);
     });
   }
   lines.push('');
 
-  lines.push('=== AKHIR RINGKASAN ===');
+  lines.push(t('strategySummary.footer'));
   
   return lines.join('\n');
 };
 
 export default function App() {
+  const { t, i18n } = useTranslation();
   const [draftState, setDraftState] = useState<DraftState>({
     blueTeam: [null, null, null, null, null],
     redTeam: [null, null, null, null, null],
@@ -259,8 +201,6 @@ export default function App() {
     redBans: [null, null, null],
     activeSlot: { side: 'blue', type: 'pick', index: 0 },
   });
-
-  const [language, setLanguage] = useState<Language>('EN');
 
   const handleSelectSlot = (side: 'blue' | 'red', type: 'pick' | 'ban', index: number) => {
     setDraftState(prev => ({
@@ -339,6 +279,10 @@ export default function App() {
     });
   };
 
+  const handleChangeLanguage = (lng: 'en' | 'id') => {
+    i18n.changeLanguage(lng);
+  };
+
   const pickedOrBannedIds = [
     ...draftState.blueTeam,
     ...draftState.redTeam,
@@ -347,7 +291,7 @@ export default function App() {
   ].filter((id): id is string => id !== null);
 
   const activeSlotLabel = draftState.activeSlot
-    ? `${draftState.activeSlot.side === 'blue' ? 'Blue Side' : 'Red Side'} (${draftState.activeSlot.type.toUpperCase()} #${draftState.activeSlot.index + 1})`
+    ? `${draftState.activeSlot.side === 'blue' ? t('header.blueSide') : t('header.redSide')} (${draftState.activeSlot.type.toUpperCase()} #${draftState.activeSlot.index + 1})`
     : null;
 
   // Fallback copy to clipboard for older browsers
@@ -378,39 +322,50 @@ export default function App() {
           </div>
           <div>
             <h1 className="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-amber-400 via-orange-400 to-red-500 bg-clip-text text-transparent">
-              HoK Draft & Counter Analyzer
+              {t('app.title')}
             </h1>
             <p className="text-slate-400 text-xs md:text-sm mt-0.5">
-              Simulator Draftpick 5v5 & Algoritma Rekomendasi Counter Taktis
+              {t('app.subtitle')}
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-2">
-          <button
-            onClick={() => setLanguage('EN')}
-            className={`flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 px-4 py-2 rounded-xl text-sm font-semibold transition-all shadow-md ${language === 'EN' ? 'border-amber-400 text-amber-400' : ''}`}
-            title="English"
-          >
-            EN
-          </button>
-          <button
-            onClick={() => setLanguage('ID')}
-            className={`flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 px-4 py-2 rounded-xl text-sm font-semibold transition-all shadow-md ${language === 'ID' ? 'border-amber-400 text-amber-400' : ''}`}
-            title="Indonesia"
-          >
-            ID
-          </button>
+          <div className="relative flex items-center gap-2 bg-slate-800 border border-slate-700 rounded-xl p-1">
+            <Globe className="w-4 h-4 text-slate-400 ml-2" />
+            <button
+              onClick={() => handleChangeLanguage('en')}
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
+                i18n.language === 'en' 
+                  ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/30' 
+                  : 'text-slate-300 hover:text-slate-100'
+              }`}
+              title="English"
+            >
+              EN
+            </button>
+            <button
+              onClick={() => handleChangeLanguage('id')}
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
+                i18n.language === 'id' 
+                  ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/30' 
+                  : 'text-slate-300 hover:text-slate-100'
+              }`}
+              title="Indonesia"
+            >
+              ID
+            </button>
+          </div>
           <button
             id="copy-summary-btn"
             onClick={async () => {
-              const summary = generateStrategySummary(draftState, language);
+              const summary = generateStrategySummary(draftState, t);
               try {
                 await navigator.clipboard.writeText(summary);
                 // Show toast notification
                 const btn = document.getElementById('copy-summary-btn') as HTMLButtonElement;
                 const originalText = btn.textContent;
-                btn.textContent = 'Disalin!';
+                btn.textContent = t('common.copied');
                 btn.className = btn.className + ' bg-emerald-500 text-slate-950';
                 setTimeout(() => {
                   btn.textContent = originalText;
@@ -421,45 +376,53 @@ export default function App() {
               }
             }}
             className={`flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 px-4 py-2 rounded-xl text-sm font-semibold transition-all shadow-md`}
-            title="Copy Ringkasan Strategi"
+            title={t('app.copySummary')}
           >
-            <span className="w-4 h-4" />
-            Salin Ringkasan
+            <Shield className="w-4 h-4" />
+            <span>{t('app.copySummary')}</span>
+          </button>
+          <button
+            onClick={handleResetDraft}
+            className={`flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 px-4 py-2 rounded-xl text-sm font-semibold transition-all shadow-md`}
+            title={t('common.reset')}
+          >
+            <RotateCcw className="w-4 h-4" />
+            <span>{t('common.reset')}</span>
           </button>
         </div>
       </header>
 
       <main className="max-w-7xl mx-auto w-full flex flex-col gap-6">
+        <DraftBoard
+          draftState={draftState}
+          onSelectSlot={handleSelectSlot}
+          onRemoveHero={handleRemoveHero}
+        />
+
         <CounterRecommendations
           draftState={draftState}
           onSelectHeroForActiveSlot={(heroId) => {
             const hero = HOK_HEROES.find((h: Hero) => h.id === heroId);
             if (hero) handleSelectHero(hero);
           }}
-          language={language}
-          transliterate={(text: string) => transliterate(text, language)}
         />
 
         {/* Visual separator to distinguish Counter & Synergy panels */}
         <div className="my-2 flex items-center gap-3">
           <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
-          <span className="text-[10px] font-bold tracking-widest text-slate-500 uppercase">Panel Analisis</span>
+          <span className="text-[10px] font-bold tracking-widest text-slate-500 uppercase">{t('synergyPanel.title')}</span>
           <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
         </div>
 
-      {/* Team Synergy Panel */}
-      <TeamSynergyPanel
-        draftState={draftState}
-        language={language}
-        transliterate={(text: string) => transliterate(text, language)}
-      />
+        {/* Team Synergy Panel */}
+        <TeamSynergyPanel
+          draftState={draftState}
+        />
 
-      {/* Item Counter Panel - di bagian bawah dashboard */}
-      <ItemCounterPanel
-        draftState={draftState}
-        language={language}
-        transliterate={(text: string) => transliterate(text, language)}
-      />
+        {/* Item Counter Panel - at the bottom of dashboard */}
+        <ItemCounterPanel
+          draftState={draftState}
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-1 gap-6">
           <HeroGrid

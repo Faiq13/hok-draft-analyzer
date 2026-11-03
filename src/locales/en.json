@@ -1,0 +1,98 @@
+{
+  "app": {
+    "title": "HoK Draft & Counter Analyzer",
+    "subtitle": "5v5 Draftpick Simulator & Tactical Counter Recommendation Algorithm",
+    "copySummary": "Copy Summary",
+    "language": "Language"
+  },
+  "header": {
+    "blueSide": "Blue Side (Our Team)",
+    "redSide": "Red Side (Enemy Team)",
+    "selectYourHeroes": "Select Your Heroes",
+    "selectEnemyHeroes": "Select Enemy Heroes"
+  },
+  "draftBoard": {
+    "bans": "Bans",
+    "picks": "Picks",
+    "ban": "BAN",
+    "pick": "PICK",
+    "ourTeamBans": "Our Team Bans",
+    "enemyTeamBans": "Enemy Team Bans",
+    "ourTeamPicks": "Our Team Picks (5 Slots)",
+    "enemyTeamPicks": "Enemy Team Picks (5 Slots)",
+    "slotActive": "Active Slot",
+    "clickToSelect": "Click to select"
+  },
+  "heroCatalog": {
+    "title": "Hero Catalog",
+    "searchPlaceholder": "Search hero...",
+    "activeSlot": "Active: {{slot}}",
+    "allRoles": "All",
+    "roles": {
+      "Roam": "Roam",
+      "Clash": "Clash",
+      "Mid": "Mid",
+      "Farm": "Farm",
+      "Jungle": "Jungle"
+    },
+    "instruction": "Select a slot in the Draft Board, then click a hero below."
+  },
+  "counterPanel": {
+    "title": "Tactical Counter & Recommendations per Role",
+    "waitingForEnemy": "Pick heroes on Red Side (Enemy) first to see automatic tactical counter recommendations.",
+    "waitingForActiveSlot": "Turn: {{side}}",
+    "waitingForEnemyPick": "Waiting for Enemy Pick...",
+    "waitingForOurPick": "Select Enemy Hero to see Tactical Counter Analysis",
+    "noSpecificCounter": "No specific counter",
+    "counterBadge": "Counter:",
+    "synergyBadge": "Synergy:",
+    "effectiveAgainst": "Effective against {{enemies}}",
+    "synergyWithTeam": "Synergy with team"
+  },
+  "synergyPanel": {
+    "title": "Team Synergy Panel",
+    "waitingForAlly": "Pick heroes on Blue Side (Our Team) first to see team synergy recommendations.",
+    "waitingForActiveSlot": "Turn: {{side}}",
+    "waitingForAllyPick": "Waiting for Ally Pick...",
+    "waitingForOurPick": "Select Our Hero to see Team Synergy",
+    "noSpecificSynergy": "No specific synergy",
+    "synergyLabel": "Synergy"
+  },
+  "itemCounterPanel": {
+    "title": "Priority Item Counters",
+    "subtitle": "Analysis of 5 picked enemy heroes → Recommending must-have items to counter enemy composition",
+    "noSpecificItemCounter": "No specific item counter for this composition",
+    "priority": "Priority #{{index}} of 5 main counter items",
+    "categories": {
+      "anti-heal": "Anti-Heal",
+      "anti-physical-burst": "Anti-Physical Burst",
+      "anti-magic-burst": "Anti-Magic Burst",
+      "anti-shield": "Anti-Shield"
+    }
+  },
+  "roles": {
+    "Roam": "Roam",
+    "Clash": "Clash",
+    "Mid": "Mid",
+    "Farm": "Farm",
+    "Jungle": "Jungle"
+  },
+  "common": {
+    "reset": "Reset Draft",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "languageEN": "EN",
+    "languageID": "ID"
+  },
+  "strategySummary": {
+    "header": "=== HOOK DRAFT & COUNTER ANALYZER: STRATEGY SUMMARY ===",
+    "teamComposition": "--- TEAM COMPOSITION ---",
+    "ourTeam": "Our Team (Blue Side): {{heroes}}",
+    "enemyTeam": "Enemy (Red Side): {{heroes}}",
+    "noHeroesPicked": "No heroes picked yet",
+    "counterRecommendations": "--- COUNTER RECOMMENDATIONS PER ROLE ---",
+    "itemCounterPriority": "--- MAIN ITEM COUNTER PRIORITY ---",
+    "noItemCounter": "No specific item counter for this composition",
+    "footer": "=== END SUMMARY ==="
+  }
+}

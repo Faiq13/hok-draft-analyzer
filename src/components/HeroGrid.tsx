@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { HOK_HEROES, Hero } from '../data/hokHeroes';
 import { Search } from 'lucide-react';
 import { HeroAvatar } from './HeroAvatar';
@@ -14,12 +15,13 @@ export const HeroGrid: React.FC<HeroGridProps> = ({
   onSelectHero,
   activeSlotInfo,
 }) => {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedRole, setSelectedRole] = useState<string>('All');
+  const [selectedRole, setSelectedRole] = useState<string>(t('heroCatalog.allRoles'));
 
   const filteredHeroes = HOK_HEROES.filter(hero => {
     const matchesSearch = hero.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesRole = selectedRole === 'All' || hero.role === selectedRole;
+    const matchesRole = selectedRole === t('heroCatalog.allRoles') || hero.role === selectedRole;
     return matchesSearch && matchesRole;
   });
 
@@ -27,10 +29,10 @@ export const HeroGrid: React.FC<HeroGridProps> = ({
     <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl">
       <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-4">
         <div className="flex items-center gap-2 w-full md:w-auto">
-          <h2 className="font-bold text-lg text-slate-100">Katalog Hero</h2>
+          <h2 className="font-bold text-lg text-slate-100">{t('heroCatalog.title')}</h2>
           {activeSlotInfo && (
             <span className="text-xs bg-amber-500/20 border border-amber-500/40 text-amber-300 px-2.5 py-1 rounded-md font-medium">
-              Aktif: {activeSlotInfo}
+              {t('heroCatalog.activeSlot', { slot: activeSlotInfo })}
             </span>
           )}
         </div>
@@ -40,7 +42,7 @@ export const HeroGrid: React.FC<HeroGridProps> = ({
             <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
             <input
               type="text"
-              placeholder="Cari hero..."
+              placeholder={t('heroCatalog.searchPlaceholder')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full bg-slate-800 border border-slate-700 rounded-lg pl-9 pr-4 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500"
@@ -49,9 +51,16 @@ export const HeroGrid: React.FC<HeroGridProps> = ({
         </div>
       </div>
 
+      {/* Instruction text */}
+      <div className="mb-3 p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg">
+        <p className="text-sm text-amber-300 text-center font-medium">
+          {t('heroCatalog.instruction')}
+        </p>
+      </div>
+
       {/* Role Filter Tabs */}
       <div className="flex gap-2 overflow-x-auto pb-3 mb-4 border-b border-slate-800">
-        {['All', 'Roam', 'Clash', 'Mid', 'Farm', 'Jungle'].map((role) => (
+        {[t('heroCatalog.allRoles'), 'Roam', 'Clash', 'Mid', 'Farm', 'Jungle'].map((role) => (
           <button
             key={role}
             onClick={() => setSelectedRole(role)}
@@ -61,7 +70,7 @@ export const HeroGrid: React.FC<HeroGridProps> = ({
                 : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
-            {role}
+            {role === t('heroCatalog.allRoles') ? role : t(`roles.${role}`)}
           </button>
         ))}
       </div>
@@ -88,7 +97,7 @@ export const HeroGrid: React.FC<HeroGridProps> = ({
                   initialsClassName="text-sm"
                 />
                 <span className="absolute bottom-0.5 right-0.5 bg-slate-950/80 text-[9px] px-1 py-0.2 rounded text-amber-400 font-bold">
-                  {hero.role}
+                  {t(`roles.${hero.role}`)}
                 </span>
               </div>
               <span className="font-medium text-xs text-slate-200 text-center truncate w-full">
