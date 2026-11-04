@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { HOK_HEROES, Hero } from '../data/hokHeroes';
 import { DraftState } from '../types/draft';
-import { HOK_ITEM_COUNTERS, ITEM_DESCRIPTIONS } from '../data/hokItems';
+import { HOK_ITEM_COUNTERS } from '../data/hokItems';
 
 interface ItemCounterPanelProps {
   draftState: DraftState;
@@ -107,11 +107,9 @@ export const ItemCounterPanel: React.FC<ItemCounterPanelProps> = ({
       ) : (
         <div className="space-y-3">
           {topItems.map((item, idx) => {
+            // Get description from locale files
             const descKey = item.descriptionKey;
-            const desc = ITEM_DESCRIPTIONS[descKey];
-            const descText = desc
-              ? i18n.language === 'id' ? desc.id : desc.en
-              : item.name;
+            const desc = t(`items.${descKey}`, { defaultValue: '' });
 
             return (
               <div
@@ -138,7 +136,7 @@ export const ItemCounterPanel: React.FC<ItemCounterPanelProps> = ({
 
                 <div className="flex-1 min-w-0">
                   <p className="text-[9px] text-slate-400 line-clamp-2 leading-snug">
-                    {descText}
+                    {desc || item.name}
                   </p>
                   <p className="text-[8px] text-slate-500 mt-1">
                     {t('itemCounterPanel.priority', { index: idx + 1 })}

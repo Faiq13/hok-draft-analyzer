@@ -11,6 +11,12 @@ interface TeamSynergyPanelProps {
 
 const ROLES: Hero['role'][] = ['Roam', 'Clash', 'Mid', 'Farm', 'Jungle'];
 
+// Helper to get localized tactical reason
+function getLocalizedReason(t: (key: string, options?: any) => string, heroId: string, targetId: string, type: string) {
+  const path = `tactical.${type}s.${heroId}.${targetId}`;
+  return t(path, { defaultValue: '' });
+}
+
 export const TeamSynergyPanel: React.FC<TeamSynergyPanelProps> = ({
   draftState,
 }) => {
@@ -45,7 +51,8 @@ export const TeamSynergyPanel: React.FC<TeamSynergyPanelProps> = ({
     let score = 0;
     const reasons: string[] = [];
 
-    // Check synergies with ally picked heroes
+    // STRICT: Only check SYNERGIES with ally picked heroes (Blue Side)
+    // This panel ONLY shows heroes that have synergy with our team
     for (const allyId of allyPickedIds) {
       const ally = heroById[allyId];
       if (!ally) continue;
@@ -56,7 +63,13 @@ export const TeamSynergyPanel: React.FC<TeamSynergyPanelProps> = ({
       );
       if (synergy) {
         score += 20;
-        reasons.push(synergy.reason ?? t('synergyPanel.synergyLabel') + ' ' + ally.name);
+        // Use localized reason if available
+        const localizedReason = getLocalizedReason(t, hero.id, ally.id, 'synergy');
+        if (localizedReason) {
+          reasons.push(localizedReason);
+        } else {
+          reasons.push(synergy.reason ?? t('synergyPanel.synergyLabel') + ' ' + ally.name);
+        }
       }
 
       // Ally's synergy with candidate
@@ -65,11 +78,16 @@ export const TeamSynergyPanel: React.FC<TeamSynergyPanelProps> = ({
       );
       if (allySynergy && !hero.synergies.some((f: any) => f.id === ally.id)) {
         score += 20;
-        reasons.push(allySynergy.reason ?? t('synergyPanel.synergyLabel') + ' ' + ally.name);
+        const localizedReason = getLocalizedReason(t, ally.id, hero.id, 'synergy');
+        if (localizedReason) {
+          reasons.push(localizedReason);
+        } else {
+          reasons.push(allySynergy.reason ?? t('synergyPanel.synergyLabel') + ' ' + ally.name);
+        }
       }
     }
 
-    // Frequently paired with
+    // Frequently paired with (bonus info, not core synergy)
     for (const allyId of allyPickedIds) {
       const ally = heroById[allyId];
       if (!ally) continue;

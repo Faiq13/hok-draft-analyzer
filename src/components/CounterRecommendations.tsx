@@ -17,6 +17,8 @@ interface RecommendationItem {
   fullReason: string;
   matchedEnemies: string[];
   matchedAllies: string[];
+  counterReasons: string[];
+  vulnerabilityReasons: string[];
 }
 
 const ROLES: Hero['role'][] = ['Roam', 'Clash', 'Mid', 'Farm', 'Jungle'];
@@ -26,6 +28,12 @@ const SYNERGY_SCORE = 20;
 const VULNERABILITY_PENALTY = 20;
 
 const heroById = new Map(HOK_HEROES.map(hero => [hero.id, hero]));
+
+// Helper to get localized tactical reason
+function getLocalizedReason(t: (key: string, options?: any) => string, heroId: string, targetId: string, type: string) {
+  const path = `tactical.${type}s.${heroId}.${targetId}`;
+  return t(path, { defaultValue: '' });
+}
 
 export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
   draftState,
@@ -58,60 +66,61 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
       let score = 0;
       const matchedEnemies: string[] = [];
       const matchedAllies: string[] = [];
-      const tacticalReasons: string[] = [];
-      const vulnerabilities: string[] = [];
+      const counterReasons: string[] = [];
+      const vulnerabilityReasons: string[] = [];
 
-      // 1. Akumulasi counter terhadap SEMUA hero musuh yang dipilih.
+      // STRICT: Only check COUNTERS against enemy picks (Red Side)
+      // This panel ONLY shows heroes that counter enemy heroes
       for (const enemyId of enemyPickedIds) {
         const enemy = heroById.get(enemyId);
         if (!enemy) continue;
 
+        // Check if candidate counters this enemy
         const counterEntry = enemy.counteredBy.find(entry => entry.id === candidate.id);
         const isCounter = Boolean(counterEntry) || candidate.counters.includes(enemy.id);
 
         if (isCounter) {
           score += COUNTER_SCORE;
           matchedEnemies.push(enemy.name);
-          if (counterEntry?.reason) tacticalReasons.push(counterEntry.reason);
+          // Use localized reason if available
+          const localizedReason = getLocalizedReason(t, enemyId, candidate.id, 'counter');
+          if (localizedReason) {
+            counterReasons.push(localizedReason);
+          } else if (counterEntry?.reason) {
+            counterReasons.push(counterEntry.reason);
+          }
         }
 
-        // 2. Penalti bila hero musuh justru meng-counter kandidat.
+        // Check vulnerability (enemy counters candidate) - for transparency
         const vulnerability = candidate.counteredBy.find(entry => entry.id === enemy.id);
         if (vulnerability) {
           score -= VULNERABILITY_PENALTY;
-          vulnerabilities.push(`Rentan vs ${enemy.name}`);
-          if (vulnerability.reason) tacticalReasons.push(vulnerability.reason);
+          vulnerabilityReasons.push(`Rentan vs ${enemy.name}`);
+          const localizedVuln = getLocalizedReason(t, candidate.id, enemyId, 'counter');
+          if (localizedVuln) {
+            vulnerabilityReasons.push(localizedVuln);
+          } else if (vulnerability.reason) {
+            vulnerabilityReasons.push(vulnerability.reason);
+          }
         }
       }
 
-      // 3. Bonus sinergi dengan hero tim kita yang sudah dipilih.
-      for (const allyId of allyPickedIds) {
-        const ally = heroById.get(allyId);
-        if (!ally) continue;
-
-        const synergy =
-          candidate.synergies.find(entry => entry.id === ally.id) ??
-          ally.synergies.find(entry => entry.id === candidate.id);
-
-        if (synergy) {
-          score += SYNERGY_SCORE;
-          matchedAllies.push(ally.name);
-          if (synergy.reason) tacticalReasons.push(synergy.reason);
-        }
-      }
+      // DO NOT include synergy with allies in Counter panel - that's for Synergy panel only
+      // This ensures strict separation
 
       // Prioritaskan hero yang menjawab lebih dari satu pick musuh.
       if (matchedEnemies.length > 1) {
         score += 10 * (matchedEnemies.length - 1);
       }
 
-      if (score <= 0) return;
+      // Only show if has actual counter value (score > 0 from counters)
+      const hasCounterValue = matchedEnemies.length > 0;
+      if (!hasCounterValue || score <= 0) return;
 
       const fullReasonParts = [
         matchedEnemies.length > 0 ? `Counter: ${matchedEnemies.join(', ')}` : '',
-        matchedAllies.length > 0 ? `Synergy: ${matchedAllies.join(', ')}` : '',
-        ...tacticalReasons,
-        ...vulnerabilities,
+        ...counterReasons,
+        ...vulnerabilityReasons,
       ].filter(Boolean);
 
       const fallbackReason = matchedEnemies.length > 0
@@ -121,10 +130,12 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
       scored.push({
         hero: candidate,
         score,
-        reason: tacticalReasons[0] ?? fallbackReason,
+        reason: counterReasons[0] ?? fallbackReason,
         fullReason: fullReasonParts.join(' • '),
         matchedEnemies,
         matchedAllies,
+        counterReasons,
+        vulnerabilityReasons,
       });
     });
 

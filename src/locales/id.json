@@ -94,5 +94,972 @@
     "itemCounterPriority": "--- ITEM COUNTER UTAMA ---",
     "noItemCounter": "Tidak ada item counter spesifik untuk composition ini",
     "footer": "=== AKHIR RINGKASAN ==="
+  },
+  "tactical": {
+    "counters": {
+      "agudo": {
+        "han-xin": "Han Xin masih memiliki satu lompatan lagi setelah Agudo menghabiskan satu-satunya lemparannya, sehingga Agudo tidak punya jalan keluar.",
+        "lam": "Kemampuan \"Death From Below\" milik Lam menarik Agudo ke dalam jangkauan, dan begitu Agudo berada di posisi rendah, tanda \"Prey\" akan memberikan damage sejati."
+      },
+      "alessio": {
+        "li-bai": "Li Bai tidak bisa menjadi sasaran selama skill ultimate-nya aktif, sehingga serangan Alessio sama sekali tidak mengenai apa pun.",
+        "lady-sun": "Granat Frag Lady Sun sangat memperlambat Alessio, sehingga Ultimate Shell-nya jauh lebih sulit dihindari olehnya."
+      },
+      "allain": {
+        "donghuang": "Kontrak Terlantar milik Donghuang langsung menekan Allain, memutus rantai serangannya serta Fury yang terbentuk darinya."
+      },
+      "angela": {
+        "han-xin": "Han Xin melompat masuk dan melemparkan Angela sebelum dia sempat mulai menembak, lalu menekannya ke tanah.",
+        "daji": "Daji mengejutkan Angela, menghancurkan Pertahanan Sihirnya saat Angela dalam keadaan terikat, dan langsung memenangkan pertarungan tersebut."
+      },
+      "annette": {
+        "gan-mo": "Gan & Mo langsung mengisi ulang pedang terbang mereka dengan \"Freshly Forged\", sehingga menutup celah yang dibutuhkan Annette untuk mengambil inisiatif.",
+        "kongming": "Serangan Spirit Bomb milik Kongming akan semakin kuat seiring berkurangnya HP Annette, sehingga Annette yang HP-nya sudah berkurang akan semakin mudah dikalahkan."
+      },
+      "aoyin": {
+        "arli": "Arli melesat pergi dengan kecepatan yang didapatnya setelah melepaskan payungnya, lalu mendorong Ao'yin mundur hingga berada di luar jangkauan.",
+        "consort-yu": "Permaisuri Yu bisa kebal terhadap serangan fisik, dan hampir semua serangan yang dilancarkan Ao'yin bersifat fisik."
+      },
+      "arke": {
+        "arthur": "Serangan Arthur yang diperkuat melesat ke arah Arke dan membuatnya terdiam, sehingga menghentikan kombo Arke di tengah jalan.",
+        "lu-bu": "Cincin Pembantaian milik Lu Bu meningkatkan pertahanannya, dan ujungnya memperlambat Arke saat ia berusaha pergi."
+      },
+      "arli": {
+        "liang": "Tekanan yang dilancarkan Liang membuat Arli tak bisa bergerak, dan kemampuan \"blink\"-nya tak bisa digunakan selama cengkeraman itu masih berlangsung.",
+        "daji": "Serangan \"Strike a Pose\" milik Daji tepat mengarah ke sasarannya, sehingga \"Lithe Step\" milik Arli tidak bisa menghindari efek stun tersebut."
+      },
+      "arthur": {
+        "lu-bu": "Lu Bu selalu membawa efek true damage atau physical pierce, jadi ketahanan Arthur sama sekali tidak berguna baginya.",
+        "mi-yue": "Mi Yue lenyap ke dalam Umbral Moon dan kebal terhadap segala serangan, sehingga serangan Might of Excalibur tidak mengenai apa pun."
+      },
+      "ata": {
+        "shouyue": "Serangan \"Wild Wind\" milik Shouyue bergantung pada HP maksimum, sehingga semakin banyak tumpukan HP yang dimiliki Ata, semakin kuat pula serangannya.",
+        "lady-sun": "Serangan dasar Lady Sun membuat gulungannya kembali lebih cepat setiap kali serangannya mengenai sasaran, sehingga Ata kesulitan untuk mendekati lawan."
+      },
+      "athena": {
+        "sun-bin": "Kemampuan \"Time Lapse\" milik Sun Bin mengganggu dan membungkam Athena, sehingga serangannya terhenti seketika di tempat.",
+        "guan-yu": "Posisi \"Guan Yu in Charge\" terus mendorong Athena mundur, sehingga kombo-nya tidak pernah berhasil mengenai sasaran."
+      },
+      "augran": {
+        "arli": "Arli mengedipkan mata dan mempercepat langkahnya tanpa payungnya, sehingga Resonansi Jiwa Augran tak pernah tetap terhubung."
+      },
+      "bai-qi": {
+        "lu-bu": "Tombak sihir Lu Bu memberikan kerusakan murni tambahan, yang tidak dapat dikurangi oleh pertahanan bertumpuk Bai Qi.",
+        "mozi": "Penghalang Mozi membuat apa pun yang menyentuhnya terdiam, sehingga lompatan \"Lay Waste\" Bai Qi membuatnya terjebak di tempat."
+      },
+      "biron": {
+        "menki": "Menki menumpuk efek perlambatan Dream Bubble, lalu menjauh dari Biron sebelum Biron sempat mengejarnya.",
+        "lu-bu": "Tombak sihir milik Lu Bu menimbulkan kerusakan sejati yang mengabaikan pertahanan, sehingga ketahanan Biron sama sekali tidak berarti."
+      },
+      "butterfly": {
+        "lu-bu": "Cincin Pembantaian milik Lu Bu meningkatkan kedua pertahanannya, sehingga Butterfly kesulitan bertukar serangan dengannya.",
+        "diaochan": "Diaochan terus mengurangi waktu cooldown Petals in the Wind, sehingga dia langsung melompat menjauh sebelum Butterfly sempat mendekat."
+      },
+      "cai-yan": {
+        "musashi": "Serangan \"Duel hingga Mati\" milik Musashi menunda semua proses pemulihan pada targetnya, sehingga penyembuhan yang diberikan Cai Yan baru berlaku setelah duel tersebut berakhir.",
+        "lady-zhen": "Kolam \"Destructive Deluge\" milik Lady Zhen membuat Cai Yan tak bisa menemukan tempat untuk memulihkan diri, dan efek perlambatan yang ditimbulkannya menghalanginya untuk pergi."
+      },
+      "chano": {
+        "gao-changgong": "Gao Changgong mendekat secara diam-diam, sehingga jarak yang dijaga Chano dari semak-semak itu tak berarti apa-apa.",
+        "musashi": "Musashi menangkis proyektil di udara dengan Illuminating Slash, sehingga tembakan Chano yang melayang di udara pun gagal sebelum mencapai sasaran."
+      },
+      "charlotte": {
+        "arthur": "Diamnya Arthur memutus rantai tindak lanjut yang menjadi andalan Charlotte, dan kelambanannya sendiri justru mempercepat proses penyembuhannya.",
+        "arli": "\"Autumn Storm\" milik Arli berhasil menyingkirkan Charlotte, sehingga menghentikan tekanan jarak dekat yang perlu dibangun oleh Charlotte."
+      },
+      "chicha": {
+        "dun": "Dun menghubungkan serangan lambat dengan serangan cepat, sehingga menghambat serangan Chicha hingga Fighting Spirit-nya habis.",
+        "lam": "Lam langsung kembali menyerang setelah setiap kali terlempar, sambil menyembuhkan dirinya sendiri saat ia kembali mendekati lawannya."
+      },
+      "cirrus": {
+        "liang": "Penindasan yang dilakukan Liang juga menggagalkan upaya pembersihan di Soaring Whirlwind, sehingga Cirrus tidak punya jalan keluar.",
+        "donghuang": "Donghuang membagi semua kerusakan yang diterimanya selama periode penekanan, sehingga Cirrus yang menyerang dari atas pun ikut tumbang bersamanya."
+      },
+      "consort-yu": {
+        "erin": "Kerusakan dari skill Erin bersifat magis, sehingga mengabaikan kekebalan fisik Consort Yu, dan Forest Whisper kebal terhadap efek perlambatan.",
+        "diaochan": "Diaochan langsung meluncur masuk, dan kerusakan sihir serta kerusakan murni yang ditimbulkannya sama sekali mengabaikan kekebalan fisik Permaisuri Yu."
+      },
+      "da-qiao": {
+        "han-xin": "Han Xin kebal terhadap efek pengendalian kerumunan selama efek \"The Unrivaled Spear\", sehingga serangan koi yang dilancarkan Da Qiao tidak menimbulkan efek apa pun.",
+        "zhang-fei": "Kemampuan \"Forbidden Domain\" milik Zhang Fei membuat para pahlawan terlempar ke belakang, sehingga memecah belah tim yang baru saja dikumpulkan Da Qiao ke dalam \"Eye of the Whirlpool\"."
+      },
+      "daji": {
+        "mulan": "Mulan terus menumpuk efek Balance hingga meledak dan membungkam Daji, sehingga kemampuan Daji sama sekali tidak bisa digunakan.",
+        "gao-changgong": "Gao Changgong menyerang secara mendadak dari posisi tersembunyi, dan Daji tak bisa berbuat apa-apa selain menggunakan serangan memusingkannya sebagai balasan."
+      },
+      "devara": {
+        "gan-mo": "Gan & Mo memantulkan musuh ke belakang sambil mundur, sehingga jangkauan serangan jarak dekat yang menjadi andalan Devara pun lenyap.",
+        "arli": "Arli mengalihkan pandangannya dan mempercepat langkahnya sambil menurunkan payungnya, sehingga Devara kesulitan mempertahankan jarak serang jarak dekat."
+      },
+      "dharma": {
+        "zhuangzi": "Zhuangzi menetralkan efek crowd control dan menghalanginya untuk seluruh timnya, sehingga serangan dinding Dharma tidak pernah mengenai sasaran.",
+        "di-renjie": "Kekebalan Hukum Di Renjie mengabaikan efek pengendalian massa dan menghilangkan debuff, sehingga bahkan stun yang membekukan pun tak mampu menahannya."
+      },
+      "di-renjie": {
+        "gao-changgong": "Serangan belati Gao Changgong memungkinkannya membuat Di Renjie pingsan dan menyembuhkan dirinya sendiri sambil menghabisi lawannya.",
+        "han-xin": "Han Xin kebal terhadap efek pengendalian massa selama efek \"The Unrivaled Spear\" aktif, sehingga efek stun dari \"Imperial Order\" tidak dapat menghentikan serangan bertubi-tubi tersebut."
+      },
+      "dian-wei": {
+        "mi-yue": "Kemampuan \"Ravenous Tether\" milik Mi Yue terus menguras serangan fisik Dian Wei hingga ia tak lagi mampu menang dalam pertarungan satu lawan satu.",
+        "liang": "Kata Kekuatan Liang — Control — menahan Dian Wei di tempatnya dan menghancurkannya dengan kerusakan sihir sebelum ia sempat membalas serangan."
+      },
+      "diaochan": {
+        "liang": "Serangan penindasan Liang membuat Diaochan tertahan di tempatnya, sehingga bahkan kemampuan \"blink\"-nya pun tak mampu membebaskannya dari serangan tersebut.",
+        "mulan": "Stak \"Balance\" milik Mulan meledak dan menimbulkan efek diam, sehingga menghentikan penggunaan skill Diaochan serta kemampuan melarikan diri dengan teleportasinya."
+      },
+      "dolia": {
+        "dharma": "Dharma membanting Dolia ke dinding hingga pingsan, dan benturan dengan dinding itu menambah kekuatan tendangan lanjutan yang dilancarkannya.",
+        "mozi": "Mozi terus-menerus melancarkan serangan mengejutkan dari cangkang dan perisainya, dan serangan-serangan itu terus mengganggu proses kanalisasi Celestial Melody milik Dolia."
+      },
+      "donghuang": {
+        "shouyue": "Kemampuan \"Wild Wind\" milik Shouyue berbanding lurus dengan HP maksimum Donghuang, sehingga membangun build yang tangguh justru akan membuat serangan sniper tersebut semakin mematikan.",
+        "gan-mo": "Serangan \"Guard Her Grave\" milik Gan & Mo memaksa Donghuang mundur, sehingga mengacaukan kebutuhan jarak dekat yang diperlukan oleh \"Forsaken Contract\"."
+      },
+      "dr-bian": {
+        "yang-jian": "Kerusakan yang ditimbulkan oleh Yang Jian sebanding dengan HP yang telah hilang dari Dr. Bian, sehingga setiap pertukaran serangan akan membuat pertukaran berikutnya semakin merugikan.",
+        "mai-shiranui": "Mai Shiranui melumpuhkan pertahanan sihir lawan sebelum ia menerjang masuk, sehingga Dr. Bian tidak punya kesempatan untuk mengatur jarak kembali."
+      },
+      "dun": {
+        "lu-bu": "Lu Bu memberikan damage murni atau Penetrasi Fisik—bagaimanapun juga—sehingga HP dan pertahanan Dun tidak dapat menghentikannya.",
+        "diaochan": "Diaochan menumpuk tanda-tanda bunga di luar jangkauan Dun, dan ledakan kerusakan sebenarnya dari tanda-tanda tersebut mengabaikan pertahanannya."
+      },
+      "dunshan": {
+        "garo": "Serangan Dasar dan kemampuan Garo memberikan 50% kerusakan tambahan terhadap perisai, sehingga ia dengan cepat menghilangkan perisai yang diberikan Dunshan melalui Bastion.",
+        "zhuangzi": "Efek Kupu-kupu Zhuangzi membersihkan efek pengendalian kerumunan dari rekan satu timnya dan membuat mereka kebal selama 1,5 detik, sekaligus menghilangkan efek stun setelah dilempar oleh Collision Course serta menetralkan efek dorongan mundur Allshield selama periode tersebut."
+      },
+      "dyadia": {
+        "gao-changgong": "Gao Changgong tetap dalam mode tersembunyi jauh lebih lama daripada durasi efek \"Bitter Farewell\", sehingga efek \"Bitter Farewell\" yang lebih dulu berakhir.",
+        "liang": "Kata Kekuatan Liang — \"Kontrol\" — membekukan Dyadia di tempatnya, dan ikatan takdir itu pun berakhir begitu saja saat dia berdiri di sana."
+      },
+      "erin": {
+        "lam": "Tarikan Lam menyeret Erin masuk terlepas dari kekebalan lambatnya, sehingga dia tidak bisa menjaga jarak.",
+        "mai-shiranui": "Serangan KACHOUSEN milik Mai Shiranui yang memiliki waktu cooldown singkat menghilangkan pertahanan sihir Erin dan terus mengikis nyawanya."
+      },
+      "fang": {
+        "dun": "Dun langsung menyusul serangan pembukaannya dengan serangan yang membuat lawan terpana, sehingga Fang tak punya kesempatan untuk membalas tembakan.",
+        "di-renjie": "Kemampuan \"Legal Immunity\" milik Di Renjie memberinya jeda singkat di mana serangan apa pun tidak akan mengenai, sehingga serangan kilat Fang meleset darinya."
+      },
+      "fatih": {
+        "lu-bu": "Cincin \"Tremble, Mortals\" milik Lu Bu memberinya pertahanan yang kokoh, sehingga serangan fisik murni dari Fatih tidak mampu menaklukkannya.",
+        "mulan": "Tumpukan Balance milik Mulan meledak dan menimbulkan efek diam, sehingga Fatih tidak bisa membalas dengan Sacred Tree Blessing."
+      },
+      "feyd": {
+        "liang": "Efek penindasan Liang berlangsung lebih lama lagi pada Feyd saat ia berdiri di atas tembok, sehingga membuatnya terjebak.",
+        "donghuang": "Saat Donghuang menahan serangan Feyd, keduanya berbagi seluruh kerusakan yang diterima, sehingga bahkan sekutu-sekutu Feyd pun akhirnya ikut melukainya."
+      },
+      "florentino": {
+        "donghuang": "Kontrak Terlupakan milik Donghuang menekan Florentino, memutus rantai Triple Threat serta kemampuannya untuk mengambil buket.",
+        "liang": "\"Power Word\" milik Liang — dinding penghalang memblokir jalur serangan, dan efek setrum saat bersentuhan membuat lompatan Florentino terhenti di tengah jalan."
+      },
+      "flowborn-assassin": {
+        "musashi": "Duel Musashi menunda proses penyembuhan Flowborn hingga duel tersebut berakhir, sehingga efek pemulihan Claw Flurry tidak bisa membuat mereka tetap bertahan dalam pertarungan.",
+        "arthur": "Arthur menerjang dengan serangan yang membungkam, dan Flowborn—yang kemampuan penyembuhan serta serangannya semuanya berasal dari skill—kehilangan keduanya saat dibungkam."
+      },
+      "flowborn-mage": {
+        "jing": "Tanda-tanda berpasangan milik Jing mengembalikan dasbor yang digunakannya, sehingga Flowborn tidak akan pernah bisa menjaganya tetap berada di jarak jauh.",
+        "liang": "Lingkaran-lingkaran Liang menguasai area tersebut, dan penyihir menara seperti Flowborn akan terus kehilangan nyawa jika berdiri di dalamnya."
+      },
+      "flowborn-marksman": {
+        "gao-changgong": "Gao Changgong menyerang secara diam-diam dan membuat Flowborn terpana melalui tanda belati miliknya, sehingga Flowborn tak punya kesempatan untuk membalas serangan.",
+        "jing": "Jing mendapat tekanan dari dua sisi sekaligus, dan setiap kali dia menghancurkan target, kemampuannya pun terisi ulang, sehingga pengejaran tak pernah berhenti."
+      },
+      "flowborn-roamer": {
+        "musashi": "Duel Musashi menghambat seluruh proses pemulihan target, sehingga Flowborn tidak bisa mengandalkan kemampuan penyembuhan diri untuk bertahan lebih lama darinya.",
+        "wang-zhaojun": "Badai salju Wang Zhaojun masih melanda daratan, menghancurkan Flowborn dan sekutunya yang mempertahankan posisi di platform sihir."
+      },
+      "flowborn-tank": {
+        "marco-polo": "Kemampuan \"Destroyed Defense\" milik Marco Polo memberikan damage murni, yang mampu menembus pertahanan bertumpuk milik Flowborn.",
+        "lu-bu": "Lu Bu mengabaikan efek pengendalian kerumunan saat melakukan serangan terjun dengan Tremble, Mortals, sehingga serangan Flowborn tidak dapat menghentikannya."
+      },
+      "fuzi": {
+        "charlotte": "Serangan terakhir Charlotte yang diperkuat ini nilainya bergantung pada jumlah HP Fuzi yang tersisa; semakin lama Fuzi bertahan, semakin kuat pula serangan tersebut.",
+        "guan-yu": "Serangan \"Charge Stance\" Guan Yu membuat Fuzi terlempar ke belakang, sehingga Fuzi tidak bisa mencapai jarak pertarungan jarak dekat yang dibutuhkannya."
+      },
+      "gan-mo": {
+        "mai-shiranui": "Mai Shiranui menonaktifkan pertahanan sihir, lalu melesat ke depan dan melemparkan Gan & Mo, yang tak bisa membalas serangan saat masih di udara.",
+        "sun-ce": "Sun Ce tetap mengenakan baju besi super saat mengemudikan kapalnya, sehingga efek terlempar dari serangan \"Guard Her Grave\" tidak dapat menghentikannya."
+      },
+      "gao": {
+        "liang": "Liang bisa langsung mengalahkan Gao, sehingga menghentikan pertunjukan Rock Out! jauh sebelum pertunjukan yang berlarut-larut itu berakhir.",
+        "donghuang": "Kemampuan penindasan Donghuang membagi seluruh kerusakan yang diterima, sehingga sekutu yang bergegas masuk untuk membebaskan Gao justru malah melukainya."
+      },
+      "gao-changgong": {
+        "shouyue": "Shouyue mengumpulkan tumpukan Ambush saat tidak sedang bertarung, sehingga tembakannya yang diperkuat efek menembus perlahan-lahan mengikis HP Gao Changgong saat ia mendekat.",
+        "ata": "Ata pulih dari kerusakan yang ia timbulkan, jadi saling bertukar serangan dengannya tidak akan membawa Gao Changgong ke mana-mana."
+      },
+      "garo": {
+        "marco-polo": "Marco Polo terus-menerus muncul seketika, sehingga menghilangkan keunggulan jangkauan yang menjadi andalan busur panjang Garo.",
+        "gao-changgong": "Gao Changgong memperkecil jarak dalam serangan siluman, dan serangannya berubah menjadi serangan yang membuat Garo terpaku."
+      },
+      "garuda": {
+        "gao-changgong": "Gao Changgong melancarkan serangan dari posisi tersembunyi, dan serangannya mengenai Garuda sebelum Garuda sempat melindungi diri atau mengubah posisinya.",
+        "han-xin": "Han Xin melompat masuk dua kali berturut-turut, dan perisai tunggal Garuda hanya mampu melindungi salah satu dari kedua serangan tersebut."
+      },
+      "guan-yu": {
+        "fuzi": "Serangan lambat Fuzi menurunkan Kecepatan Gerak Guan Yu, sehingga membuatnya kehilangan Postur Serangan.",
+        "daji": "Serangan setrum Daji membuat Guan Yu membeku di tempat, dan serangan burst-nya mengenai Guan Yu saat ia tak bisa bergerak."
+      },
+      "guiguzi": {
+        "li-bai": "Li Bai dapat menghilangkan efek negatif dan menjadi tidak dapat dijadikan target berkat dua kemampuannya, sehingga serangan tarik Guiguzi yang membutuhkan waktu pengumpulan energi yang lama jarang berhasil mengenai sasaran.",
+        "mozi": "Mozi langsung mendapatkan lapisan perisai begitu ia melancarkan mantra, sehingga ia mampu menahan seluruh serangan dasar Guiguzi yang telah diperkuat."
+      },
+      "han-xin": {
+        "fuzi": "Fuzi mengikat Han Xin ke tiang lampunya dan melemahkan \"Tombak Tak Tertandingi\" dengan pengurangan kerusakan yang signifikan.",
+        "diaochan": "Diaochan bisa menghilang seketika dengan waktu cooldown yang singkat, sehingga serangan mendadak Han Xin jarang berhasil menjebaknya."
+      },
+      "haya": {
+        "arli": "Arli mengedipkan mata dan kembali fokus pada payungnya, sehingga memutus ikatan Moonscape Mirage milik Haya.",
+        "donghuang": "Serangan penindasan Donghuang membuat Haya terperangkap di luar Moonscape Mirage dan perisainya, sehingga ia tak punya jalan keluar."
+      },
+      "heino": {
+        "butterfly": "Kemampuan \"Death Dealer\" milik Butterfly mengurangi kerusakan Serangan Dasar, sehingga pukulan tongkat jarak dekat milik Heino nyaris tidak menyakitinya.",
+        "zhang-fei": "Zhang Fei telah begitu lama membawa perisai raksasa dari Unbridled Outburst sehingga Heino tak mampu menembusnya."
+      },
+      "hou-yi": {
+        "cirrus": "Cirrus mengabaikan medan saat ia menerjang masuk, dan Hou Yi tidak memiliki kemampuan melesat untuk melarikan diri.",
+        "mulan": "Mulan kebal terhadap efek pengendalian kerumunan saat menggunakan skill pedang beratnya, sehingga efek stun Hou Yi tidak dapat menghentikannya."
+      },
+      "huang-zhong": {
+        "marco-polo": "Marco Polo memberikan damage murni terhadap target yang memiliki pertahanan yang hancur, sehingga mampu menembus pertahanan yang diberikan oleh Mode Menara.",
+        "shouyue": "Serangan \"Snipe\" Shouyue nilainya bergantung pada HP maksimum, dan Huang Zhong tidak dapat menghindarinya saat berada dalam Mode Menara."
+      },
+      "jing": {
+        "ata": "Ata kebal terhadap efek pengendalian kerumunan saat menggunakan Wavewalking, dan ia memulihkan sebagian besar kerusakan yang ditimbulkan oleh Jing.",
+        "daji": "Daji membuat Jing terdiam di tempatnya sementara Captivate menumpuk efek pengurangan Pertahanan Sihir, sehingga serangan kilat yang menyusul berhasil mengenai sasaran dengan sempurna."
+      },
+      "kaizer": {
+        "mi-yue": "\"Umbral Moon\" milik Mi Yue membuatnya kebal terhadap segala serangan, sehingga serangan peluncuran dan efek perlambatan Kaizer sama sekali tidak mengenai sasaran.",
+        "donghuang": "Kontrak Terlantar Donghuang menekan Kaizer, membakar jendela kemampuan yang ditingkatkan dari Invincible Warrior sementara Kaizer tidak dapat bertindak."
+      },
+      "kongming": {
+        "wukong": "\"Selubung Pelindung\" Wukong menyerap serangan pertama yang dilancarkan Kongming dan mengubahnya menjadi status kebal serta perisai.",
+        "allain": "Allain menambah Fury setiap kali serangannya mengenai sasaran, sehingga ketahanannya terus meningkat; akibatnya, kerusakan kecil yang ditimbulkan Kongming tak pernah cukup untuk menghabisinya."
+      },
+      "kui": {
+        "fatih": "Fatih membersihkan efek pengendalian kerumunan yang menimpanya dengan \"Sacred Tree Blessing\", sehingga efek stun dari \"Into the Void\" milik Kui tidak lagi berlaku padanya.",
+        "kaizer": "Kaizer menjadi kebal berkat \"Invincible Warrior\", sehingga \"Join Me\" langsung menyeret wujudnya yang telah diperkuat itu ke pangkuan Kui sendiri."
+      },
+      "lady-sun": {
+        "donghuang": "Kontrak Terlantar Donghuang secara langsung menindas Nyonya Sun, sehingga menghentikan baik lemparan dadunya maupun serangannya.",
+        "mozi": "Penghalang Mozi membuat apa pun yang menyentuhnya terpana, sehingga Lady Sun tidak memiliki jalur aman untuk menyerang."
+      },
+      "lady-zhen": {
+        "li-bai": "Li Bai menjadi kebal terhadap serangan dan membersihkan semua efek negatif selama efek \"Stroke of Genius\" dan \"Flickering Flurry\", sehingga efek kontrol Lady Zhen tidak pernah berhasil menempel padanya.",
+        "sima-yi": "Sima Yi dapat memulihkan diri dari kerusakan sihir, sedangkan seluruh kemampuan Lady Zhen bersifat sihir, sehingga dia tidak bisa mengungguli Sima Yi dalam pertarungan."
+      },
+      "lam": {
+        "arthur": "Diamnya Arthur menghentikan baik kemampuan \"submerge\" maupun \"dash\" yang dimiliki Lam, dan memperlambat Arthur justru membuatnya pulih lebih cepat.",
+        "mozi": "Mozi menumpuk perisai yang mampu menyerap serangan awal Lam, dan penghalangnya membuat apa pun yang mencoba mendekat menjadi terpaku."
+      },
+      "lapulapu": {
+        "marco-polo": "Marco Polo menghilang sejenak dengan waktu cooldown yang singkat, lalu lolos dari jangkauan Raging Sea sebelum gerakan persiapannya selesai.",
+        "lu-bu": "Lu Bu memperoleh kemampuan \"Physical Pierce\" dengan tombaknya yang belum diberi mantra, sehingga mampu menembus pertahanan pasif Lapulapu dengan mudah."
+      },
+      "li-bai": {
+        "mozi": "Penghalang Mozi membuat apa pun yang menyentuhnya terdiam, sehingga Li Bai—yang hanya bisa mendekat dengan melakukan dash—terkunci begitu masuk.",
+        "donghuang": "Kontrak Terlantar Donghuang menekan Li Bai saat ia menerjang sendirian, memaksanya untuk menanggung seluruh kerusakan yang diterimanya."
+      },
+      "li-xin": {
+        "zhang-fei": "Begitu Li Xin mendekat, Zhang Fei langsung mendorongnya ke belakang, lalu mengabaikan serangan itu dengan berlindung di balik perisai dan status kebal.",
+        "allain": "Allain menggabungkan pengurangan kerusakan dan penyembuhan dengan Fury, sehingga semakin lama duel berlangsung, semakin besar kerugian yang dialami Li Xin."
+      },
+      "lian-po": {
+        "diaochan": "Diaochan terus-menerus mengedipkan mata, sehingga serangan kilat Lian Po tak pernah berhasil menangkapnya.",
+        "marco-polo": "Kemampuan \"Destroyed Defense\" milik Marco Polo membuat serangannya menimbulkan damage sejati, sehingga armor Lian Po sama sekali tidak berpengaruh."
+      },
+      "liang": {
+        "zhang-fei": "Zhang Fei kebal terhadap efek pengendalian massa dan tak terkalahkan saat mengaum, sehingga upaya penekanan yang dilakukan Liang sama sekali sia-sia.",
+        "li-bai": "Formasi pedang Li Bai menghilangkan efek negatif yang menimpanya dan membuatnya tidak bisa dijadikan target, sehingga serangan penekanan Liang tidak pernah mengenai sasaran."
+      },
+      "liu-bang": {
+        "marco-polo": "Efek bertumpuk dari \"Destruction\" milik Marco Polo menghilangkan pertahanan dan memberikan kerusakan sejati yang tidak dapat dikurangi oleh armor Liu Bang.",
+        "lu-bu": "Lu Bu kebal terhadap efek pengendalian kerumunan saat melompat, dan efek terlempar saat mendaratnya dapat memutus proses pengumpulan energi ultimate Liu Bang."
+      },
+      "liu-bei": {
+        "lady-zhen": "Es yang menggantung milik Lady Zhen menghalangi para pahlawan dan melontarkan mereka, sehingga menghentikan Liu Bei sebelum ia sempat mendekat.",
+        "mai-shiranui": "Serangan pamungkas Mai Shiranui membuat Liu Bei terlempar ke belakang dan menghilangkan serangan fisik yang baru saja diberikan oleh Hearts and Minds kepadanya."
+      },
+      "liu-shan": {
+        "marco-polo": "Kemampuan \"Destroyed Defense\" milik Marco Polo memberikan damage murni pada setiap serangan, sehingga armor Liu Shan tidak berguna untuk menangkisnya.",
+        "sun-bin": "Kemampuan \"Time Flux\" milik Sun Bin mempercepat seluruh timnya, sehingga serangan Liu Shan justru mendarat di tanah kosong."
+      },
+      "lorion": {
+        "zhuangzi": "Zhuangzi secara bergantian memanfaatkan kekebalan terhadap efek pengendalian kerumunan, sehingga ia bisa mengabaikan peluncuran Starry Night yang tertunda.",
+        "arli": "Gerakan \"Maple Dance\" milik Arli menghancurkan proyektil yang ditinggalkan Lorion di dekatnya, dan seluruh pasukannya menerobos melewatinya."
+      },
+      "lu-bu": {
+        "marco-polo": "Kerusakan murni Marco Polo tidak terpengaruh oleh pertahanan cincin Lu Bu, dan kemampuan blink-nya membuatnya tetap berada di luar jangkauan.",
+        "zhang-fei": "Zhang Fei melemparkan Lu Bu keluar dari ringnya sendiri, dan keterampilan \"Unbridled Outburst\" membuat Zhang Fei kebal saat ia mengaum."
+      },
+      "luara": {
+        "diaochan": "Kemampuan \"blink\" Diaochan terus mengembalikan durasi cooldown-nya sendiri, sehingga Luara tidak pernah bisa mempertahankan jarak kiting-nya.",
+        "gao-changgong": "Gao Changgong mempercepat langkahnya sambil mendekat, sehingga Luara tidak bisa menjauh sebelum serangan yang diarahkan kepadanya membuatnya terpana."
+      },
+      "luban-no-7": {
+        "li-bai": "Li Bai menghilangkan semua efek negatif saat \"Stroke of Genius\" terbentuk, sehingga efek perlambatan dari \"Blowfish Grenade\" pun lenyap.",
+        "consort-yu": "Permaisuri Yu kebal terhadap serangan fisik selama efek \"Angin Pelindung\", dan serangan menyebar itu hanyalah Serangan Dasar yang diperkuat."
+      },
+      "luna": {
+        "liang": "Ultimate Liang benar-benar menekan Luna, sehingga dia sama sekali tidak bisa melakukan dash, menandai, atau membalas serangan.",
+        "heino": "Heino akan semakin banyak mendapatkan penyembuhan seiring bertambahnya jumlah pahlawan musuh yang berada di dekatnya, sehingga tekanan jarak dekat yang diberikan Luna justru memperkuat daya tahan Heino."
+      },
+      "mai-shiranui": {
+        "liang": "Liang mampu langsung mengalahkan seorang penyelam yang sendirian, sehingga Mai Shiranui langsung tersingkir begitu dia masuk ke dalam air.",
+        "mozi": "Mozi menumpuk perisai setiap kali ia menggunakan skill, sehingga serangan awal Mai Shiranui terserap sebelum mengenai sasaran."
+      },
+      "marco-polo": {
+        "consort-yu": "Permaisuri Yu menjadi kebal terhadap serangan fisik saat berada di bawah pengaruh \"Angin Pelindung\", sedangkan semua peluru Marco Polo bersifat fisik.",
+        "zhang-fei": "Efek dorongan mundur Zhang Fei membuat Marco Polo terlempar keluar dari jarak dekat, di mana Roaming Gun memberikan bonus kerusakannya."
+      },
+      "mayene": {
+        "arthur": "Diamnya Arthur membuat Mayene kehabisan akal, karena ia bertarung sepenuhnya dengan rangkaian kombo keterampilan yang saling terhubung.",
+        "liang": "Serangan penindasan Liang membuat Mayene tak bisa bergerak dan memutus rangkaian kombo-nya di tengah jalan."
+      },
+      "meng-ya": {
+        "mai-shiranui": "Serangan lari Mai Shiranui mengganggu gerakan strafe Meng Ya, sehingga serangan bertenaga panjangnya tidak sempat diselesaikan.",
+        "pei": "Pei mendekat dengan lompatan cepat dan perisai, sehingga Meng Ya kalah dalam pertarungan langsung dari jarak dekat."
+      },
+      "menki": {
+        "sima-yi": "Sima Yi mendapatkan energi dari penggunaan skill di sekitarnya, dan Menki harus terus menggunakan skill agar Mass-nya tetap aktif.",
+        "zhuangzi": "Zhuangzi memiliki kemampuan kekebalan terhadap efek pengendalian kerumunan yang bergantian, sehingga serangan Menki yang bertujuan menghentikan pergerakan musuh seringkali sama sekali tidak berdampak."
+      },
+      "mi-yue": {
+        "sun-ce": "Sun Ce menumpuk efek perlambatan, lalu melancarkan serangan ledakan kapalnya, sehingga Mi Yue tak bisa bergerak ke mana-mana.",
+        "marco-polo": "Marco Polo menumpuk efek \"Destruction\" setiap kali menyerang, dan damage sejati yang dihasilkan mampu menembus pertahanan Mi Yue dengan mudah."
+      },
+      "milady": {
+        "mai-shiranui": "Mai Shiranui menetralkan pertahanan sihir Milady dengan KACHOUSEN, lalu langsung menerjang ke arahnya.",
+        "ziya": "Kerusakan area yang bertahan lama dari Ziya serta ledakan lanjutan yang mengikutinya berhasil menyapu bersih semua minion mekanik Milady sekaligus."
+      },
+      "ming": {
+        "li-bai": "Li Bai menghilangkan debuff-nya sendiri dengan dua kemampuannya, sehingga efek pengurangan dari Mastery - Glide tidak pernah bertahan.",
+        "daji": "Daji menghancurkan pertahanan sihir, sehingga dia bisa menghabisi Ming saat HP-nya sedang rendah akibat biaya Peace - Longevity."
+      },
+      "mozi": {
+        "dolia": "Sambil berdiri di sungai, Dolia terus-menerus menyembuhkan, dan Ode-nya mendorong Mozi menjauh.",
+        "nezha": "Cincin Alam Semesta Nezha dapat mengungkap keberadaan Mozi di mana pun, sehingga Skyfall bisa menerjangnya dari seberang peta."
+      },
+      "mulan": {
+        "liang": "Penghalang Liang membuat musuh pertama yang menyentuhnya terpana, sehingga serangan cepat Mulan justru membuatnya terjebak.",
+        "mi-yue": "Mi Yue menghilang bersama Umbral Moon dan menghapus efek negatif tersebut, sehingga Balance jarang mencapai ambang ledakannya."
+      },
+      "musashi": {
+        "diaochan": "Diaochan menggunakan kemampuannya jauh lebih cepat saat berada di dalam Flowery Potential, sehingga ketika Musashi menerjang masuk, Diaochan langsung menghilang dalam sekejap.",
+        "liang": "Serangan penindasan Liang mendarat tepat saat perisai super Musashi berakhir dan pertukaran serangan pun dimulai."
+      },
+      "nakoruru": {
+        "zhang-fei": "Serangan sapuan tombak Zhang Fei mampu menyingkirkan para pahlawan musuh, sehingga Nakoruru terlempar ke belakang saat ia menyerangnya secara langsung.",
+        "wukong": "\"Wukong's Protective Shroud\" langsung menangkis salah satu skill Nakoruru dan sebagai gantinya memberinya perisai."
+      },
+      "nezha": {
+        "donghuang": "Kontrak Terlantar milik Donghuang membuat keduanya berbagi kerusakan, sehingga tim Nezha sendiri akhirnya menyerangnya.",
+        "diaochan": "Diaochan pulih setiap kali tanda bunga miliknya terpicu dan memberikan damage sejati kepada Nezha karena tetap berada di dekatnya."
+      },
+      "nuwa": {
+        "han-xin": "Han Xin melompat melintasi tanah, sehingga matriks-matriks Nuwa tidak pernah menghalangi jalannya menuju Nuwa.",
+        "gao-changgong": "Gao Changgong menggabungkan serangan lambat yang kuat dengan serangan yang membuat lawan terpana, dan Nuwa hanya memiliki satu cara untuk melarikan diri sebagai balasannya."
+      },
+      "pei": {
+        "diaochan": "Diaochan menghilang dari jangkauan dan menyembuhkan bekas luka berbentuk bunga di tubuhnya, sehingga pertarungan yang berlarut-larut hanya akan menguntungkannya.",
+        "sun-bin": "Sun Bin memulihkan sebagian kerusakan yang diterima selama Time Flux, sehingga serangan burst Pei hanya akan dikembalikan saja."
+      },
+      "sakeer": {
+        "liang": "Lingkaran-lingkaran Liang mengendalikan gerakan kuas-kuas itu, sehingga lompatan Sakeer berikutnya sudah dapat diprediksi sebelum ia melakukannya.",
+        "wukong": "Jubah Pelindung Wukong hanya menyerap Kekuatan Mulberry, yang menjadi dasar dari formasi yang dibuat oleh Sakeer."
+      },
+      "shangguan": {
+        "liang": "Penindasan yang dilakukan Liang menghentikan rantai lompatan, sehingga Shangguan tidak pernah mencapai lompatan yang tidak dapat dijadikan target dan yang membersihkan efek pengendalian kerumunan."
+      },
+      "shi": {
+        "zhuangzi": "Kemampuan pasif Zhuangzi menghilangkan efek pengendalian kerumunan dan memberikan kekebalan, sehingga efek penahanan dari Silk Imprint milik Shi tidak bertahan lama.",
+        "sima-yi": "Diamnya Sima Yi memotong ketukan kedua dari Silk Imprint, sehingga Shi tidak sempat menyelesaikan tarikannya."
+      },
+      "shouyue": {
+        "consort-yu": "Permaisuri Yu menjadi kebal terhadap kerusakan fisik berkat \"Angin Pelindung\", sehingga tembakan jitu dan serangan dasar Shouyue tidak menimbulkan efek apa pun.",
+        "liu-bang": "Perintah Medan Perang Liu Bang melindungi sasaran tepat yang menjadi bidikan Shouyue, sehingga tembakan sniper tersebut mengenai perisai."
+      },
+      "sima-yi": {
+        "han-xin": "Han Xin kebal terhadap efek pengendalian massa berkat \"The Unrivaled Spear\", sehingga Sima Yi tidak dapat mengganggu serangan bertubi-tubi tersebut.",
+        "zhang-fei": "Zhang Fei menangkis serangan Sima Yi di balik perisai raksasa dan raungan tak terkalahkan yang mengabaikan efek pengendalian kerumunan."
+      },
+      "sun-bin": {
+        "mulan": "Mulan mengabaikan efek pengendalian kerumunan saat melancarkan serangan dalam bentuk pedang berat, sehingga Time Lapse tidak pernah mengganggu atau membungkamnya.",
+        "diaochan": "Diaochan terus berpindah-pindah ke posisi baru, sehingga tembakan-tembakan akurat Sun Bin hampir tidak pernah mengenai dirinya."
+      },
+      "sun-ce": {
+        "zhuangzi": "Zhuangzi menghilangkan efek pengendalian kerumunan secara berkala, sehingga setiap serangan Sun Ce yang mengenai dirinya langsung lenyap.",
+        "ata": "Ata mengabaikan serangan yang dilancarkan saat melakukan Wavewalking dan memulihkan diri dari kerusakan yang ditimbulkannya dalam pertarungan jarak dekat."
+      },
+      "ukyo-tachibana": {
+        "arthur": "Diamnya Arthur menghentikan kombo Ukyo, dan efek perlambatan dari tebasan cepat itu justru menambah penyembuhan pasifnya.",
+        "han-xin": "Han Xin bisa melakukan lompatan secara berturut-turut, sehingga jarak apa pun yang dibuka oleh Ukyo akan langsung tertutup kembali."
+      },
+      "umbrosa": {
+        "di-renjie": "Kekebalan Hukum Di Renjie memblokir kerusakan dan efek pengendalian kerumunan, sehingga serangan mendadak Umbrosa tidak mengenai apa pun.",
+        "daji": "\"Strike a Pose\" milik Daji adalah serangan yang bertujuan untuk membuat Umbrosa pingsan, sehingga menghentikan tariannya sebelum selesai."
+      },
+      "wang-wei": {
+        "zhuangzi": "Efek Kupu-kupu dari Zhuangzi memberikan kekebalan terhadap efek pengendalian kerumunan kepada rekan satu tim, sehingga Endless River milik Wang Wei tidak dapat menarik mereka ke dalam gunung.",
+        "sima-yi": "Sima Yi pulih dari kerusakan sihir yang diterimanya, dan setiap skill Wang Wei bersifat sihir, sehingga serangan jarak jauh sulit untuk menghabisinya."
+      },
+      "wang-zhaojun": {
+        "mai-shiranui": "Mai Shiranui terus berlari ke arah yang baru, sehingga ledakan tertunda dari Frigid Prison tidak mengenai apa pun.",
+        "zhuangzi": "Kemampuan pasif Zhuangzi berubah menjadi kekebalan terhadap efek pengendalian kerumunan, sehingga efek pembekuan dari Frigid Prison tidak berlaku padanya selama kekebalan tersebut masih aktif."
+      },
+      "wukong": {
+        "agudo": "Agudo mampu menerobos langsung melalui efek pengendalian kerumunan yang kuat, sehingga serangan Golden Cudgel milik Wukong pun lenyap begitu saja.",
+        "gao": "Gao terus-menerus menyerang tanpa henti sementara String Bender menyembuhkannya setiap kali terkena serangan, sehingga Wukong yang melakukan serangan terjunlah yang kehabisan tenaga lebih dulu."
+      },
+      "wuyan": {
+        "marco-polo": "Marco Polo menghilang sejenak dengan waktu cooldown yang singkat, sehingga serangan melesat Wuyan tidak akan pernah bisa menempel padanya.",
+        "mozi": "Meriam Mozi membuat musuh terpana dan meninggalkan kawah yang terbakar, sehingga Wuyan terus-menerus menerima kerusakan sepanjang perjalanan masuk."
+      },
+      "xiang-yu": {
+        "lam": "Lam menandai musuh-musuh dengan HP rendah dan menghujani mereka dengan true damage, sehingga jendela tempat Xiang Yu bertarung pun berubah menjadi arena perburuan Lam.",
+        "di-renjie": "Di Renjie semakin cepat setiap kali melakukan Serangan Dasar dan mampu melepaskan diri dari efek pengendalian kerumunan berkat Kekebalan Hukum, sehingga Xiang Yu tak pernah bisa menangkapnya."
+      },
+      "xiao-qiao": {
+        "han-xin": "Han Xin kebal terhadap efek pengendalian kerumunan selama ultimate-nya, sehingga efek terlempar dari Honeysweet Breeze tidak berpengaruh apa-apa.",
+        "mozi": "Mozi menumpuk perisai setiap kali ia menggunakan skill, sehingga serangan pertama Blossoming Fan langsung diserap."
+      },
+      "xuance": {
+        "liu-bang": "Liu Bang melakukan teleportasi ke arah sekutunya dan mendarat sambil menimbulkan efek stun, lalu langsung menyerang sebelum Xuance sempat menghabisi lawannya.",
+        "sima-yi": "Sima Yi dapat melihat musuh-musuh di sekitarnya yang menggunakan skill, sehingga Xuance langsung terdeteksi begitu ia mulai menyerang."
+      },
+      "yang-jian": {
+        "diaochan": "Kemampuan \"Blink\" milik Diaochan terus memperpendek waktu cooldown-nya sendiri, sehingga mengejarnya jarang berhasil bagi Yang Jian.",
+        "luna": "Serangan cepat Luna mereset waktu cooldown-nya pada setiap target yang ditandai, sehingga ia terus menyerang Yang Jian tanpa henti."
+      },
+      "yango": {
+        "diaochan": "Serangan area Diaochan tak pernah berhenti, sehingga boneka Yango yang rapuh pun tewas dan membuatnya tercengang.",
+        "gao-changgong": "Gao Changgong membuat target yang ditandainya terkejut dan menyembuhkannya, sehingga menghilangkan semua kerusakan yang ditimbulkan oleh Health Yango."
+      },
+      "yao": {
+        "liang": "Penindasan Liang menghalangi penggunaan \"Return to Dust\", sehingga \"Star Reduction\" yang telah disimpan oleh Yao langsung menguras HP-nya.",
+        "donghuang": "Penekanan yang dilakukan Donghuang menghentikan serangan sihir Yao, yang juga memutus penyembuhan pasif yang seharusnya diberikan oleh keterampilan-keterampilan tersebut."
+      },
+      "yaria": {
+        "garo": "Serangan Garo memberikan kerusakan tambahan pada perisai, sehingga perisai yang dipasang Yaria pada sekutunya cepat habis.",
+        "gan-mo": "Gan & Mo menggandakan setiap rentetan serangan pedang ke satu titik, sehingga Yaria—sekutu yang ditunggangi—harus menanggung semuanya sendirian."
+      },
+      "ying": {
+        "di-renjie": "Kekebalan Hukum Di Renjie memblokir baik kerusakan maupun efek pengendalian kerumunan, sehingga serangan awal Ying tidak membuahkan hasil.",
+        "lady-sun": "Lady Sun terus mengurangi waktu yang dibutuhkan Rolling Raid dengan setiap Serangan Dasar, sehingga Ying kesulitan untuk mengejar ketertinggalannya."
+      },
+      "yixing": {
+        "han-xin": "Han Xin mendapatkan kekebalan terhadap efek pengendalian kerumunan selama efek \"The Unrivaled Spear\", sehingga serangan lempar Yixing sama sekali tidak mengenai sasaran.",
+        "diaochan": "Kemampuan \"blink\" Diaochan memperpendek waktu cooldown-nya sendiri, sehingga ia berhasil lolos dari batu-batu yang diletakkan oleh Yixing."
+      },
+      "yuhuan": {
+        "han-xin": "Han Xin memiliki kekebalan terhadap efek pengendalian massa selama efek \"The Unrivaled Spear\" aktif, sehingga efek stun dari Yuhuan tidak dapat menghentikannya.",
+        "shouyue": "Serangan \"Wild Wind\" milik Shouyue mengurangi sebagian dari HP maksimum, sehingga menumpuk HP tidak akan mengurangi dampaknya."
+      },
+      "zhang-fei": {
+        "diaochan": "Diaochan mengurangi waktu cooldown kemampuan \"Blink\"-nya setiap kali menyerang, sehingga ia berhasil menghindari efek knockback dan hembusan angin dari Zhang Fei.",
+        "lu-bu": "Lu Bu kebal terhadap efek pengendalian kerumunan selama aksi terjunnya, sehingga efek dorongan mundur Zhang Fei tidak dapat melindungi sekutu yang sedang dilindunginya."
+      },
+      "zhou-yu": {
+        "han-xin": "Han Xin mengabaikan efek pengendalian kerumunan selama skill \"The Unrivaled Spear\", sehingga efek stun Zhou Yu tidak dapat mengganggu serangkaian serangan tersebut.",
+        "mozi": "Mozi mendapatkan lapisan perisai baru setiap kali menggunakan keterampilan, yang menyerap kerusakan kecil yang ditimbulkan oleh domain api Zhou Yu."
+      },
+      "zhuangzi": {
+        "pei": "Serangan \"Guarding Stance\" milik Pei membakar semua orang di sekitarnya, sehingga Zhuangzi tidak bisa berada cukup dekat untuk melindungi carry-nya."
+      },
+      "zilong": {
+        "liang": "Liang memasang penghalang di sepanjang jalur lari Zilong, dan jika Zilong menyentuh salah satunya, ia akan langsung terpana di tempat.",
+        "mozi": "Penghalang Mozi terus membuat siapa pun yang menyentuhnya terpana, dan Zilong harus berdiri di jarak dekat untuk menyelesaikan serangannya."
+      },
+      "ziya": {
+        "gao-changgong": "Gao Changgong memilih momen yang tepat dari posisi tersembunyi, dan efek setrum yang menimpa target membuat Ziya tak bisa berbuat apa-apa.",
+        "gan-mo": "Gan & Mo melumpuhkan Pertahanan Ajaib Ziya dengan \"Guard Her Grave\", lalu menumpuk pedang terbang hingga dia yang pertama tumbang."
+      }
+    },
+    "synergies": {
+      "agudo": {
+        "dr-bian": "Kolam racun Dr. Bian memperlambat siapa pun yang berdiri di dalamnya, sehingga serangan Agudo, “Tumble, Furball!”, jadi jauh lebih sulit untuk dihindari.",
+        "zhang-fei": "Perisai Zhang Fei melindungi Agudo, sehingga dia bisa tetap berada di garis depan dan terus melancarkan Serangan Dasar."
+      },
+      "alessio": {
+        "yaria": "Yaria melindungi Alessio, sehingga Alessio bisa tetap berada di garis depan dan terus menembak.",
+        "guiguzi": "Guiguzi menarik musuh-musuh ke dalam satu kelompok yang terkejut, sehingga serangan area Alessio dapat mengenai seluruh kelompok sekaligus."
+      },
+      "allain": {
+        "lam": "Lam menyeret musuh-musuhnya ke satu titik, dan serangan \"Death at Sunset\" akan semakin kuat seiring semakin dekatnya mereka.",
+        "yaria": "Yaria menempel pada Allain sambil memegang perisai dan tetap tidak bisa dijadikan sasaran, serta terus mengikutinya saat Allain melakukan gerakan melesat."
+      },
+      "angela": {
+        "zhuangzi": "Kemampuan \"Slow\" Zhuangzi mencegah musuh melarikan diri, sehingga pusaran \"Chaos Cinder\" milik Angela terus berdampak pada mereka.",
+        "zhang-fei": "Perisai Zhang Fei melindungi Angela saat ia maju ke depan, sehingga Angela bisa terus menembak alih-alih mundur."
+      },
+      "annette": {
+        "hou-yi": "Hou Yi harus tetap diam agar bisa terus menembak, dan Hurricane Wall justru menutupi celah waktu itu.",
+        "consort-yu": "Permaisuri Yu perlu diisi daya terlebih dahulu sebelum Oak Bolt melepaskan tembakan, dan perisai Annette meneruskan muatan tersebut."
+      },
+      "aoyin": {
+        "zhang-fei": "Perisai dan serangan yang memantulkan musuh dari Zhang Fei mempertahankan garis depan, sehingga Ao'yin dapat melancarkan serangan melalui seluruh formasi Pedang Naga Sejati."
+      },
+      "arke": {
+        "bai-qi": "Ejekan Bai Qi membuat target berbalik menghadapnya, sehingga punggungnya terbuka lebar bagi serangan kritis Arke yang pasti mengenai sasaran.",
+        "guiguzi": "Kamuflase Guiguzi juga melindungi Arke, sehingga dia bisa mendekati punggung target tanpa pernah terlihat saat mendekat."
+      },
+      "arli": {
+        "da-qiao": "\"Mata Pusaran Air\" milik Da Qiao memberi Arli jalan pulang, sehingga ia bisa menyelam lebih dalam lagi.",
+        "sun-bin": "Gerakan \"Slow\" dari Sun Bin membuat musuh tidak bisa bergerak, sehingga Arli dapat melancarkan Serangan Dasar secara beruntun hingga mencapai jumlah tumpukan Maple yang maksimal."
+      },
+      "arthur": {
+        "luban-no-7": "Bom-bom Luban No. 7 hanya menghantam musuh yang berada di dalam area tersebut, dan tembakan Arthur membuat mereka tetap berada di sana.",
+        "arke": "Arke hanya bisa melakukan serangan kritis dari belakang, dan serangan pelontar Arthur membekukan target cukup lama hingga Arke bisa berputar mengelilinginya."
+      },
+      "ata": {
+        "diaochan": "Diaochan perlu melakukan serangan berulang kali untuk mengumpulkan poinnya, sedangkan Kapal Hantu milik Ata mengurung musuh di tempat.",
+        "xiao-qiao": "Serangan \"Meteor Storm\" milik Xiao Qiao terus menghujani siapa pun yang berada di dekatnya, sementara efek perlambatan \"Sea Anchor\" milik Ata membuat mereka tetap di tempat."
+      },
+      "athena": {
+        "zhang-fei": "Serangan \"Unbridled Outburst\" milik Zhang Fei membuat siapa pun yang terlempar ke ujung sana tercengang, tepat saat serangan balasan \"Immovable Aegis\" milik Athena dilancarkan.",
+        "dharma": "Dharma menempelkan musuh-musuhnya ke dinding dan membuat mereka terpana, sehingga serangan Unstoppable Spear Athena yang diperkuat berhasil mengenai sasaran dengan tepat."
+      },
+      "augran": {
+        "sun-bin": "Sun Bin memperlambat gerak musuh secara berkelompok, sehingga Augran dapat menandai mereka dengan \"Death's Precipice\" dan menghubungkan \"Soul Resonance\" ke beberapa di antaranya."
+      },
+      "bai-qi": {
+        "diaochan": "Diaochan perlu melancarkan serangan berulang ke target yang sama, dan provokasi Bai Qi memberinya waktu yang tepat untuk itu.",
+        "yaria": "Perisai Yaria meningkat seiring dengan Health tambahan target, sehingga perisai tersebut menjadi paling tebal saat digunakan pada Bai Qi yang menumpuk Health."
+      },
+      "biron": {
+        "guiguzi": "Guiguzi menarik musuh-musuh ke dalam satu kelompok dengan kemampuan The Animist dan membuat mereka terpana, sehingga efek Force Field Suppression mengenai mereka semua.",
+        "liu-bang": "Perisai dan efek penyembuhan saat tiba milik Liu Bang saling bertumpuk dengan perisai Biron sendiri, sehingga ia dapat mempertahankan garis depan."
+      },
+      "butterfly": {
+        "zhuangzi": "Efek Kupu-kupu Zhuangzi menghilangkan efek pengendalian kerumunan dan memberikan kekebalan, sehingga Kupu-kupu dapat melakukan serangan terjun tanpa terkunci.",
+        "mozi": "Serangan \"Cannon Blast\" milik Mozi membuat siapa pun yang terkena serangan itu terpana, sehingga serangan \"Death Dealer\" milik Butterfly mengenai target yang tidak bisa bergerak."
+      },
+      "cai-yan": {
+        "hou-yi": "Hou Yi terus menyerang tanpa bisa mundur, sehingga penyembuhan dan pertahanan dari \"Tune of Tranquility\" lah yang membuatnya tetap bertahan hidup.",
+        "gao": "Gao terus beraksi di jantung barisan musuh, sehingga efek penyembuhan dan pertahanan dari \"Tune of Tranquility\" melindungi seluruh area aksinya."
+      },
+      "chano": {
+        "zhang-fei": "Hembusan angin Zhang Fei menerjang musuh hingga terlempar ke belakang, sehingga mereka mendarat tepat di tempat di mana jebakan Chano sudah menanti.",
+        "lapulapu": "Lapulapu melemparkan musuh-musuhnya dan memperlambat gerak mereka saat mendarat, sehingga mereka terdiam dan terjebak dalam perangkap Chano serta roh serigala."
+      },
+      "charlotte": {
+        "mai-shiranui": "Serangan meluncur Mai Shiranui membekukan musuh di tempat, sehingga Serangan Dasar Charlotte yang telah ditingkatkan dapat mengenai sasaran sepenuhnya.",
+        "guiguzi": "Guiguzi menarik musuh-musuh ke dalam satu kelompok yang terpaku, sehingga serangan Power Gradation milik Charlotte berhasil mengenai beberapa di antaranya sekaligus."
+      },
+      "chicha": {
+        "zhang-fei": "Zhang Fei melindunginya dan menangkis para penyerang, sehingga Serangan Dasar Chicha tidak pernah terhenti.",
+        "guiguzi": "Guiguzi menarik musuh-musuh ke satu titik, sehingga panah Overkill Form milik Chicha dapat mengunci seluruh kelompok tersebut."
+      },
+      "cirrus": {
+        "guiguzi": "Kamuflase Guiguzi juga melindungi rekan-rekan setimnya, sehingga Cirrus bisa menyusup ke barisan belakang musuh tanpa terdeteksi.",
+        "yaria": "Yaria memasang dan menyerahkan perisai kerusakan murni kepada Cirrus, sehingga Cirrus bisa menahan serangan pertama setelah menerjang ke dalam."
+      },
+      "consort-yu": {
+        "lapulapu": "Serangan \"Launch\" dan \"Slowing Fissures\" dari Lapulapu membekukan musuh di tempat, sehingga panah bermuatan dari Consort Yu mampu menembus kelompok tersebut.",
+        "donghuang": "Serangan penindasan Donghuang membuat musuh benar-benar tak berdaya, sehingga Permaisuri Yu memiliki sasaran yang tak terhalang untuk melepaskan panah bertenaganya."
+      },
+      "da-qiao": {
+        "di-renjie": "Perintah Kekaisaran Di Renjie mengurangi setengah pertahanan target, sehingga serangan sekutu Da Qiao yang muncul melalui teleportasi menjadi jauh lebih dahsyat.",
+        "mulan": "Mulan butuh waktu untuk menumpuk Balance, dan ledakan gelombang Da Qiao memperlambat musuh sehingga mereka tidak bisa melarikan diri."
+      },
+      "daji": {
+        "wukong": "Serangan Dasar Wukong yang telah ditingkatkan memang sulit untuk mengenai sasaran, tetapi efek stun Daji membuat target tetap diam sehingga serangan tersebut bisa mengenai.",
+        "arke": "Arke hanya bisa melakukan serangan kritis dari belakang, dan efek stun Daji membekukan target cukup lama hingga Arke bisa sampai ke sana."
+      },
+      "devara": {
+        "kongming": "Medan sihir Kongming memperlambat gerak musuh hingga sangat lambat, sehingga Devara bisa tetap berada dalam jarak pertarungan jarak dekat yang diinginkannya.",
+        "li-bai": "Serangan cepat Li Bai membuat musuh terdiam di tempat, sehingga ledakan Divine Judgment yang tertunda pun menghantam mereka."
+      },
+      "dharma": {
+        "zilong": "Serangan \"Skysplitter\" milik Zilong mengejutkan musuh, dan serangan melesat Dharma melontarkan musuh yang berada di tengah, sehingga serangan \"wall slam\" menjadi lebih mudah dilakukan.",
+        "daji": "Serangan setrum \"point-and-click\" Daji sulit untuk dilewatkan, sehingga Dharma bisa melancarkan rentetan pukulan ke target yang tidak bisa bergerak."
+      },
+      "di-renjie": {
+        "zhang-fei": "Zhang Fei melompat masuk dan melindungi setiap rekan setim yang berada dalam jangkauan, sehingga Di Renjie bisa bertahan di posisinya dan terus melemparkan token.",
+        "dolia": "\"Dolia's Celestial Melody\" akan mengatur ulang cooldown dari skill mana pun yang memiliki sisa cooldown terpanjang, sehingga Di Renjie dapat menggunakan \"Imperial Order\" lagi."
+      },
+      "dian-wei": {
+        "sun-bin": "Kemampuan \"Time Flux\" milik Sun Bin juga mempercepat rekan satu timnya, sehingga Dian Wei bisa menutup jarak awal dalam sekali gerakan.",
+        "zhuangzi": "Kemampuan Zhuangzi meningkatkan Kecepatan Gerak rekan satu tim, sehingga Dian Wei bisa terus menempel pada siapa pun yang dia serang."
+      },
+      "diaochan": {
+        "zhuangzi": "Efek Kupu-kupu Zhuangzi menghilangkan dan memblokir efek pengendalian kerumunan, sehingga Diaochan dapat melakukan serangan mendadak tanpa terhalang.",
+        "bai-qi": "Serangan tarik dan ejekan Bai Qi membuat musuh-musuh tetap diam, sehingga Diaochan dapat menumpuk tanda bunga miliknya hingga meledak."
+      },
+      "dolia": {
+        "lu-bu": "Kemampuan ultimate Lu Bu memiliki waktu cooldown yang lama, dan Celestial Melody langsung mengembalikannya setelah ia melompat.",
+        "shangguan": "Serangan Penutup Shangguan berada pada masa cooldown terpanjangnya tepat setelah rangkaian dash penuh, yang persis di-reset oleh Celestial Melody."
+      },
+      "donghuang": {
+        "angela": "\"Angela's Blazing Brilliance\" adalah serangan dengan waktu pengisian yang lama, dan \"Forsaken Contract\" membuat target tetap tertahan di tempatnya saat serangan tersebut mengenai sasaran.",
+        "guiguzi": "Kamuflase Guiguzi menyembunyikan kedatangan Donghuang, sehingga ia berhasil mencapai jangkauan \"Forsaken Contract\" sebelum ada yang menyadari kedatangannya."
+      },
+      "dr-bian": {
+        "bai-qi": "Bai Qi mengejek dan menarik musuh-musuh ke dalam satu kelompok, sehingga tanda-tanda yang diledakkan oleh Dr. Bian mengenai seluruh kelompok tersebut.",
+        "xiang-yu": "Xiang Yu tidak bisa dikalahkan saat sedang menggunakan ultimate-nya, sehingga penyembuhan Dr. Bian punya waktu untuk berhasil dan mempertahankan garis pertahanan."
+      },
+      "dun": {
+        "li-bai": "Li Bai bisa menerobos masuk saat Dun sedang dalam keadaan terpaku, mengumpulkan Energi Pedang, lalu kembali ke posisi semula.",
+        "arli": "Arli bisa memanfaatkan jendela kecepatan tanpa payungnya untuk menyerang, bukan untuk melarikan diri, karena Dun sudah lebih dulu menerjang ke arahnya."
+      },
+      "dunshan": {
+        "hou-yi": "Hou Yi tidak memiliki kemampuan bergerak dan kesulitan melarikan diri dari para penyerang secara mandiri. Selagi Dunshan melindunginya, Serangan Dasar Dunshan berubah menjadi serangan jarak jauh dan memperlambat setiap musuh yang terkena saat musuh tersebut mendekat.",
+        "wang-zhaojun": "Allshield akan memantulkan musuh ke belakang dan memperlambat gerak mereka sebesar 25–50% selama 1 detik, sehingga jika Wang Zhaojun melepaskan Frigid Prison tepat di tempat mereka mendarat, mereka akan kesulitan untuk keluar sebelum efek pembekuan yang tertunda itu berlaku."
+      },
+      "dyadia": {
+        "lady-sun": "Ultimate Shell milik Lady Sun membutuhkan target yang tidak bisa bergerak, sedangkan Destined Encounter membekukan musuh yang sudah terkena Bitter Bond.",
+        "jing": "Domain Cermin Jing mengumpulkan musuh-musuh ke satu tempat dan menahan mereka di sana, sehingga Destined Encounter dapat menyapu seluruh kelompok tersebut."
+      },
+      "erin": {
+        "dun": "Serangan \"stun\" dan \"launch\" Dun membuat musuh terpaku di tempat, sehingga Erin bisa menembak dengan leluasa dari barisan belakang.",
+        "xiang-yu": "Xiang Yu mengalihkan serangan musuh dari Erin dan mengurangi kerusakan yang ditimbulkan musuh, sehingga Erin tetap selamat meski menjadi sasaran utama."
+      },
+      "fang": {
+        "liu-shan": "Efek stun Liu Shan membuat musuh terdiam di tempat, sehingga Fang dapat melancarkan serangan Bladestorm dengan kerusakan ganda tepat ke arah mereka.",
+        "zhang-fei": "Perisai Zhang Fei memungkinkan Fang bertahan di tempatnya saat diserang dan menyelesaikan penumpukan Tanda Kegelapan."
+      },
+      "fatih": {
+        "donghuang": "Kemampuan penindasan Donghuang membekukan target sepenuhnya, sehingga Fatih dapat melancarkan setiap tebasan The King's Blade ke arahnya.",
+        "guiguzi": "Kemampuan Guiguzi mengumpulkan para pahlawan musuh menjadi satu, sehingga Berkat Pohon Suci memberikan Fatih tambahan HP maksimum untuk setiap pahlawan yang berada di dekatnya."
+      },
+      "feyd": {
+        "diaochan": "Serangan Diaochan meledak menjadi serangan lambat, dan tepat pada saat itulah serangan cepat Feyd mendarat dengan sempurna.",
+        "mulan": "Ledakan \"Balance\" milik Mulan membuat musuh terdiam dan bergerak sangat lambat, sehingga Feyd dapat mengurung seluruh kelompok sekaligus."
+      },
+      "florentino": {
+        "zhuangzi": "Efek Kupu-kupu Zhuangzi menghilangkan efek pengendalian kerumunan dari sekutu, sehingga Florentino yang sedang terperangkap dapat bergerak dan bertarung kembali.",
+        "guiguzi": "Kemampuan \"The Animist\" milik Guiguzi menarik musuh ke satu titik, sehingga karangan bunga Blossom mendarat tepat di tumpukan itu dan terus memperbarui efek \"Triple Threat\"."
+      },
+      "flowborn-assassin": {
+        "guiguzi": "Kemampuan ultimate Guiguzi juga menyamarkan rekan satu tim yang berada di sekitarnya, sehingga Flowborn bisa mendekati jangkauan Claw Flurry tanpa terdeteksi.",
+        "kui": "Jika Kui berhasil menjerat musuh dan membuatnya tetap terpana dengan ultimate-nya, maka Flowborn dapat melancarkan serangkaian serangan Claw Flurry pada target yang terperangkap."
+      },
+      "flowborn-mage": {
+        "zhang-fei": "Perisai Zhang Fei dan efek setrum anginnya memberi waktu bagi Flowborn yang tak bisa bergerak untuk menyelesaikan Arcane Arts.",
+        "lian-po": "Kekebalan terhadap efek pengendalian kerumunan yang dimiliki Lian Po memastikan serangan Tremor Smash dapat dilancarkan di akhir, sehingga menahan target agar tetap di tempat untuk serangan Starflow Cascade."
+      },
+      "flowborn-marksman": {
+        "zhang-fei": "Perisai dan efek stun Zhang Fei memungkinkan Flowborn tetap bertahan dalam pertarungan dan menyelesaikan rangkaian panah secara utuh.",
+        "cai-yan": "Rantai gelombang suara Cai Yan membuat barisan musuh terpana, sehingga membuka celah yang jelas bagi Arrowstorm."
+      },
+      "flowborn-roamer": {
+        "huang-zhong": "Huang Zhong tidak bisa bergerak saat berada dalam Mode Menara, sehingga ia bisa tetap berada di atas platform peluncuran dan mempertahankan perisai serta jangkauannya.",
+        "lady-zhen": "Serangan awal dan gerakan lambat yang berat dari Lady Zhen membuat musuh hampir tak bisa bergerak, sehingga gelombang suara yang dilancarkan Flowborn sulit dihindari."
+      },
+      "flowborn-tank": {
+        "hou-yi": "Hou Yi tak punya jalan keluar, sehingga efek dorongan mundur dari Flowborn menjauhkan para penyelam darinya sementara dia terus menembak.",
+        "kongming": "Serangan Spirit Bomb milik Kongming memerlukan waktu pengumpulan tenaga, dan serangan peluncuran Flowborn memberikan jeda waktu yang tepat untuk itu."
+      },
+      "fuzi": {
+        "da-qiao": "Pusaran air Da Qiao memindahkan tim tersebut ke arah pahlawan yang telah dijebak oleh Fuzi, sehingga mengubah serangan solo Fuzi menjadi pertarungan.",
+        "li-bai": "Li Bai membutuhkan sasaran yang tetap diam untuk menampung Energi Pedang, dan ikatan Fuzi membuat sasaran itu tetap di tempat."
+      },
+      "gan-mo": {
+        "guiguzi": "Serangan \"Pull\" Guiguzi mengumpulkan musuh-musuh ke satu titik dan membuat mereka terpana, sehingga setiap pedang terbang mendarat secara bersamaan.",
+        "dolia": "\"Dolia's Celestial Melody\" mengembalikan \"Freshly Forged\", sehingga Gan & Mo mendapatkan satu set penuh muatan pedang terbang lagi."
+      },
+      "gao": {
+        "bai-qi": "Serangan tarik dan ejekan Bai Qi membuat musuh-musuh berkumpul menjadi satu kelompok, sehingga pantulan serangan \"Rock Out!\" dan \"Wild Chord\" terus mengenai sasaran.",
+        "sun-bin": "Peningkatan kecepatan dari Sun Bin membawa Gao masuk ke barisan musuh, di mana kemampuan \"Rock Out!\" menjadi semakin kuat seiring bertambahnya jumlah pahlawan musuh di sekitarnya."
+      },
+      "gao-changgong": {
+        "guiguzi": "Guiguzi melucuti baju besi mereka dan membuat mereka pingsan, sehingga serangan terjun Gao Changgong mendarat tepat pada sasaran yang tak berdaya.",
+        "zhang-fei": "Zhang Fei menangkis serangan terjun tersebut dan membuat musuh-musuh di tepi hembusan anginnya terpana, sehingga Gao Changgong mendarat di atas target yang membeku."
+      },
+      "garo": {
+        "ming": "Kemampuan \"Link\" milik Ming memberikan Garo Kecepatan Serangan, sehingga mengimbangi interval serangan yang lebih lambat akibat posisi busur panjangnya.",
+        "zhang-fei": "Perisai dan efek dorong mundur milik Zhang Fei memberi Garo kemampuan melarikan diri yang tidak pernah dimiliki oleh kemampuan dasarnya sendiri."
+      },
+      "garuda": {
+        "zhang-fei": "Zhang Fei melindungi rekan-rekan setimnya, sehingga Garuda dapat bertahan selama seluruh fase Wings of Judgment.",
+        "lian-po": "Serangan Lian Po yang lambat dan melontarkan musuh ke bawah membuat panah-panah Wings of Judgment terus menghujani mereka."
+      },
+      "guan-yu": {
+        "sun-bin": "Buff kecepatan dari Sun Bin mempercepat proses pengisian daya Guan Yu, sehingga ia sudah berada dalam Posisi Serangan saat memasuki pertempuran.",
+        "yaria": "Perisai Yaria meningkat seiring dengan Kesehatan tambahan target, sehingga Guan Yu terus menerjang ke depan alih-alih mundur."
+      },
+      "guiguzi": {
+        "gao": "Gao semakin tangguh seiring bertambahnya jumlah musuh yang berada di dekatnya, sehingga tarikan Guiguzi akan mengumpulkan mereka ke dalam Rock Out! untuknya.",
+        "angela": "Sinar Angela hanya memberikan efek pada target yang tidak bisa bergerak, dan kemampuan tarik serta setrum Guiguzi akan membekukan target tersebut untuknya."
+      },
+      "han-xin": {
+        "liang": "Serangan penindasan Liang membuat seorang pahlawan tertahan di tempatnya, sehingga Han Xin dapat melancarkan setiap serangan dari \"The Unrivaled Spear\".",
+        "mozi": "Serangan \"Cannon Blast\" dan penghalang Mozi membuat musuh terpaku di tempat, sehingga lompatan Han Xin dapat mendarat dengan mulus."
+      },
+      "haya": {
+        "guiguzi": "Guiguzi menarik musuh-musuh ke arahnya dan membuat mereka tak bisa bergerak, sehingga serangan Crescent Wave dan Wayward Rays milik Haya keduanya berhasil mengenai sasaran.",
+        "nakoruru": "Serangan Nakoruru memperlambat musuh yang terkena, sehingga pahlawan yang terhubung dengan Haya tidak dapat keluar dari Moonscape Mirage."
+      },
+      "heino": {
+        "dolia": "Dolia memperbarui cooldown terpanjang seorang sekutu, yang pada Heino adalah ultimate andalannya, Fate Rewind.",
+        "da-qiao": "Koi milik Da Qiao melancarkan serangan berkelompok, sehingga memberi Heino kesempatan untuk langsung menyerang dengan \"Leap of Fate\" dan menyembuhkan lebih banyak lagi."
+      },
+      "hou-yi": {
+        "cai-yan": "Cai Yan terus menyembuhkan sementara Earworm membuat musuh-musuh yang mendekat terpana, sehingga Hou Yi bisa mempertahankan posisinya dan terus menembak.",
+        "zhang-fei": "Perisai dan efek dorong mundur Zhang Fei mampu menggagalkan serangan mendadak, sehingga Hou Yi tidak perlu berhenti menyerang."
+      },
+      "huang-zhong": {
+        "zhang-fei": "Perisai Zhang Fei menahan serangan yang ditujukan kepada Huang Zhong, sehingga Huang Zhong tetap bisa menembak meski terjebak dalam Mode Menara.",
+        "lian-po": "Lian Po memperlambat musuh dan melemparkan mereka ke tengah menara, tempat tembakan Huang Zhong paling mematikan."
+      },
+      "jing": {
+        "lady-zhen": "Serangan \"Launch\" dan \"Icicles\" Lady Zhen membuat musuh-musuhnya tak berdaya, sehingga Jing berhasil mengenai kedua targetnya dan menghancurkan mereka.",
+        "mai-shiranui": "Serangan HISHOU RYUUENJIN milik Mai Shiranui melontarkan musuh, sehingga membuka celah yang dibutuhkan Jing untuk menyerang dengan Reflective Assault."
+      },
+      "kaizer": {
+        "ming": "Kemampuan \"Link\" milik Ming meningkatkan serangan Kaizer, sehingga bonus kerusakan yang diberikan oleh pasifnya pada serangan terhadap satu target pun semakin meningkat.",
+        "yaria": "Perisai Yaria ditumpuk di atas kemampuan Block milik Kaizer sendiri, sehingga ia bisa terus menerobos ke garis depan."
+      },
+      "kongming": {
+        "donghuang": "Kemampuan \"Forsaken Contract\" milik Donghuang membekukan pahlawan musuh di tempatnya, sehingga \"Spirit Bomb\" milik Kongming—yang membutuhkan waktu pengisian—pasti akan mengenai sasaran."
+      },
+      "kui": {
+        "huang-zhong": "Huang Zhong tidak bisa bergerak saat berada dalam Mode Menara, dan kemampuan \"Join Me\" akan menyeret musuh ke arah Kui, yang berdiri di depan menara tersebut.",
+        "lady-sun": "Ultimate Shell milik Lady Sun membutuhkan target yang tidak bergerak, dan Into the Void membuat musuh yang ditandai terpaku selama seluruh proses kanalisasi."
+      },
+      "lady-sun": {
+        "lian-po": "Serangan \"Tremor Smash\" milik Lian Po melontarkan seluruh tumpukan itu, sehingga memberi Lady Sun kesempatan untuk menembak ke arahnya.",
+        "lu-bu": "Serangan \"Tremble, Mortals\" milik Lu Bu melontarkan kelompok musuh, dan efeknya memperlambat upaya melarikan diri mereka, sehingga serangan \"Ultimate Shell\" dapat mengenai sasaran dengan tepat."
+      },
+      "lady-zhen": {
+        "zhang-fei": "Serangan angin kencang Zhang Fei membuat musuh terlempar ke belakang dan terpana, sehingga Lady Zhen bisa menargetkan musuh yang tidak bergerak untuk menumpuk efek kemampuannya.",
+        "sun-bin": "Medan pertempuran Sun Bin hanya akan efektif jika musuh tetap berada di dalamnya, dan es yang menjulur dari Lady Zhen menghalangi jalan keluar mereka."
+      },
+      "lam": {
+        "liang": "Kemampuan penindasan Liang membuat seorang pahlawan terjebak di tempatnya, sehingga serangan \"Death From Below\" milik Lam sama sekali tidak bisa dihindari.",
+        "liu-shan": "Efek stun Liu Shan membuat musuh tak bisa bergerak, sehingga Lam bisa melancarkan serangan \"Space Split\" dan memulihkan HP-nya melalui serangan lanjutan tersebut."
+      },
+      "lapulapu": {
+        "huang-zhong": "Huang Zhong tidak bisa bergerak saat berada dalam Mode Menara, dan retakan yang diciptakan Lapulapu menghambat musuh yang mendekati menara.",
+        "diaochan": "Diaochan membutuhkan musuh-musuhnya untuk tetap berada dalam jangkauan agar tanda bunga-bunganya dapat terakumulasi, dan retakan yang diciptakan Lapulapu memperlambat pergerakan mereka di sana."
+      },
+      "li-bai": {
+        "lian-po": "Serangan Tremor Smash milik Lian Po melontarkan semua orang yang berada dalam jangkauannya, sehingga membuka celah yang tepat yang dibutuhkan Li Bai untuk melancarkan Flickering Flurry.",
+        "dun": "Serangan \"Wind Slash\" milik Dun menggabungkan efek perlambatan dengan lemparan, sehingga menahan target agar tetap diam cukup lama bagi Li Bai untuk mendekat."
+      },
+      "li-xin": {
+        "guiguzi": "Guiguzi menarik musuh-musuh ke satu titik, sehingga energi pedang Li Xin mampu menembus beberapa di antaranya sekaligus.",
+        "cai-yan": "Serangan melompat Cai Yan yang memukau membuka celah yang tak bisa diciptakan Li Xin sendiri, dan kemampuan penyembuhannya membuat Li Xin tetap berada di garis depan."
+      },
+      "lian-po": {
+        "alessio": "Asap yang dihasilkan Alessio juga menyembunyikan sekutunya, sehingga Lian Po bisa mendekati musuh sebelum ada yang menyadari kedatangannya.",
+        "arli": "Arli bisa terus menyerang apa pun yang diluncurkan Lian Po, sehingga tumpukan Maple-nya dengan mudah mencapai ambang ledakan."
+      },
+      "liang": {
+        "ming": "Ming pasti bisa melancarkan serangan yang mampu menembus pertahanan tersebut ke pahlawan yang terjebak dalam efek penekanan Liang.",
+        "yaria": "Perisai yang melekat pada Yaria menyerap serangan yang datang, sehingga Liang bisa mempertahankan efek penindasan sepenuhnya alih-alih tewas saat sedang melakukan saluran sihir."
+      },
+      "liu-bang": {
+        "di-renjie": "Di Renjie mengungkap lokasi target, sehingga Liu Bang dapat melancarkan serangan Staggering Charge yang telah terisi penuh setelah berteleportasi.",
+        "butterfly": "Butterfly hanya mengurangi setengah dari kerusakan Serangan Dasar setelah menerjang ke dalam pertarungan, dan perisai ultimate Liu Bang menutupi sisa kerusakan skill yang masih diterimanya."
+      },
+      "liu-bei": {
+        "guiguzi": "Kemampuan menarik dan membekukan Guiguzi membuat musuh tetap di tempatnya, sehingga setiap peluru senapan shotgun yang mengenai sasaran akan menambah efek tembus Liu Bei.",
+        "donghuang": "Serangan penindasan Donghuang membuat sang pahlawan tak bisa bergerak, sehingga Liu Bei terus menembak dan mengalihkan kerusakan tersebut ke perisainya."
+      },
+      "liu-shan": {
+        "garo": "Serangan \"Silent Arrow\" milik Garo meledak setelah jeda tertentu, sehingga efek setrum dari Robo Smash membuat target tetap diam di tempatnya hingga ledakan itu terjadi.",
+        "hou-yi": "Serangan \"Arrow Volley\" Hou Yi yang telah ditingkatkan juga dapat merusak bangunan, sehingga cocok dipadukan dengan Liu Shan, yang kemampuannya juga memberikan kerusakan yang sama besarnya pada menara."
+      },
+      "lorion": {
+        "marco-polo": "Serangan bertubi-tubi \"Fevered Barrage\" milik Marco Polo akan terus mengenai musuh selama mereka tetap berada dalam jangkauan, dan serangan \"Starry Night\" membuat mereka tetap berada di sana.",
+        "lian-po": "Serangan \"Tremor Smash\" milik Lian Po memperlambat musuh sehingga mereka tidak bisa kabur, sehingga ledakan tertunda dari \"Starry Night\" dapat mengenai sasaran."
+      },
+      "lu-bu": {
+        "dolia": "\"Dolia's Celestial Melody\" mengatur ulang cooldown terpanjangnya, yang bagi Lu Bu berarti serangan \"Tremble, Mortals\" yang kedua.",
+        "guiguzi": "Guiguzi menarik musuh-musuh ke satu tempat dan membuat mereka terpana, sehingga serangan \"Tremble, Mortals\" mengenai seluruh kelompok tersebut."
+      },
+      "luara": {
+        "lu-bu": "Serangan pamungkas Lu Bu mengumpulkan musuh-musuh dan menjepit mereka, sehingga jalur Serangan Diam-diam melintasi seluruh kelompok tersebut.",
+        "menki": "Efek perlambatan bertumpuk dari Menki membuat musuh tidak bisa keluar dari jangkauan pisau ular Luara."
+      },
+      "luban-no-7": {
+        "agudo": "Operasi Mobilisasi Agudo's Gorge membuat sekelompok musuh tercengang, sehingga bom-bom tanpa sasaran dari Dukungan Udara terus mengenai seseorang.",
+        "lian-po": "Serangan \"Tremor Smash\" milik Lian Po melontarkan seluruh kelompok itu, sehingga Pasukan Udara terus membombardir mereka di tempat mereka berada."
+      },
+      "luna": {
+        "guiguzi": "Guiguzi menyeret musuh-musuh ke dalam satu kelompok, sehingga satu serangan Crescent Slice saja sudah cukup untuk menandai mereka semua dan efek New Moon terus diperbarui.",
+        "zhuangzi": "Kemampuan ultimate Zhuangzi memberikan kekebalan terhadap efek pengendalian massa dan perisai, sehingga Luna bisa menerobos masuk tanpa terhalang."
+      },
+      "mai-shiranui": {
+        "donghuang": "Serangan penindasan Donghuang membuat sang pahlawan tertahan di tempatnya, sehingga Mai Shiranui dapat melancarkan serangan dasarnya ke sasaran yang tidak bisa bergerak.",
+        "sun-bin": "Buff Time Flux milik Sun Bin memberikan efek tambahan kepada sekutu di sekitarnya, sehingga Mai Shiranui bisa masuk dan keluar dengan lebih cepat."
+      },
+      "marco-polo": {
+        "yaria": "Yaria memberikan perisai yang memberikan kerusakan nyata kepada Marco Polo, sehingga ia bisa mendekat dan terus menembak."
+      },
+      "mayene": {
+        "kongming": "Serangan \"Spirit Bomb\" milik Kongming nilainya meningkat seiring dengan HP yang telah hilang, sehingga kerusakan kombo dari Mayene menjadi persiapan yang tepat untuk serangan penutupnya.",
+        "mozi": "Serangan \"stun\" Mozi membekukan target di tempatnya, sehingga memberi Mayene peluang yang tepat untuk memulai kombo-nya."
+      },
+      "meng-ya": {
+        "menki": "Menki bertarung di jantung barisan musuh, sehingga Missile Mayhem terus menemukan sasaran baru untuk ditandai.",
+        "agudo": "Furball milik Agudo membuat musuh-musuh terdiam di tempat, sehingga Meng Ya bisa menyerang mereka dengan mudah."
+      },
+      "menki": {
+        "sun-bin": "Kemampuan \"Time Flux\" milik Sun Bin mempercepat gerakan sekutu di sekitarnya, sehingga memungkinkan Menki mendekat sebelum perisainya habis.",
+        "zhang-fei": "Zhang Fei melompat masuk dan melindungi sekutu-sekutu di sekitarnya, sehingga Menki bisa menumpuk efek itu sendiri dan tetap berada di tengah pertempuran."
+      },
+      "mi-yue": {
+        "dolia": "\"Dolia's Celestial Melody\" mengatur ulang waktu cooldown terpanjang Mi Yue, sehingga memberinya \"Umbral Moon\" yang kedua.",
+        "bai-qi": "Bai Qi menarik musuh-musuhnya ke arahnya dan memprovokasi mereka, sehingga Ravenous Tether milik Mi Yue tetap terhubung dan tidak putus."
+      },
+      "milady": {
+        "sun-bin": "Kemampuan \"Time Flux\" milik Sun Bin membawa Milady ke dalam jangkauan, dan efek perlambatan yang kuat darinya membuat target mudah ditandai dengan \"Chaos Field\".",
+        "zhang-fei": "Perisai dan efek dorong mundur Zhang Fei memungkinkan Milady tetap berada di posisinya hingga tanda Chaos Field berakhir."
+      },
+      "ming": {
+        "garo": "Semakin tinggi Kecepatan Serangan yang dimiliki Garo, semakin cepat pula serangan Silent Arrow-nya dilepaskan, dan itulah tepatnya yang diberikan oleh Time - Carefree kepadanya.",
+        "arli": "Arli membangun tumpukan Maple-nya dengan Serangan Dasar, sehingga peningkatan serangan dari Time - Carefree ikut berperan saat ledakan terjadi."
+      },
+      "mozi": {
+        "guiguzi": "Guiguzi menyeret musuh-musuh ke satu tempat, sehingga penghalang yang berpusat pada diri Mozi terus membuat mereka semua terpana.",
+        "dyadia": "Jebakan Dyadia membuat target tidak bisa bergerak, sehingga serangan Cannon Blast milik Mozi mudah mengenai sasaran."
+      },
+      "mulan": {
+        "zhuangzi": "Efek Kupu-kupu Zhuangzi menghilangkan efek pengendalian kerumunan dan memberikan kekebalan, sehingga Mulan bisa langsung terjun tanpa ragu-ragu."
+      },
+      "musashi": {
+        "guiguzi": "Guiguzi menarik musuh-musuh ke satu titik, sehingga kemampuan ultimate Musashi dapat mengenai beberapa di antaranya saat ia mendarat.",
+        "zhang-fei": "Zhang Fei memperlambat musuh-musuh di sekitarnya setiap kali menggunakan skill setelah ia bertransformasi, sehingga target duel Musashi tidak punya tempat untuk melarikan diri."
+      },
+      "nakoruru": {
+        "lady-zhen": "Serangan \"Destructive Deluge\" milik Lady Zhen memperlambat gerak musuh, sehingga membuat mereka menjadi sasaran empuk bagi serangan \"AMUBE YATORO\" milik Nakoruru.",
+        "guiguzi": "Kemampuan \"The Animist\" milik Guiguzi akan mengumpulkan musuh-musuh menjadi satu kelompok dan membuat mereka terpana, sehingga serangan lari KAMUI MUTSUBE dapat mengenai seluruh kelompok tersebut."
+      },
+      "nezha": {
+        "sun-bin": "Kemampuan \"Time Flux\" milik Sun Bin memberikan Nezha yang sedang menyelam kecepatan untuk tetap menempel pada target dan kemudian mundur.",
+        "zhang-fei": "Kemampuan \"Leaping Savior\" milik Zhang Fei melindungi rekan satu tim di sekitar titik pendaratannya, sehingga Nezha yang terjun bersamanya dapat mempertahankan garis pertahanan lebih lama."
+      },
+      "nuwa": {
+        "zhang-fei": "Efek perlambatan yang ditimbulkan oleh Zhang Fei membuat musuh bergerak lebih lambat, sehingga ledakan matriks yang diletakkan di tanah oleh Nuwa dapat mengenai mereka.",
+        "mozi": "Penghalang Mozi membuat musuh terdiam di tempat, sehingga Nuwa bisa mengurung mereka dengan matriksnya."
+      },
+      "pei": {
+        "lapulapu": "Lapulapu melemparkan musuh-musuhnya hingga mereka tergeletak tak berdaya, sehingga Pei bisa menerjang masuk dan menghabisi mereka tanpa terganggu.",
+        "shouyue": "Perangkat pengintai milik Shouyue membuat musuh tetap terlihat di layar, sehingga Pei bisa memilih dengan tepat pertarungan mana yang akan dia ikuti."
+      },
+      "sakeer": {
+        "luban-no-7": "Serangan menyebar Luban No. 7 hanya mengenai musuh yang berada di garis lurus, sedangkan serangan pelontar Sakeer membuat mereka terjebak di tempat.",
+        "bai-qi": "Bai Qi memperkuat efek penyembuhan yang diterimanya, dan kunang-kunang milik Sakeer selalu mengejar sekutu dengan HP terendah, biasanya dia."
+      },
+      "shangguan": {
+        "guiguzi": "Guiguzi menarik musuh-musuh ke satu titik dan membuat mereka terpana, sehingga sapuan kuas Shangguan yang saling bersilangan mengenai seluruh kelompok tersebut."
+      },
+      "shi": {
+        "guiguzi": "Guiguzi menyamarkan seluruh tim, sehingga Shi bisa memulai serangan dengan Silk Imprint dari jarak jauh berkat kemampuan pasifnya.",
+        "huang-zhong": "Huang Zhong tidak bisa bergerak saat berada dalam Mode Menara, jadi Shi menarik musuh-musuh ke tengah, tempat tembakannya paling mematikan."
+      },
+      "shouyue": {
+        "mozi": "Penghalang Mozi membuat musuh terpana berulang kali, sehingga Shouyue bisa menyelesaikan bidikan jarak jauhnya sebelum menembak.",
+        "lian-po": "Serangan \"Tremor Smash\" milik Lian Po memperlambat lalu melemparkan musuh-musuh, sehingga memberi Shouyue waktu untuk membidik dengan tepat dan melancarkan serangan \"Wild Wind\"."
+      },
+      "sima-yi": {
+        "kongming": "Serangan \"Spirit Bomb\" milik Kongming skala dengan HP yang sudah hilang, sehingga serangan burst Sima Yi membuat serangannya menjadi jauh lebih dahsyat.",
+        "guiguzi": "Guiguzi mengumpulkan musuh-musuh menjadi satu kelompok dengan keterampilan \"The Animist\" dan membuat mereka terpaku, sehingga keterampilan area Sima Yi dapat mengenai semua musuh."
+      },
+      "sun-bin": {
+        "lady-sun": "Kecepatan rotasi Lady Sun semakin meningkat setiap kali Serangan Dasar-nya mengenai sasaran, dan efek perlambatan dari Sun Bin membuat musuh tetap berada dalam jangkauan.",
+        "luban-no-7": "Serangan acak Luban No. 7 hanya mengenai musuh-musuh yang berbaris di depan, dan efek perlambatan Sun Bin membuat mereka tetap berada di sana."
+      },
+      "sun-ce": {
+        "guiguzi": "Guiguzi menyeret musuh-musuh ke satu tempat dan membuat mereka terpana, sehingga ledakan kapal Sun Ce berhasil menjangkau seluruh kelompok itu.",
+        "dolia": "Kemampuan \"Dolia's Celestial Melody\" mengatur ulang waktu cooldown terpanjang rekan satu tim, sehingga ultimate Sun Ce yang baru saja digunakan langsung tersedia kembali."
+      },
+      "ukyo-tachibana": {
+        "lian-po": "Serangan \"Tremor Smash\" milik Lian Po melontarkan musuh dan membuat mereka tak bisa bergerak, sehingga serangan jarak dekat Ukyo akhirnya berhasil mengenai sasaran.",
+        "zhang-fei": "Serangan \"Unbridled Outburst\" milik Zhang Fei membuat musuh-musuh tercengang saat hembusan anginnya berakhir, sehingga Ukyo berhasil melancarkan setiap serangan \"Snowfall Slash\" dan memulihkan kesehatannya."
+      },
+      "umbrosa": {
+        "yaria": "Yaria melindungi Umbrosa, sehingga Umbrosa dapat menyelesaikan tariannya sepenuhnya di tengah barisan musuh.",
+        "zhuangzi": "Kemampuan tertinggi Zhuangzi memberikan kekebalan terhadap efek pengendalian massa dan perisai, sehingga Umbrosa terus menari alih-alih terjebak."
+      },
+      "wang-wei": {
+        "wang-zhaojun": "Kemampuan \"Penjara Beku\" milik Wang Zhaojun membekukan musuh di tempat, sehingga mereka tidak dapat menghindar dari \"Gunung Berkabut\" yang diciptakan Wang Wei di lokasi sasaran.",
+        "guiguzi": "Kemampuan \"The Animist\" milik Guiguzi menarik musuh ke arahnya dan membuat mereka terpana, sehingga serangan \"Misty Mountain\" milik Wang Wei dapat mengenai seluruh kelompok sekaligus."
+      },
+      "wang-zhaojun": {
+        "zhang-fei": "Efek stun dari Zhang Fei membuat target tidak bisa bergerak, sehingga efek pembekuan yang tertunda dari Frigid Prison selalu berhasil mengenai sasaran.",
+        "zhou-yu": "Wilayah api Zhou Yu hanya membakar mereka yang berada di dalamnya, dan es Penjara Beku menahan mereka di sana."
+      },
+      "wukong": {
+        "kongming": "Strategi Kemenangan Kongming semakin kuat seiring dengan semakin banyaknya HP yang hilang dari target, sehingga kerusakan awal yang ditimbulkan Wukong justru memperkuatnya.",
+        "heino": "Scepter of Fate milik Heino, yang digunakan dalam pertarungan jarak dekat, memperlambat musuh, sehingga Wukong bisa berlari tanpa hambatan langsung ke arah mereka."
+      },
+      "wuyan": {
+        "daji": "Efek setrum Daji membuat target tidak bisa bergerak, sehingga Wuyan bisa mengenai bagian tengah palu miliknya—titik di mana pukulannya paling keras.",
+        "luban-no-7": "Serangan \"Luban No.7\" membuat musuh-musuh kesulitan melarikan diri dari area yang dilindungi Wuyan saat ia memutar palu miliknya."
+      },
+      "xiang-yu": {
+        "luban-no-7": "Luban No. 7 tidak punya jalan keluar, jadi semakin lama Xiang Yu berhasil menghalangi pergerakan musuh, semakin banyak serangan acaknya yang mengenai sasaran.",
+        "nakoruru": "Serangan terjun Nakoruru mengurangi kerusakan yang ditimbulkan musuh, sama seperti kemampuan \"No Retreat\", dan menyerang target serangan terjun tersebut serta barisan depan."
+      },
+      "xiao-qiao": {
+        "guiguzi": "Guiguzi menyeret musuh-musuh ke dalam satu kelompok dan membuat mereka terpana, sehingga meteor-meteor Xiao Qiao terus menghujani target-target yang tidak bergerak.",
+        "donghuang": "Donghuang menahan seorang pahlawan di tempatnya, sehingga serangan pertama \"Blossoming Fan\" milik Xiao Qiao berhasil mengenai sasaran sepenuhnya."
+      },
+      "xuance": {
+        "liang": "Serangan penindasan Liang membekukan target, sehingga memberi Xuance waktu untuk mengisi daya Nightmare Hooks dan melancarkannya dengan tepat.",
+        "zhuangzi": "Zhuangzi memberikan kekebalan terhadap efek pengendalian massa, sehingga Xuance dapat menerobos barisan musuh dan mengabaikan efek stun yang muncul setelahnya."
+      },
+      "yang-jian": {
+        "erin": "Semakin banyak Serangan Dasar yang berhasil dilancarkan Erin, semakin besar kerusakan yang ditimbulkannya, dan Yang Jian yang bertahan di garis depan memberinya waktu untuk itu.",
+        "huang-zhong": "Huang Zhong tidak bisa bergerak dalam Mode Menara, jadi dengan Yang Jian yang menghentikan para penyerang di depannya, Huang Zhong bisa terus menembak."
+      },
+      "yango": {
+        "zhang-fei": "Angin yang dilancarkan Zhang Fei menyingkirkan musuh ke belakang dan menjebak mereka di tempat, sehingga tali-tali dan burung-burung kertas Yango semuanya berhasil mengenai sasaran."
+      },
+      "yao": {
+        "guiguzi": "Guiguzi menarik musuh-musuh ke satu tempat dan membuat mereka terpana, sehingga serangan Starlight Slice milik Yao dapat mengenai seluruh kelompok sekaligus.",
+        "sun-bin": "Peningkatan kecepatan dari Sun Bin memungkinkan Yao mengejar ketertinggalan tanpa perlu menggunakan Star Rush, sehingga dia bisa menyimpan kemampuan lari cepat itu untuk nanti."
+      },
+      "yaria": {
+        "marco-polo": "Serangan bertubi-tubi Marco Polo yang penuh semangat membawa Yaria yang menempel padanya ke tengah-tengah tim musuh, sehingga Skill 2-nya berada dalam jangkauan.",
+        "cirrus": "Cirrus mengabaikan medan setelah terbang, sehingga Yaria yang menumpang padanya bisa melintasi tembok dan langsung terjebak dalam serangan mendadak."
+      },
+      "ying": {
+        "dyadia": "Kemampuan \"Immobilize\" milik Dyadia membuat musuh tak bisa bergerak, sehingga serangan \"Cloudchaser\" milik Ying selalu berhasil mengenai sasaran dengan tepat.",
+        "yaria": "Yaria menempel pada Ying dan melindunginya dari kerusakan sejati, sehingga Ying dapat tetap bertahan dalam pertempuran."
+      },
+      "yixing": {
+        "liu-shan": "Liu Shan bisa berputar dan membuat musuh terpana sekaligus, sehingga musuh tetap diam cukup lama hingga papan Yixing mendekat.",
+        "nakoruru": "Nakoruru terbang melintasi medan dan melepaskan serangannya ke siapa pun yang telah dikunci oleh papan Yixing."
+      },
+      "yuhuan": {
+        "bai-qi": "Kekuatan Bayangan Bai Qi meningkatkan efek penyembuhan, sehingga \"Melody of Peace\" memulihkan Kesehatan Bai Qi jauh lebih banyak.",
+        "sun-bin": "Kekuatan \"Time Lapse\" milik Sun Bin meledak setelah jeda tertentu, dan efek \"slow\" dari \"Tragic Beauty\" menahan musuh di dalamnya hingga saat itu."
+      },
+      "zhang-fei": {
+        "garo": "Garo tidak memiliki kemampuan melarikan diri, jadi Zhang Fei bisa berdiri di depannya dan menangkis para penyerang.",
+        "lady-sun": "Lady Sun langsung melaju ke arah musuh, sehingga Zhang Fei bisa melompat ke tempat yang sama dan melindunginya."
+      },
+      "zhou-yu": {
+        "kui": "Kui menarik musuh-musuh ke arahnya dan terus-menerus membuat mereka terpana, sambil menahan mereka di dalam wilayah api Zhou Yu sepanjang waktu.",
+        "liu-bang": "Liu Bang muncul secara tiba-tiba dengan kemampuan \"Staggering Charge\" yang sudah terisi penuh, dan efek stun-nya membuat musuh-musuh terjebak tepat di atas api Zhou Yu."
+      },
+      "zhuangzi": {
+        "lady-sun": "Lady Sun hanya akan bergerak lebih cepat saat meluncur di samping musuh, sedangkan tanda-tanda Zhuangzi membuatnya tetap gesit di tempat lain.",
+        "marco-polo": "Marco Polo melancarkan serangan dari dalam barisan musuh, dan Efek Kupu-kupu Zhuangzi mencegah upaya pengendalian kerumunan menghentikan serangannya."
+      },
+      "zilong": {
+        "mai-shiranui": "Mai Shiranui melontarkan musuh ke udara, sehingga serangan Skysplitter milik Zilong mengenai target yang tidak bisa bergerak.",
+        "zhang-fei": "Zhang Fei langsung melompat masuk setelah Zilong menerjunkan diri dan melindunginya di tengah-tengah barisan musuh."
+      },
+      "ziya": {
+        "zhang-fei": "Perisai dan efek perlambatan yang diberikan Zhang Fei memungkinkan Ziya tetap berada di posisi terdepan dan terus melancarkan serangannya.",
+        "erin": "Erin menghabisi musuh-musuh dengan HP terendah, sehingga kemampuan \"Sanctification\" milik Ziya mengubah kerusakan kecil yang ditimbulkannya menjadi bola EXP."
+      }
+    }
+  },
+  "items": {
+    "venomous-staff": "Mengurangi penyembuhan musuh sebesar 50%",
+    "sea-tremor": "Membatalkan efek lifesteal",
+    "ominous-premonition": "Meningkatkan ketahanan fisik terhadap ledakan",
+    "cuirass-of-savagery": "Pengurangan pertahanan terhadap kerusakan fisik",
+    "eye-of-phoenix": "Memantulkan sebagian kerusakan sihir kembali",
+    "splendor": "Mengurangi kerusakan sihir yang diterima",
+    "nightmarish-gaze": "Menghambat kemampuan musuh dalam melemparkan mantra",
+    "breakthrough-armor": "Penetrasi pertahanan terhadap penyihir",
+    "shadow-blade": "Penetrasi armor terhadap perisai",
+    "armor-piercing": "Efek penetrasi armor"
   }
 }

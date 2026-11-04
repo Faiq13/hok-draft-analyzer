@@ -9,9 +9,8 @@ import { TeamSynergyPanel } from './components/TeamSynergyPanel';
 import { ItemCounterPanel } from './components/ItemCounterPanel';
 import { RotateCcw, Swords, Shield, Globe } from 'lucide-react';
 import { HOK_ITEM_COUNTERS } from './data/hokItems';
-import { ITEM_DESCRIPTIONS } from './data/hokItems';
 
-// Generate strategy summary text
+// Generate strategy summary text using locale
 const generateStrategySummary = (draftState: DraftState, t: (key: string, options?: any) => string) => {
   const enemyPickedIds = draftState.redTeam.filter((id): id is string => id !== null);
   const allyPickedIds = draftState.blueTeam.filter((id): id is string => id !== null);
@@ -147,7 +146,7 @@ const generateStrategySummary = (draftState: DraftState, t: (key: string, option
 
   const topItems = itemPriorities.slice(0, 5);
 
-  // Build summary text
+  // Build summary text using locale keys
   const lines: string[] = [];
 
   // Team composition
@@ -178,11 +177,8 @@ const generateStrategySummary = (draftState: DraftState, t: (key: string, option
   } else {
     topItems.forEach((item, idx) => {
       const descKey = item.descriptionKey;
-      const desc = ITEM_DESCRIPTIONS[descKey];
-      const descText = desc
-        ? t(`itemCounterPanel.categories.${item.category}`) + ': ' + (desc.id || desc.en)
-        : item.name;
-      lines.push(`${idx + 1}. ${item.name} (${t(`itemCounterPanel.categories.${item.category}`)}): ${descText}`);
+      const desc = t(`items.${descKey}`, { defaultValue: item.name });
+      lines.push(`${idx + 1}. ${item.name} (${t(`itemCounterPanel.categories.${item.category}`)}): ${desc}`);
     });
   }
   lines.push('');
@@ -393,43 +389,50 @@ export default function App() {
       </header>
 
       <main className="max-w-7xl mx-auto w-full flex flex-col gap-6">
-        <DraftBoard
-          draftState={draftState}
-          onSelectSlot={handleSelectSlot}
-          onRemoveHero={handleRemoveHero}
-        />
+        {/* Side-by-Side Layout: Draft Board (Left) + Hero Catalog (Right) */}
+        <div className="flex flex-col lg:flex-row gap-6">
+          {/* Left Column: Draft Board + Analysis Panels */}
+          <div className="flex-1 lg:w-2/3 flex flex-col gap-6 min-w-0">
+            <DraftBoard
+              draftState={draftState}
+              onSelectSlot={handleSelectSlot}
+              onRemoveHero={handleRemoveHero}
+            />
 
-        <CounterRecommendations
-          draftState={draftState}
-          onSelectHeroForActiveSlot={(heroId) => {
-            const hero = HOK_HEROES.find((h: Hero) => h.id === heroId);
-            if (hero) handleSelectHero(hero);
-          }}
-        />
+            <CounterRecommendations
+              draftState={draftState}
+              onSelectHeroForActiveSlot={(heroId) => {
+                const hero = HOK_HEROES.find((h: Hero) => h.id === heroId);
+                if (hero) handleSelectHero(hero);
+              }}
+            />
 
-        {/* Visual separator to distinguish Counter & Synergy panels */}
-        <div className="my-2 flex items-center gap-3">
-          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
-          <span className="text-[10px] font-bold tracking-widest text-slate-500 uppercase">{t('synergyPanel.title')}</span>
-          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
-        </div>
+            {/* Visual separator to distinguish Counter & Synergy panels */}
+            <div className="my-2 flex items-center gap-3">
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
+              <span className="text-[10px] font-bold tracking-widest text-slate-500 uppercase">{t('synergyPanel.title')}</span>
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
+            </div>
 
-        {/* Team Synergy Panel */}
-        <TeamSynergyPanel
-          draftState={draftState}
-        />
+            {/* Team Synergy Panel */}
+            <TeamSynergyPanel
+              draftState={draftState}
+            />
 
-        {/* Item Counter Panel - at the bottom of dashboard */}
-        <ItemCounterPanel
-          draftState={draftState}
-        />
+            {/* Item Counter Panel - at the bottom of dashboard */}
+            <ItemCounterPanel
+              draftState={draftState}
+            />
+          </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-1 gap-6">
-          <HeroGrid
-            pickedOrBannedIds={pickedOrBannedIds}
-            onSelectHero={handleSelectHero}
-            activeSlotInfo={activeSlotLabel}
-          />
+          {/* Right Column: Hero Catalog */}
+          <div className="lg:w-1/3 flex-shrink-0 min-w-0">
+            <HeroGrid
+              pickedOrBannedIds={pickedOrBannedIds}
+              onSelectHero={handleSelectHero}
+              activeSlotInfo={activeSlotLabel}
+            />
+          </div>
         </div>
       </main>
     </div>
