@@ -124,27 +124,23 @@ export const TeamSynergyPanel: React.FC<TeamSynergyPanelProps> = ({
           heroes.map((item, idx) => (
             <div
               key={item.hero.id}
-              className="bg-slate-800 border border-slate-700 rounded-lg p-2.5 flex flex-col gap-1.5 transition-all hover:bg-slate-700/80"
+              className="bg-slate-800 border border-slate-700 rounded-lg p-2.5 flex flex-row items-start gap-3 transition-all hover:bg-slate-700/80"
             >
-              <div className="flex items-center gap-2.5">
+              <div className="w-10 h-10 rounded-md flex-shrink-0 border border-slate-600">
                 <HeroAvatar
                   hero={item.hero}
-                  className="w-10 h-10 rounded-md flex-shrink-0 border border-slate-600"
-                  initialsClassName="text-[10px]"
+                  className="w-full h-full rounded-md flex-shrink-0"
                 />
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between gap-1">
-                    <h4 className="font-semibold text-xs text-white truncate">{item.hero.name}</h4>
-                    <span className="text-[10px] text-indigo-400 font-bold">#{idx + 1}</span>
-                  </div>
-                </div>
               </div>
-              <p
-                className="text-[10px] text-slate-300 leading-snug line-clamp-3 mt-0.5"
-                title={item.reasons[0]}
-              >
-                {item.reasons[0]}
-              </p>
+              <div className="flex-1 min-w-0">
+                <div className="font-semibold text-xs text-white truncate">{item.hero.name}</div>
+                <p
+                  className="text-[10px] text-slate-300 leading-snug line-clamp-3 mt-1"
+                  title={item.reasons[0]}
+                >
+                  {item.reasons[0]}
+                </p>
+              </div>
             </div>
           ))
         )}
@@ -171,7 +167,7 @@ export const TeamSynergyPanel: React.FC<TeamSynergyPanelProps> = ({
           )}
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-8 gap-4 pb-2">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 pb-2">
           {topByRole.map(({ role, heroes }) => renderRoleColumn(role, heroes))}
         </div>
       )}

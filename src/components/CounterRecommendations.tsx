@@ -181,30 +181,25 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
                   onSelectHeroForActiveSlot(item.hero.id);
                 }
               }}
-              className="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg p-2.5 flex flex-col gap-1.5 cursor-pointer transition-all group"
+              className="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg p-2.5 flex flex-row items-start gap-3 cursor-pointer transition-all"
             >
-              <div className="flex items-center gap-2.5">
+              <div className="w-10 h-10 rounded-lg flex-shrink-0 border border-slate-600">
                 <HeroAvatar
                   hero={item.hero}
-                  className="w-10 h-10 rounded-md flex-shrink-0 border border-slate-600 group-hover:border-amber-400"
+                  className="w-full h-full rounded-md flex-shrink-0"
                   initialsClassName="text-[10px]"
                 />
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between gap-1">
-                    <h4 className="font-semibold text-xs text-white truncate">{item.hero.name}</h4>
-                    <span className="text-[10px] text-emerald-400 font-bold">#{idx + 1}</span>
-                  </div>
-
-                  {getCounterBadge(item.matchedEnemies)}
-                </div>
               </div>
-
-              <p
-                className="text-[10px] text-slate-300 leading-snug line-clamp-3 mt-0.5"
-                title={item.fullReason}
-              >
-                {item.reason}
-              </p>
+              <div className="flex-1 min-w-0">
+                <div className="font-semibold text-xs text-white truncate">{item.hero.name}</div>
+                <p
+                  className="text-[10px] text-slate-300 leading-snug line-clamp-3 mt-1"
+                  title={item.fullReason}
+                >
+                  {item.reason}
+                </p>
+                {getCounterBadge(item.matchedEnemies)}
+              </div>
             </div>
           ))
         )}
@@ -231,7 +226,7 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
           )}
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-8 gap-4 pb-2">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 pb-2">
           {ROLES.map(role => renderRoleColumn(role, recommendationsPerRole[role] || []))}
         </div>
       )}

@@ -125,7 +125,7 @@ export const ItemCounterPanel: React.FC<ItemCounterPanelProps> = ({
               ? 'bg-purple-500/20 text-purple-400 border-purple-500/50'
               : 'bg-amber-500/20 text-amber-400 border-amber-500/50';
 
-            // Try to load item image, fallback to initials
+            // Item fallback box - shows colored box when image fails to load
             const itemSlug = item.id;
             const imagePath = `/items/${itemSlug}.webp`;
 
@@ -136,25 +136,22 @@ export const ItemCounterPanel: React.FC<ItemCounterPanelProps> = ({
               .toUpperCase()
               .slice(0, 2);
 
+            const fallbackBg = isHeal
+              ? 'bg-emerald-600'
+              : isPhys
+              ? 'bg-blue-600'
+              : isMag
+              ? 'bg-purple-600'
+              : 'bg-amber-600';
+
             return (
               <div
                 key={item.id}
                 className="bg-slate-800 border border-slate-700/50 rounded-lg p-3 flex items-start gap-3 hover:bg-slate-700 transition-colors"
               >
-                {/* Item Image / Initials placeholder */}
-                <div className={`w-12 h-12 rounded-lg flex-shrink-0 flex items-center justify-center font-bold text-xs border ${badgeBg}`}>
-                  <img
-                    src={imagePath}
-                    alt={item.name}
-                    className="w-full h-full object-cover rounded-lg"
-                    onError={e => {
-                      // On error, hide image and show initials
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                    }}
-                  />
-                  {/* Initials shown when image is loading or fails - centered in the box */}
-                  <span className="absolute w-full h-full text-center text-[8px] line-through">{initials}</span>
+                {/* Colored fallback box for item - img removed, shows category color on error */}
+                <div className={`w-12 h-12 rounded-lg flex items-center justify-center font-bold text-lg text-slate-100 ${fallbackBg}`}>
+                  {initials}
                 </div>
 
                 <div className="flex-1 min-w-0">

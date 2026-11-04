@@ -76,7 +76,7 @@ export const HeroGrid: React.FC<HeroGridProps> = ({
       </div>
 
       {/* Hero Grid - compact responsive layout */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-8 gap-1 pr-0">
+      <div className="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-10 gap-1.5 p-2">
         {filteredHeroes.map((hero) => {
           const isDisabled = pickedOrBannedIds.includes(hero.id);
 
