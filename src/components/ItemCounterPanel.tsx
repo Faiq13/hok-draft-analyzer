@@ -111,31 +111,49 @@ export const ItemCounterPanel: React.FC<ItemCounterPanelProps> = ({
             const descKey = item.descriptionKey;
             const desc = t(`items.${descKey}`, { defaultValue: '' });
 
+            // Category color and initials
+            const isHeal = item.category === 'anti-heal';
+            const isPhys = item.category === 'anti-physical-burst';
+            const isMag = item.category === 'anti-magic-burst';
+            const isShield = item.category === 'anti-shield';
+
+            const badgeBg = isHeal
+              ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/50'
+              : isPhys
+              ? 'bg-blue-500/20 text-blue-400 border-blue-500/50'
+              : isMag
+              ? 'bg-purple-500/20 text-purple-400 border-purple-500/50'
+              : 'bg-amber-500/20 text-amber-400 border-amber-500/50';
+
+            const initials = item.name
+              .split(' ')
+              .map(w => w[0])
+              .join('')
+              .toUpperCase()
+              .slice(0, 2);
+
             return (
               <div
                 key={item.id}
                 className="bg-slate-800 border border-slate-700/50 rounded-lg p-3 flex items-start gap-3 hover:bg-slate-700 transition-colors"
               >
-                <div className="flex-shrink-0">
-                  <span
-                    className={
-                      'inline-flex items-center gap-1 px-2 py-1 rounded text-[8px] font-bold ' +
-                      (item.category === 'anti-heal'
-                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/50'
-                        : item.category === 'anti-physical-burst'
-                        ? 'bg-blue-500/20 text-blue-400 border border-blue-500/50'
-                        : item.category === 'anti-magic-burst'
-                        ? 'bg-purple-500/20 text-purple-400 border border-purple-500/50'
-                        : item.category === 'anti-shield'
-                        ? 'bg-amber-500/20 text-amber-400 border border-amber-500/50'
-                        : '')
-                    }>
-                    <span className="font-semibold">{t(`itemCounterPanel.categories.${item.category}`)}: {item.name}</span>
-                  </span>
+                {/* Item Avatar / Placeholder with initials */}
+                <div className={`w-12 h-12 rounded-lg flex-shrink-0 flex items-center justify-center font-bold text-xs border ${badgeBg}`}>
+                  {initials}
                 </div>
 
                 <div className="flex-1 min-w-0">
-                  <p className="text-[9px] text-slate-400 line-clamp-2 leading-snug">
+                  <div className="flex items-center justify-between gap-2 mb-1">
+                    <span className="font-bold text-xs text-slate-100">{item.name}</span>
+                    <span
+                      className={
+                        'inline-flex items-center px-2 py-0.5 rounded text-[8px] font-bold border ' + badgeBg
+                      }>
+                      {t(`itemCounterPanel.categories.${item.category}`)}
+                    </span>
+                  </div>
+
+                  <p className="text-[10px] text-slate-300 leading-snug">
                     {desc || item.name}
                   </p>
                   <p className="text-[8px] text-slate-500 mt-1">

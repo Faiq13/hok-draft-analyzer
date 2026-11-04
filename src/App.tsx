@@ -389,50 +389,44 @@ export default function App() {
       </header>
 
       <main className="max-w-7xl mx-auto w-full flex flex-col gap-6">
-        {/* Side-by-Side Layout: Draft Board (Left) + Hero Catalog (Right) */}
-        <div className="flex flex-col lg:flex-row gap-6">
-          {/* Left Column: Draft Board + Analysis Panels */}
-          <div className="flex-1 lg:w-2/3 flex flex-col gap-6 min-w-0">
-            <DraftBoard
-              draftState={draftState}
-              onSelectSlot={handleSelectSlot}
-              onRemoveHero={handleRemoveHero}
-            />
+        {/* Reorganized Layout: Draft Board on top, HeroCatalog right below spanning full width, followed by Analysis panels */}
+        <div className="flex flex-col gap-6">
+          <DraftBoard
+            draftState={draftState}
+            onSelectSlot={handleSelectSlot}
+            onRemoveHero={handleRemoveHero}
+          />
 
-            <CounterRecommendations
-              draftState={draftState}
-              onSelectHeroForActiveSlot={(heroId) => {
-                const hero = HOK_HEROES.find((h: Hero) => h.id === heroId);
-                if (hero) handleSelectHero(hero);
-              }}
-            />
+          <HeroGrid
+            pickedOrBannedIds={pickedOrBannedIds}
+            onSelectHero={handleSelectHero}
+            activeSlotInfo={activeSlotLabel}
+          />
 
-            {/* Visual separator to distinguish Counter & Synergy panels */}
-            <div className="my-2 flex items-center gap-3">
-              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
-              <span className="text-[10px] font-bold tracking-widest text-slate-500 uppercase">{t('synergyPanel.title')}</span>
-              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
-            </div>
+          <CounterRecommendations
+            draftState={draftState}
+            onSelectHeroForActiveSlot={(heroId) => {
+              const hero = HOK_HEROES.find((h: Hero) => h.id === heroId);
+              if (hero) handleSelectHero(hero);
+            }}
+          />
 
-            {/* Team Synergy Panel */}
-            <TeamSynergyPanel
-              draftState={draftState}
-            />
-
-            {/* Item Counter Panel - at the bottom of dashboard */}
-            <ItemCounterPanel
-              draftState={draftState}
-            />
+          {/* Visual separator to distinguish Counter & Synergy panels */}
+          <div className="my-2 flex items-center gap-3">
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
+            <span className="text-[10px] font-bold tracking-widest text-slate-500 uppercase">{t('synergyPanel.title')}</span>
+            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
           </div>
 
-          {/* Right Column: Hero Catalog */}
-          <div className="lg:w-1/3 flex-shrink-0 min-w-0">
-            <HeroGrid
-              pickedOrBannedIds={pickedOrBannedIds}
-              onSelectHero={handleSelectHero}
-              activeSlotInfo={activeSlotLabel}
-            />
-          </div>
+          {/* Team Synergy Panel */}
+          <TeamSynergyPanel
+            draftState={draftState}
+          />
+
+          {/* Item Counter Panel - at the bottom of dashboard */}
+          <ItemCounterPanel
+            draftState={draftState}
+          />
         </div>
       </main>
     </div>

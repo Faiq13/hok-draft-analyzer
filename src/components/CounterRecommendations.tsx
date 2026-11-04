@@ -162,7 +162,7 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
   };
 
   const renderRoleColumn = (role: Hero['role'], recommendations: RecommendationItem[]) => (
-    <div key={role} className="bg-slate-800/50 border border-slate-700/60 rounded-xl p-3 flex flex-col gap-3">
+    <div key={role} className="bg-slate-800/50 border border-slate-700/60 rounded-xl p-3 flex flex-col gap-3 min-w-[240px] md:min-w-[260px] flex-1">
       <div className="flex items-center justify-between border-b border-slate-700 pb-2">
         <span className="font-bold text-sm text-amber-400">{t(`roles.${role}`)}</span>
         <span className="text-[10px] bg-slate-700 text-slate-300 px-2 py-0.5 rounded">{t('counterPanel.title').split(' ')[0]}</span>
@@ -181,28 +181,30 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
                   onSelectHeroForActiveSlot(item.hero.id);
                 }
               }}
-              className="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg p-2 flex items-center gap-2.5 cursor-pointer transition-all group"
+              className="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg p-2.5 flex flex-col gap-1.5 cursor-pointer transition-all group"
             >
-              <HeroAvatar
-                hero={item.hero}
-                className="w-10 h-10 rounded-md flex-shrink-0 border border-slate-600 group-hover:border-amber-400"
-                initialsClassName="text-[10px]"
-              />
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between gap-1">
-                  <h4 className="font-semibold text-xs text-white truncate">{item.hero.name}</h4>
-                  <span className="text-[10px] text-emerald-400 font-bold">#{idx + 1}</span>
+              <div className="flex items-center gap-2.5">
+                <HeroAvatar
+                  hero={item.hero}
+                  className="w-10 h-10 rounded-md flex-shrink-0 border border-slate-600 group-hover:border-amber-400"
+                  initialsClassName="text-[10px]"
+                />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-1">
+                    <h4 className="font-semibold text-xs text-white truncate">{item.hero.name}</h4>
+                    <span className="text-[10px] text-emerald-400 font-bold">#{idx + 1}</span>
+                  </div>
+
+                  {getCounterBadge(item.matchedEnemies)}
                 </div>
-
-                {getCounterBadge(item.matchedEnemies)}
-
-                <p
-                  className="text-[10px] text-slate-400 line-clamp-none leading-snug"
-                  title={item.fullReason}
-                >
-                  {item.reason}
-                </p>
               </div>
+
+              <p
+                className="text-[10px] text-slate-300 leading-snug line-clamp-3 mt-0.5"
+                title={item.fullReason}
+              >
+                {item.reason}
+              </p>
             </div>
           ))
         )}
@@ -229,7 +231,7 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
           )}
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 overflow-x-auto pb-2">
           {ROLES.map(role => renderRoleColumn(role, recommendationsPerRole[role] || []))}
         </div>
       )}

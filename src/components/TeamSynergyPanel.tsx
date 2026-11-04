@@ -87,19 +87,6 @@ export const TeamSynergyPanel: React.FC<TeamSynergyPanelProps> = ({
       }
     }
 
-    // Frequently paired with (bonus info, not core synergy)
-    for (const allyId of allyPickedIds) {
-      const ally = heroById[allyId];
-      if (!ally) continue;
-      if (ally.frequentlyPairedWith) {
-        for (const p of ally.frequentlyPairedWith) {
-          if (!reasons.some(r => r.includes(p.names[0]))) {
-            reasons.push('Biasanya dipasang bersama ' + p.names[0]);
-          }
-        }
-      }
-    }
-
     if (reasons.length > 1) {
       score += 10 * (reasons.length - 1);
     }
@@ -123,7 +110,7 @@ export const TeamSynergyPanel: React.FC<TeamSynergyPanelProps> = ({
   });
 
   const renderRoleColumn = (role: Hero['role'], heroes: Array<{ hero: Hero; score: number; reasons: string[] }>) => (
-    <div key={role} className="bg-slate-800/50 border border-slate-700/60 rounded-xl p-3 flex flex-col gap-3">
+    <div key={role} className="bg-slate-800/50 border border-slate-700/60 rounded-xl p-3 flex flex-col gap-3 min-w-[240px] md:min-w-[260px] flex-1">
       <div className="flex items-center justify-between border-b border-slate-700 pb-2">
         <span className="font-bold text-sm text-indigo-400">{t(`roles.${role}`)}</span>
         <span className="text-[10px] bg-slate-700 text-slate-300 px-2 py-0.5 rounded">{t('synergyPanel.synergyLabel')}</span>
@@ -137,25 +124,27 @@ export const TeamSynergyPanel: React.FC<TeamSynergyPanelProps> = ({
           heroes.map((item, idx) => (
             <div
               key={item.hero.id}
-              className="bg-slate-800 border border-slate-700 rounded-lg p-2 flex items-center gap-2.5 transition-all"
+              className="bg-slate-800 border border-slate-700 rounded-lg p-2.5 flex flex-col gap-1.5 transition-all hover:bg-slate-700/80"
             >
-              <HeroAvatar
-                hero={item.hero}
-                className="w-10 h-10 rounded-md flex-shrink-0 border border-slate-600"
-                initialsClassName="text-[10px]"
-              />
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between gap-1">
-                  <h4 className="font-semibold text-xs text-white truncate">{item.hero.name}</h4>
-                  <span className="text-[10px] text-indigo-400 font-bold">#{idx + 1}</span>
+              <div className="flex items-center gap-2.5">
+                <HeroAvatar
+                  hero={item.hero}
+                  className="w-10 h-10 rounded-md flex-shrink-0 border border-slate-600"
+                  initialsClassName="text-[10px]"
+                />
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-1">
+                    <h4 className="font-semibold text-xs text-white truncate">{item.hero.name}</h4>
+                    <span className="text-[10px] text-indigo-400 font-bold">#{idx + 1}</span>
+                  </div>
                 </div>
-                <p
-                  className="text-[10px] text-slate-400 line-clamp-none leading-snug"
-                  title={item.reasons[0]}
-                >
-                  {item.reasons[0]}
-                </p>
               </div>
+              <p
+                className="text-[10px] text-slate-300 leading-snug line-clamp-3 mt-0.5"
+                title={item.reasons[0]}
+              >
+                {item.reasons[0]}
+              </p>
             </div>
           ))
         )}
@@ -182,7 +171,7 @@ export const TeamSynergyPanel: React.FC<TeamSynergyPanelProps> = ({
           )}
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 overflow-x-auto pb-2">
           {topByRole.map(({ role, heroes }) => renderRoleColumn(role, heroes))}
         </div>
       )}
