@@ -125,6 +125,10 @@ export const ItemCounterPanel: React.FC<ItemCounterPanelProps> = ({
               ? 'bg-purple-500/20 text-purple-400 border-purple-500/50'
               : 'bg-amber-500/20 text-amber-400 border-amber-500/50';
 
+            // Try to load item image, fallback to initials
+            const itemSlug = item.id;
+            const imagePath = `/items/${itemSlug}.webp`;
+
             const initials = item.name
               .split(' ')
               .map(w => w[0])
@@ -137,9 +141,20 @@ export const ItemCounterPanel: React.FC<ItemCounterPanelProps> = ({
                 key={item.id}
                 className="bg-slate-800 border border-slate-700/50 rounded-lg p-3 flex items-start gap-3 hover:bg-slate-700 transition-colors"
               >
-                {/* Item Avatar / Placeholder with initials */}
+                {/* Item Image / Initials placeholder */}
                 <div className={`w-12 h-12 rounded-lg flex-shrink-0 flex items-center justify-center font-bold text-xs border ${badgeBg}`}>
-                  {initials}
+                  <img
+                    src={imagePath}
+                    alt={item.name}
+                    className="w-full h-full object-cover rounded-lg"
+                    onError={e => {
+                      // On error, hide image and show initials
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                    }}
+                  />
+                  {/* Initials shown when image is loading or fails - centered in the box */}
+                  <span className="absolute w-full h-full text-center text-[8px] line-through">{initials}</span>
                 </div>
 
                 <div className="flex-1 min-w-0">
@@ -153,7 +168,7 @@ export const ItemCounterPanel: React.FC<ItemCounterPanelProps> = ({
                     </span>
                   </div>
 
-                  <p className="text-[10px] text-slate-300 leading-snug">
+                  <p className="text-sm text-amber-100 leading-relaxed">
                     {desc || item.name}
                   </p>
                   <p className="text-[8px] text-slate-500 mt-1">

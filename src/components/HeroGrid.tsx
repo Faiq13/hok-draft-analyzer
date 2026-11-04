@@ -75,8 +75,8 @@ export const HeroGrid: React.FC<HeroGridProps> = ({
         ))}
       </div>
 
-      {/* Hero Grid - responsive for side-by-side layout */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-h-[600px] overflow-y-auto pr-1">
+      {/* Hero Grid - compact responsive layout */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 pr-0">
         {filteredHeroes.map((hero) => {
           const isDisabled = pickedOrBannedIds.includes(hero.id);
 
@@ -84,23 +84,23 @@ export const HeroGrid: React.FC<HeroGridProps> = ({
             <div
               key={hero.id}
               onClick={() => !isDisabled && onSelectHero(hero)}
-              className={`relative rounded-xl p-2 flex flex-col items-center transition-all ${
+              className={`relative rounded-lg p-1.5 flex flex-col items-center transition-all ${
                 isDisabled
                   ? 'opacity-40 grayscale cursor-not-allowed bg-slate-950/40 border border-slate-800'
-                  : 'bg-slate-800/80 border border-slate-700/80 hover:border-amber-400 hover:scale-105 cursor-pointer shadow-md'
+                  : 'bg-slate-800/70 border border-slate-700/60 hover:border-amber-400 hover:scale-105 cursor-pointer shadow-sm'
               }`}
             >
-              <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-slate-700 mb-1.5 border border-slate-600 flex items-center justify-center">
+              <div className="relative w-14 h-14 rounded-lg overflow-hidden bg-slate-700 mb-1 border border-slate-600 flex items-center justify-center">
                 <HeroAvatar
                   hero={hero}
                   className="w-full h-full"
                   initialsClassName="text-sm"
                 />
-                <span className="absolute bottom-0.5 right-0.5 bg-slate-950/80 text-[9px] px-1 py-0.2 rounded text-amber-400 font-bold">
+                <span className="absolute bottom-0.5 right-0.5 bg-slate-950/80 text-[8px] px-0.5 py-0.1 rounded text-amber-400 font-bold">
                   {t(`roles.${hero.role}`)}
                 </span>
               </div>
-              <span className="font-medium text-xs text-slate-200 text-center truncate w-full">
+              <span className="font-medium text-[9px] text-slate-200 text-center truncate w-full">
                 {hero.name}
               </span>
             </div>
