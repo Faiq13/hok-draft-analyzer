@@ -156,7 +156,7 @@ export const ItemCounterPanel: React.FC<ItemCounterPanelProps> = ({
 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-2 mb-1">
-                    <span className="font-bold text-xs text-slate-100">{item.name}</span>
+                    <span className="font-semibold text-sm text-slate-100">{item.name}</span>
                     <span
                       className={
                         'inline-flex items-center px-2 py-0.5 rounded text-[8px] font-bold border ' + badgeBg
@@ -165,8 +165,8 @@ export const ItemCounterPanel: React.FC<ItemCounterPanelProps> = ({
                     </span>
                   </div>
 
-                  <p className="text-sm text-amber-100 leading-relaxed">
-                    {desc || item.name}
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    {desc}
                   </p>
                   <p className="text-[8px] text-slate-500 mt-1">
                     {t('itemCounterPanel.priority', { index: idx + 1 })}

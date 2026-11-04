@@ -76,7 +76,7 @@ export const HeroGrid: React.FC<HeroGridProps> = ({
       </div>
 
       {/* Hero Grid - compact responsive layout */}
-      <div className="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-10 gap-1.5 p-2">
+      <div className="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-10 gap-2 p-1">
         {filteredHeroes.map((hero) => {
           const isDisabled = pickedOrBannedIds.includes(hero.id);
 
@@ -84,23 +84,33 @@ export const HeroGrid: React.FC<HeroGridProps> = ({
             <div
               key={hero.id}
               onClick={() => !isDisabled && onSelectHero(hero)}
-              className={`relative rounded-lg p-1 flex flex-col items-center transition-all ${
+              className={`group relative rounded-2xl p-2.5 flex flex-col items-center transition-all duration-300 backdrop-blur-md ${
                 isDisabled
-                  ? 'opacity-40 grayscale cursor-not-allowed bg-slate-950/40 border border-slate-800'
-                  : 'bg-slate-800/70 border border-slate-700/60 hover:border-amber-400 hover:scale-105 cursor-pointer shadow-sm'
+                  ? 'opacity-30 grayscale cursor-not-allowed bg-slate-950/40 border border-slate-800'
+                  : 'bg-slate-900/60 border border-slate-800/80 hover:bg-slate-800/80 hover:border-indigo-500/50 hover:shadow-lg hover:shadow-indigo-500/15 hover:-translate-y-1 cursor-pointer'
               }`}
             >
-              <div className="relative w-10 h-10 rounded-lg overflow-hidden bg-slate-700 mb-0.5 border border-slate-600 flex items-center justify-center">
-                <HeroAvatar
-                  hero={hero}
-                  className="w-full h-full"
-                  initialsClassName="text-sm"
-                />
-                <span className="absolute bottom-0.5 right-0.5 bg-slate-950/80 text-[7px] px-0.5 py-0.1 rounded text-amber-400 font-bold">
+              {/* Glow highlight on hover */}
+              <div className="absolute inset-0 bg-gradient-to-t from-indigo-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-2xl" />
+
+              {/* Role Badge di sudut kanan atas */}
+              <div className="absolute top-2 right-2 z-10">
+                <span className="px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider rounded bg-slate-950/90 text-indigo-300 border border-indigo-500/30">
                   {t(`roles.${hero.role}`)}
                 </span>
               </div>
-              <span className="font-medium text-[8px] text-slate-200 text-center truncate w-full">
+
+              {/* Hero Avatar melingkar dengan ring interaktif */}
+              <div className="relative w-12 h-12 rounded-full overflow-hidden mb-2 ring-2 ring-slate-700/80 group-hover:ring-indigo-400 transition-all shadow-md flex items-center justify-center bg-slate-800">
+                <HeroAvatar
+                  hero={hero}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  initialsClassName="text-xs font-bold"
+                />
+              </div>
+
+              {/* Nama Hero */}
+              <span className="font-semibold text-[10px] text-slate-200 text-center truncate w-full group-hover:text-white">
                 {hero.name}
               </span>
             </div>

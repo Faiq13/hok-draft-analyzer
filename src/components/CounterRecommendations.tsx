@@ -169,8 +169,15 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
       </div>
       <div className="flex flex-col gap-2.5">
         {recommendations.length === 0 ? (
-          <div className="text-xs text-slate-500 italic py-4 text-center bg-slate-900/40 rounded-lg border border-slate-800">
-            {t('counterPanel.noSpecificCounter')}
+          <div className="flex flex-col items-center justify-center p-5 text-center rounded-xl bg-slate-900/40 border border-dashed border-slate-800">
+            <div className="w-8 h-8 rounded-full bg-slate-800/60 flex items-center justify-center mb-1.5 text-slate-400">
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <p className="text-[11px] text-slate-400 leading-relaxed">
+              {t('counterPanel.noSpecificCounter')}
+            </p>
           </div>
         ) : (
           recommendations.map((item, idx) => (
@@ -181,24 +188,28 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
                   onSelectHeroForActiveSlot(item.hero.id);
                 }
               }}
-              className="bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg p-2.5 flex flex-row items-start gap-3 cursor-pointer transition-all"
+              className="bg-slate-800/90 hover:bg-slate-800 border border-slate-700/80 hover:border-amber-500/50 rounded-xl p-3 flex flex-row items-start gap-3 cursor-pointer transition-all shadow-sm group"
             >
-              <div className="w-10 h-10 rounded-lg flex-shrink-0 border border-slate-600">
+              <div className="relative w-12 h-12 rounded-xl flex-shrink-0 border border-slate-700 overflow-hidden ring-1 ring-slate-700 group-hover:ring-amber-500/50 transition-all">
                 <HeroAvatar
                   hero={item.hero}
-                  className="w-full h-full rounded-md flex-shrink-0"
-                  initialsClassName="text-[10px]"
+                  className="w-full h-full rounded-xl flex-shrink-0 group-hover:scale-105 transition-transform"
+                  initialsClassName="text-xs"
                 />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="font-semibold text-xs text-white truncate">{item.hero.name}</div>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="font-semibold text-xs text-slate-100 group-hover:text-white truncate">{item.hero.name}</span>
+                </div>
                 <p
-                  className="text-[10px] text-slate-300 leading-snug line-clamp-3 mt-1"
+                  className="text-[11px] text-slate-300 leading-relaxed line-clamp-2"
                   title={item.fullReason}
                 >
                   {item.reason}
                 </p>
-                {getCounterBadge(item.matchedEnemies)}
+                <div className="mt-1.5">
+                  {getCounterBadge(item.matchedEnemies)}
+                </div>
               </div>
             </div>
           ))
