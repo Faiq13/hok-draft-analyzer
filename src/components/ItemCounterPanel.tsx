@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { HOK_HEROES, Hero } from '../data/hokHeroes';
 import { DraftState } from '../types/draft';
@@ -12,20 +12,20 @@ export const ItemCounterPanel: React.FC<ItemCounterPanelProps> = ({
   draftState,
 }) => {
   const { t, i18n } = useTranslation();
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
   const enemyPickedIds = draftState.redTeam.filter((id): id is string => id !== null);
   const allyPickedIds = draftState.blueTeam.filter((id): id is string => id !== null);
 
   if (enemyPickedIds.length === 0) {
     return (
-      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl text-center py-8">
-        <p className="text-slate-500 italic">
+      <div className="bg-[#191919] border border-white/20 rounded-[11px] p-5 shadow-xl text-center py-10">
+        <p className="text-white/40 italic text-sm" style={{ fontFamily: 'Poppins, sans-serif' }}>
           {t('itemCounterPanel.subtitle').split('→')[0].trim()}
         </p>
       </div>
     );
   }
 
-  // Get enemy hero names from picked IDs
   const enemyHeroNames = enemyPickedIds
     .map(id => {
       const hero = HOK_HEROES.find(h => h.id === id);
@@ -33,7 +33,6 @@ export const ItemCounterPanel: React.FC<ItemCounterPanelProps> = ({
     })
     .filter((h): h is string => h !== null);
 
-  // Calculate priority items based on enemy composition
   const itemPriorities = HOK_ITEM_COUNTERS.filter(item => {
     const lowerEnemies = enemyHeroNames.map(h => h.toLowerCase());
 
@@ -72,7 +71,6 @@ export const ItemCounterPanel: React.FC<ItemCounterPanelProps> = ({
     return false;
   });
 
-  // Sort: anti-heal first, then anti-magic-burst, anti-physical-burst, anti-shield
   const categoryPriority: Record<string, number> = {
     'anti-heal': 1,
     'anti-magic-burst': 2,
@@ -86,48 +84,44 @@ export const ItemCounterPanel: React.FC<ItemCounterPanelProps> = ({
     return aPri - bPri;
   });
 
-  // Take top 5 prioritized items
   const topItems = itemPriorities.slice(0, 5);
 
+  // Category style map
+  const categoryStyle: Record<string, { badge: string; icon: string; iconBg: string }> = {
+    'anti-heal':          { badge: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/40', icon: '💊', iconBg: 'bg-emerald-600/80' },
+    'anti-physical-burst':{ badge: 'bg-blue-500/15 text-blue-400 border-blue-500/40',          icon: '🗡️', iconBg: 'bg-blue-600/80' },
+    'anti-magic-burst':   { badge: 'bg-purple-500/15 text-purple-400 border-purple-500/40',    icon: '🔮', iconBg: 'bg-purple-600/80' },
+    'anti-shield':        { badge: 'bg-amber-500/15 text-amber-400 border-amber-500/40',        icon: '🛡️', iconBg: 'bg-amber-600/80' },
+  };
+
   return (
-    <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl mt-4">
-      <div className="flex items-center gap-2 mb-4 border-b border-slate-800 pb-3">
-        <span className="text-amber-400">⚔️</span>
-        <h2 className="font-bold text-lg text-slate-100">{t('itemCounterPanel.title')}</h2>
+    <div className="bg-slate-900/80 backdrop-blur-md border border-slate-800/60 rounded-2xl p-5 shadow-xl">
+      {/* Header */}
+      <div className="flex items-center gap-2.5 mb-5 border-b border-white/10 pb-4">
+        <div className="w-8 h-8 rounded-[6px] bg-amber-500/15 border border-amber-500/30 flex items-center justify-center flex-shrink-0 text-sm">
+          ⚔️
+        </div>
+        <div>
+          <h2 className="font-bold text-base text-white leading-tight" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            {t('itemCounterPanel.title')}
+          </h2>
+          <p className="text-[10px] text-white/40 mt-0.5" style={{ fontFamily: 'Poppins, sans-serif' }}>
+            {t('itemCounterPanel.subtitle')}
+          </p>
+        </div>
       </div>
 
-      <p className="text-sm text-slate-400 mb-3">
-        {t('itemCounterPanel.subtitle')}
-      </p>
-
       {topItems.length === 0 ? (
-        <div className="text-center text-slate-500 italic py-4">
+        <div className="text-center text-white/40 italic py-6 text-sm" style={{ fontFamily: 'Poppins, sans-serif' }}>
           {t('itemCounterPanel.noSpecificItemCounter')}
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="space-y-2.5">
           {topItems.map((item, idx) => {
-            // Get description from locale files
             const descKey = item.descriptionKey;
             const desc = t(`items.${descKey}`, { defaultValue: '' });
 
-            // Category color and initials
-            const isHeal = item.category === 'anti-heal';
-            const isPhys = item.category === 'anti-physical-burst';
-            const isMag = item.category === 'anti-magic-burst';
-            const isShield = item.category === 'anti-shield';
-
-            const badgeBg = isHeal
-              ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/50'
-              : isPhys
-              ? 'bg-blue-500/20 text-blue-400 border-blue-500/50'
-              : isMag
-              ? 'bg-purple-500/20 text-purple-400 border-purple-500/50'
-              : 'bg-amber-500/20 text-amber-400 border-amber-500/50';
-
-            // Item fallback box - shows colored box when image fails to load
-            const itemSlug = item.id;
-            const imagePath = `/items/${itemSlug}.webp`;
+            const style = categoryStyle[item.category] ?? categoryStyle['anti-shield'];
 
             const initials = item.name
               .split(' ')
@@ -136,39 +130,47 @@ export const ItemCounterPanel: React.FC<ItemCounterPanelProps> = ({
               .toUpperCase()
               .slice(0, 2);
 
-            const fallbackBg = isHeal
-              ? 'bg-emerald-600'
-              : isPhys
-              ? 'bg-blue-600'
-              : isMag
-              ? 'bg-purple-600'
-              : 'bg-amber-600';
-
             return (
               <div
                 key={item.id}
-                className="bg-slate-800 border border-slate-700/50 rounded-lg p-3 flex items-start gap-3 hover:bg-slate-700 transition-colors"
+                className="bg-slate-950/60 border border-slate-800/60 hover:border-slate-700 rounded-xl p-3.5 flex items-start gap-3.5 transition-all duration-200 hover:-translate-y-0.5 group"
               >
-                {/* Colored fallback box for item - img removed, shows category color on error */}
-                <div className={`w-12 h-12 rounded-lg flex items-center justify-center font-bold text-lg text-slate-100 ${fallbackBg}`}>
-                  {initials}
+                {/* Item Icon */}
+                <div className={`w-12 h-12 rounded-xl flex-shrink-0 overflow-hidden flex items-center justify-center font-bold text-sm text-white ${style.iconBg} border border-white/15`}>
+                  {!failedImages.has(item.id) ? (
+                    <img
+                      src={`https://hub-game.com/hok/images/items/${item.id}.webp`}
+                      alt={item.name}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                      onError={() => setFailedImages(prev => new Set(prev).add(item.id))}
+                    />
+                  ) : (
+                    <span aria-label={item.name}>{initials}</span>
+                  )}
                 </div>
 
+                {/* Item Info */}
                 <div className="flex-1 min-w-0">
+                  {/* Row 1: Name + Badge */}
                   <div className="flex items-center justify-between gap-2 mb-1">
-                    <span className="font-semibold text-sm text-slate-100">{item.name}</span>
-                    <span
-                      className={
-                        'inline-flex items-center px-2 py-0.5 rounded text-[8px] font-bold border ' + badgeBg
-                      }>
+                    <span className="font-semibold text-sm text-white leading-tight truncate"
+                      style={{ fontFamily: 'Poppins, sans-serif' }}>
+                      {item.name}
+                    </span>
+                    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[8px] font-bold border flex-shrink-0 ${style.badge}`}
+                      style={{ fontFamily: 'Poppins, sans-serif' }}>
                       {t(`itemCounterPanel.categories.${item.category}`)}
                     </span>
                   </div>
 
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    {desc}
+                  {/* Row 2: Tactical description — why this item counters the enemy comp */}
+                  <p className="text-[11px] text-white/55 leading-relaxed" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                    {desc || `${item.triggerConditions?.[0] ?? 'Efek khusus'} melawan ${item.targetHeroes?.slice(0, 3).join(', ') ?? 'komposisi musuh'}.`}
                   </p>
-                  <p className="text-[8px] text-slate-500 mt-1">
+
+                  {/* Priority indicator */}
+                  <p className="text-[9px] text-white/30 mt-1" style={{ fontFamily: 'Poppins, sans-serif' }}>
                     {t('itemCounterPanel.priority', { index: idx + 1 })}
                   </p>
                 </div>

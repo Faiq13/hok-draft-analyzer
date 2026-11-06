@@ -26,48 +26,52 @@ export const HeroGrid: React.FC<HeroGridProps> = ({
   });
 
   return (
-    <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl">
-      <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-4">
-        <div className="flex items-center gap-2 w-full md:w-auto">
-          <h2 className="font-bold text-lg text-slate-100">{t('heroCatalog.title')}</h2>
+    <div className="bg-slate-900/80 backdrop-blur-md border border-slate-800/60 rounded-2xl p-5 shadow-xl">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+        <div className="flex items-center gap-3">
+          <h2 className="font-bold text-base text-white font-display tracking-tight">
+            {t('heroCatalog.title')}
+          </h2>
           {activeSlotInfo && (
-            <span className="text-xs bg-amber-500/20 border border-amber-500/40 text-amber-300 px-2.5 py-1 rounded-md font-medium">
+            <span className="text-xs bg-violet-500/15 border border-violet-500/35 text-violet-300 px-3 py-1 rounded-full font-semibold font-display">
               {t('heroCatalog.activeSlot', { slot: activeSlotInfo })}
             </span>
           )}
         </div>
 
-        <div className="flex items-center gap-3 w-full md:w-auto">
-          <div className="relative flex-1 md:w-64">
-            <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-400" />
-            <input
-              type="text"
-              placeholder={t('heroCatalog.searchPlaceholder')}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-slate-800 border border-slate-700 rounded-lg pl-9 pr-4 py-2 text-sm text-slate-200 focus:outline-none focus:border-amber-500"
-            />
-          </div>
+        {/* Search */}
+        <div className="relative w-full sm:w-72">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
+          <input
+            type="text"
+            placeholder={t('heroCatalog.searchPlaceholder')}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full bg-slate-950/60 border border-slate-700/50 rounded-xl pl-9 pr-4 py-2 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/20 transition-all duration-200"
+          />
         </div>
       </div>
 
-      {/* Instruction text */}
-      <div className="mb-3 p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg">
-        <p className="text-sm text-amber-300 text-center font-medium">
-          {t('heroCatalog.instruction')}
-        </p>
-      </div>
+      {/* Instruction */}
+      {activeSlotInfo && (
+        <div className="mb-4 p-3 bg-violet-500/8 border border-violet-500/25 rounded-xl">
+          <p className="text-sm text-violet-300 text-center font-medium font-display leading-relaxed">
+            {t('heroCatalog.instruction')}
+          </p>
+        </div>
+      )}
 
       {/* Role Filter Tabs */}
-      <div className="flex gap-2 overflow-x-auto pb-3 mb-4 border-b border-slate-800">
+      <div className="flex gap-1.5 overflow-x-auto pb-3 mb-4 border-b border-slate-800/60">
         {[t('heroCatalog.allRoles'), 'Roam', 'Clash', 'Mid', 'Farm', 'Jungle'].map((role) => (
           <button
             key={role}
             onClick={() => setSelectedRole(role)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors whitespace-nowrap ${
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-200 whitespace-nowrap border font-display ${
               selectedRole === role
-                ? 'bg-amber-500 text-slate-950 font-semibold'
-                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                ? 'bg-violet-600 text-white border-violet-500 shadow-lg shadow-violet-500/25'
+                : 'bg-slate-900/60 text-slate-400 border-slate-700/50 hover:border-slate-600 hover:text-slate-200'
             }`}
           >
             {role === t('heroCatalog.allRoles') ? role : t(`roles.${role}`)}
@@ -75,42 +79,38 @@ export const HeroGrid: React.FC<HeroGridProps> = ({
         ))}
       </div>
 
-      {/* Hero Grid - compact responsive layout */}
-      <div className="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-10 gap-2 p-1">
+      {/* Hero Grid */}
+      <div className="grid grid-cols-5 sm:grid-cols-7 md:grid-cols-9 lg:grid-cols-11 xl:grid-cols-13 gap-1.5">
         {filteredHeroes.map((hero) => {
           const isDisabled = pickedOrBannedIds.includes(hero.id);
-
           return (
             <div
               key={hero.id}
               onClick={() => !isDisabled && onSelectHero(hero)}
-              className={`group relative rounded-2xl p-2.5 flex flex-col items-center transition-all duration-300 backdrop-blur-md ${
+              className={`group relative rounded-xl p-1.5 flex flex-col items-center transition-all duration-200 ${
                 isDisabled
-                  ? 'opacity-30 grayscale cursor-not-allowed bg-slate-950/40 border border-slate-800'
-                  : 'bg-slate-900/60 border border-slate-800/80 hover:bg-slate-800/80 hover:border-indigo-500/50 hover:shadow-lg hover:shadow-indigo-500/15 hover:-translate-y-1 cursor-pointer'
+                  ? 'opacity-20 grayscale cursor-not-allowed bg-slate-900/30 border border-slate-800/40'
+                  : 'bg-slate-900/50 border border-slate-800/40 hover:bg-violet-500/12 hover:border-violet-500/40 hover:shadow-lg hover:shadow-violet-500/15 hover:-translate-y-0.5 cursor-pointer'
               }`}
             >
-              {/* Glow highlight on hover */}
-              <div className="absolute inset-0 bg-gradient-to-t from-indigo-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-2xl" />
-
-              {/* Role Badge di sudut kanan atas */}
-              <div className="absolute top-2 right-2 z-10">
-                <span className="px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wider rounded bg-slate-950/90 text-indigo-300 border border-indigo-500/30">
+              {/* Role Badge */}
+              <div className="absolute top-1 right-1 z-10">
+                <span className="px-1 py-0.5 text-[7px] font-bold uppercase tracking-wider rounded-md bg-black/70 text-violet-300 border border-violet-900/50">
                   {t(`roles.${hero.role}`)}
                 </span>
               </div>
 
-              {/* Hero Avatar melingkar dengan ring interaktif */}
-              <div className="relative w-12 h-12 rounded-full overflow-hidden mb-2 ring-2 ring-slate-700/80 group-hover:ring-indigo-400 transition-all shadow-md flex items-center justify-center bg-slate-800">
+              {/* Hero Avatar */}
+              <div className="relative w-10 h-10 rounded-lg overflow-hidden mb-1.5 ring-1 ring-slate-700/60 group-hover:ring-violet-500/60 transition-all duration-200 flex items-center justify-center bg-slate-800">
                 <HeroAvatar
                   hero={hero}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  initialsClassName="text-xs font-bold"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  initialsClassName="text-[9px] font-bold"
                 />
               </div>
 
-              {/* Nama Hero */}
-              <span className="font-semibold text-[10px] text-slate-200 text-center truncate w-full group-hover:text-white">
+              {/* Hero Name */}
+              <span className="font-semibold text-[9px] text-slate-400 text-center truncate w-full group-hover:text-white transition-colors duration-200 leading-tight font-display">
                 {hero.name}
               </span>
             </div>

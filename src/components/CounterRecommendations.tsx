@@ -29,7 +29,6 @@ const VULNERABILITY_PENALTY = 20;
 
 const heroById = new Map(HOK_HEROES.map(hero => [hero.id, hero]));
 
-// Helper to get localized tactical reason
 function getLocalizedReason(t: (key: string, options?: any) => string, heroId: string, targetId: string, type: string) {
   const path = `tactical.${type}s.${heroId}.${targetId}`;
   return t(path, { defaultValue: '' });
@@ -43,7 +42,6 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
   const enemyPickedIds = draftState.redTeam.filter((id): id is string => id !== null);
   const allyPickedIds = draftState.blueTeam.filter((id): id is string => id !== null);
 
-  // Hero yang sudah dipick atau dibanned kedua tim tidak boleh muncul lagi.
   const unavailableIds = new Set(
     [
       ...draftState.blueTeam,
@@ -69,20 +67,16 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
       const counterReasons: string[] = [];
       const vulnerabilityReasons: string[] = [];
 
-      // STRICT: Only check COUNTERS against enemy picks (Red Side)
-      // This panel ONLY shows heroes that counter enemy heroes
       for (const enemyId of enemyPickedIds) {
         const enemy = heroById.get(enemyId);
         if (!enemy) continue;
 
-        // Check if candidate counters this enemy
         const counterEntry = enemy.counteredBy.find(entry => entry.id === candidate.id);
         const isCounter = Boolean(counterEntry) || candidate.counters.includes(enemy.id);
 
         if (isCounter) {
           score += COUNTER_SCORE;
           matchedEnemies.push(enemy.name);
-          // Use localized reason if available
           const localizedReason = getLocalizedReason(t, enemyId, candidate.id, 'counter');
           if (localizedReason) {
             counterReasons.push(localizedReason);
@@ -91,7 +85,6 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
           }
         }
 
-        // Check vulnerability (enemy counters candidate) - for transparency
         const vulnerability = candidate.counteredBy.find(entry => entry.id === enemy.id);
         if (vulnerability) {
           score -= VULNERABILITY_PENALTY;
@@ -105,15 +98,10 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
         }
       }
 
-      // DO NOT include synergy with allies in Counter panel - that's for Synergy panel only
-      // This ensures strict separation
-
-      // Prioritaskan hero yang menjawab lebih dari satu pick musuh.
       if (matchedEnemies.length > 1) {
         score += 10 * (matchedEnemies.length - 1);
       }
 
-      // Only show if has actual counter value (score > 0 from counters)
       const hasCounterValue = matchedEnemies.length > 0;
       if (!hasCounterValue || score <= 0) return;
 
@@ -147,64 +135,70 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
     if (matchedEnemies.length === 0) return null;
     const isMulti = matchedEnemies.length > 1;
     const badgeClass = isMulti
-      ? "bg-amber-500/20 text-amber-400 border border-amber-500/50"
-      : "bg-emerald-500/20 text-emerald-400 border border-emerald-500/50";
+      ? 'bg-[#8000ff]/20 text-[#c084fc] border border-[#8000ff]/50'
+      : 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/40';
     return (
-      <span
-        className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[8px] font-bold ${badgeClass}`}>
+      <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[8px] font-bold ${badgeClass}`}
+        style={{ fontFamily: 'Poppins, sans-serif' }}>
         <span className="font-semibold">{t('counterPanel.counterBadge')}</span>
         {matchedEnemies.map((name, i) => {
-          if (i > 0) return <span key={`sep-${i}`}>& </span>;
-          return <span key={i} className="hover:underline">{name}</span>;
+          if (i > 0) return <span key={`sep-${i}`}> & </span>;
+          return <span key={i}>{name}</span>;
         })}
       </span>
     );
   };
 
   const renderRoleColumn = (role: Hero['role'], recommendations: RecommendationItem[]) => (
-    <div key={role} className="bg-slate-800/50 border border-slate-700/60 rounded-xl p-3 flex flex-col gap-3 min-w-[240px] md:min-w-[260px] flex-1">
-      <div className="flex items-center justify-between border-b border-slate-700 pb-2">
-        <span className="font-bold text-sm text-amber-400">{t(`roles.${role}`)}</span>
-        <span className="text-[10px] bg-slate-700 text-slate-300 px-2 py-0.5 rounded">{t('counterPanel.title').split(' ')[0]}</span>
+    <div key={role} className="bg-slate-900/70 backdrop-blur-md border border-slate-800/60 rounded-xl p-4 flex flex-col gap-3 min-w-0 flex-1 transition-all duration-200 hover:-translate-y-0.5">
+      {/* Role Header */}
+      <div className="flex items-center justify-between border-b border-white/10 pb-2">
+        <span className="font-bold text-sm text-amber-400" style={{ fontFamily: 'Poppins, sans-serif' }}>
+          {t(`roles.${role}`)}
+        </span>
+        <span className="text-[9px] bg-black/60 text-white/50 px-2 py-0.5 rounded-full border border-white/10"
+          style={{ fontFamily: 'Poppins, sans-serif' }}>
+          {t('counterPanel.title').split(' ')[0]}
+        </span>
       </div>
-      <div className="flex flex-col gap-2.5">
+
+      {/* Recommendation List */}
+      <div className="flex flex-col gap-2">
         {recommendations.length === 0 ? (
-          <div className="flex flex-col items-center justify-center p-5 text-center rounded-xl bg-slate-900/40 border border-dashed border-slate-800">
-            <div className="w-8 h-8 rounded-full bg-slate-800/60 flex items-center justify-center mb-1.5 text-slate-400">
+          <div className="flex flex-col items-center justify-center p-5 text-center rounded-[8px] bg-black/30 border border-dashed border-white/10">
+            <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center mb-2 text-white/30">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
               </svg>
             </div>
-            <p className="text-[11px] text-slate-400 leading-relaxed">
+            <p className="text-[11px] text-white/40 leading-relaxed" style={{ fontFamily: 'Poppins, sans-serif' }}>
               {t('counterPanel.noSpecificCounter')}
             </p>
           </div>
         ) : (
-          recommendations.map((item, idx) => (
+          recommendations.map((item) => (
             <div
               key={item.hero.id}
-              onClick={() => {
-                if (draftState.activeSlot && draftState.activeSlot.side === 'blue') {
-                  onSelectHeroForActiveSlot(item.hero.id);
-                }
-              }}
-              className="bg-slate-800/90 hover:bg-slate-800 border border-slate-700/80 hover:border-amber-500/50 rounded-xl p-3 flex flex-row items-start gap-3 cursor-pointer transition-all shadow-sm group"
+              onClick={() => onSelectHeroForActiveSlot(item.hero.id)}
+              className="bg-slate-950/60 hover:bg-violet-500/8 border border-slate-800/60 hover:border-violet-500/40 rounded-xl p-3 flex flex-row items-start gap-3 cursor-pointer transition-all duration-200 hover:-translate-y-0.5 group shadow-sm"
             >
-              <div className="relative w-12 h-12 rounded-xl flex-shrink-0 border border-slate-700 overflow-hidden ring-1 ring-slate-700 group-hover:ring-amber-500/50 transition-all">
+              {/* Avatar */}
+              <div className="relative w-11 h-11 rounded-[6px] flex-shrink-0 overflow-hidden ring-1 ring-white/15 group-hover:ring-[#8000ff]/60 transition-all">
                 <HeroAvatar
                   hero={item.hero}
-                  className="w-full h-full rounded-xl flex-shrink-0 group-hover:scale-105 transition-transform"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                   initialsClassName="text-xs"
                 />
               </div>
+              {/* Info */}
               <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="font-semibold text-xs text-slate-100 group-hover:text-white truncate">{item.hero.name}</span>
-                </div>
-                <p
-                  className="text-[11px] text-slate-300 leading-relaxed line-clamp-2"
+                <span className="font-semibold text-xs text-white group-hover:text-white truncate block mb-1"
+                  style={{ fontFamily: 'Poppins, sans-serif' }}>
+                  {item.hero.name}
+                </span>
+                <p className="text-[10px] text-white/60 leading-relaxed line-clamp-2"
                   title={item.fullReason}
-                >
+                  style={{ fontFamily: 'Poppins, sans-serif' }}>
                   {item.reason}
                 </p>
                 <div className="mt-1.5">
@@ -219,25 +213,34 @@ export const CounterRecommendations: React.FC<CounterRecommendationsProps> = ({
   );
 
   return (
-    <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 shadow-xl">
-      <div className="flex items-center gap-2 mb-4 border-b border-slate-800 pb-3">
-        <Sparkles className="w-5 h-5 text-amber-400" />
-        <h2 className="font-bold text-lg text-slate-100">{t('counterPanel.title')}</h2>
+    <div className="bg-slate-900/80 backdrop-blur-md border border-slate-800/60 rounded-2xl p-5 shadow-xl">
+      {/* Panel Header */}
+      <div className="flex items-center gap-2.5 mb-5 border-b border-white/10 pb-4">
+        <div className="w-8 h-8 rounded-[6px] bg-amber-500/15 border border-amber-500/30 flex items-center justify-center flex-shrink-0">
+          <Sparkles className="w-4 h-4 text-amber-400" />
+        </div>
+        <h2 className="font-bold text-base text-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
+          {t('counterPanel.title')}
+        </h2>
       </div>
 
       {enemyPickedIds.length === 0 ? (
-        <div className="text-center py-8 text-slate-400 text-sm space-y-1">
+        <div className="text-center py-10 text-white/40 text-sm">
           {draftState.activeSlot ? (
             <>
-              <p className="font-semibold text-amber-400">{t('counterPanel.waitingForActiveSlot', { side: draftState.activeSlot.side === 'blue' ? t('header.blueSide') : t('header.redSide') })}</p>
-              <p>{draftState.activeSlot.side === 'red' ? t('counterPanel.waitingForEnemyPick') : t('counterPanel.waitingForOurPick')}</p>
+              <p className="font-semibold text-amber-400 mb-1" style={{ fontFamily: 'Poppins, sans-serif' }}>
+                {t('counterPanel.waitingForActiveSlot', { side: draftState.activeSlot.side === 'blue' ? t('header.blueSide') : t('header.redSide') })}
+              </p>
+              <p style={{ fontFamily: 'Poppins, sans-serif' }}>
+                {draftState.activeSlot.side === 'red' ? t('counterPanel.waitingForEnemyPick') : t('counterPanel.waitingForOurPick')}
+              </p>
             </>
           ) : (
-            <p>{t('counterPanel.waitingForEnemy')}</p>
+            <p style={{ fontFamily: 'Poppins, sans-serif' }}>{t('counterPanel.waitingForEnemy')}</p>
           )}
         </div>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 pb-2">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-3">
           {ROLES.map(role => renderRoleColumn(role, recommendationsPerRole[role] || []))}
         </div>
       )}

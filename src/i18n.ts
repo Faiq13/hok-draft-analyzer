@@ -14,6 +14,8 @@ i18n
       id: { translation: id },
     },
     fallbackLng: 'en',
+    supportedLngs: ['en', 'id'],
+    load: 'languageOnly',
     debug: false,
     interpolation: {
       escapeValue: false,

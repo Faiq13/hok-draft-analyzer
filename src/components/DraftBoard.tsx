@@ -47,14 +47,14 @@ export const DraftBoard: React.FC<DraftBoardProps> = ({
       <div
         key={`${side}-${type}-${index}`}
         onClick={() => onSelectSlot(side, type, index)}
-        className={`relative rounded-xl border-2 transition-all cursor-pointer flex items-center justify-center overflow-hidden ${
+        className={`relative rounded-xl border transition-all duration-200 cursor-pointer flex items-center justify-center overflow-hidden hover:-translate-y-0.5 ${
           type === 'ban' ? 'h-14 w-14' : 'h-20 w-full sm:h-24'
         } ${
           active
             ? 'border-amber-400 shadow-lg shadow-amber-400/30 scale-105 animate-pulse'
             : hero
             ? 'border-slate-600 bg-slate-800'
-            : 'border-dashed border-slate-700 bg-slate-900/50 hover:border-slate-500'
+            : 'border-dashed border-slate-700/70 bg-slate-900/60 hover:border-slate-500/80 hover:bg-slate-800/70'
         }`}
         title={active ? t('draftBoard.clickToSelect') : undefined}
       >
@@ -97,9 +97,9 @@ export const DraftBoard: React.FC<DraftBoardProps> = ({
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 bg-slate-950/60 p-4 rounded-2xl border border-slate-800">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 bg-slate-950/70 backdrop-blur-md p-5 rounded-2xl border border-slate-800/60">
       {/* Blue Team (Our Team) */}
-      <div className="bg-blue-950/20 border border-blue-900/40 rounded-xl p-4 flex flex-col gap-4">
+      <div className="bg-slate-900/80 backdrop-blur-md border border-blue-900/40 rounded-xl p-5 flex flex-col gap-4 transition-all duration-200 hover:-translate-y-0.5">
         <div className="flex items-center justify-between border-b border-blue-900/50 pb-2">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse"></div>
@@ -128,7 +128,7 @@ export const DraftBoard: React.FC<DraftBoardProps> = ({
       </div>
 
       {/* Red Team (Enemy Team) */}
-      <div className="bg-rose-950/20 border border-rose-900/40 rounded-xl p-4 flex flex-col gap-4">
+      <div className="bg-slate-900/80 backdrop-blur-md border border-rose-900/40 rounded-xl p-5 flex flex-col gap-4 transition-all duration-200 hover:-translate-y-0.5">
         <div className="flex items-center justify-between border-b border-rose-900/50 pb-2">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-rose-500 animate-pulse"></div>
